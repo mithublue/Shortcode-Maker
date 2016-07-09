@@ -1,4 +1,4 @@
-(function() {
+;(function( $ ) {
     tinymce.PluginManager.add('pushortcodes', function( editor )
     {
         var shortcodeValues = [];
@@ -8,14 +8,31 @@
         });
 
         editor.addButton('pushortcodes', {
-            type: 'listbox',
+            //type: 'listbox',
             text: 'Shortcodes',
-            onselect: function(e) {
-                var v = e.control._text;
-
-                tinyMCE.activeEditor.selection.setContent( '[' + v + '][/' + v + ']' );
+            onclick : function(e){
+                $.post(
+                    ajaxurl,
+                    {
+                        action : 'show_shortcodes',
+                        shortcode_array :  shortcode_array
+                    },
+                    function(data){
+                        $('#wpwrap').append(data);
+                    }
+                )
             },
             values: shortcodeValues
         });
     });
-})();
+
+    $(document).on( 'click', '#sm-modal .close', function(){
+        $(this).parent().parent().remove();
+    }).on( 'click', '.sm_shortcode_list li',function(){
+        var selector = $(this);
+        console.log('['+selector.text()+'][/'+selector.text()+']');
+        tinyMCE.activeEditor.selection.setContent('['+selector.text().trim()+'][/'+selector.text().trim()+']' );
+        $('#sm-modal').remove();
+    });
+
+}(jQuery));
