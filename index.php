@@ -56,7 +56,13 @@ class shortcode_maker{
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_styles' ) );
         //ajax
         add_action( 'wp_ajax_show_shortcodes', array( $this, 'render_shortcode_modal' ) );
+
+        $this->includes();
 	}
+
+    function includes(){
+        require_once dirname(__FILE__).'/cc-products-page.php';
+    }
 
     /**
      * Convert shortcode array to js
