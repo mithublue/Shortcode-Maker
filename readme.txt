@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: mithublue,cybercraftit
-Tags: shortcode, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, shortcode maker, unlimited shortcode, self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
+Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
 Requires at least: 3.0.1
 Tested up to: 4.0.1
 Stable tag: 4.3
