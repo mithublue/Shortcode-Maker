@@ -33,6 +33,11 @@ e.g.
 
 == Changelog ==
 
+== 2.1.1 ==
+
+1. [fix] Problem with apostrophe in attrbutes fixed
+2. [fix] Problem with deleting attribute fixed.
+
 == 2.1 ==
 
 1. [new] Admin will now be able to create/add attribute with/without default values for their shortcodes when creating
