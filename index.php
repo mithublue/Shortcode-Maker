@@ -2,11 +2,11 @@
 /*
 Plugin Name: Shortcode Maker
 Description: A plugin to to let users make shortcodes of their own and use them in wp editor
-Plugin URI:
-Author URI:
+Plugin URI: http://cybercraftit.com/product/shortcode-maker/
+Author URI: http://cybercraftit.com/
 Author: Mithu A Quayium
 Text Domain: sm
-Version: 2.0
+Version: 2.1.1
 License: GPL2
 */
 
@@ -53,15 +53,18 @@ class shortcode_maker{
 		add_action('wp_trash_post',array($this,'remove_shortcode'));
 
         add_action( 'admin_head', array( $this , 'shortcode_array_js' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_styles' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts_styles' ) );
         //ajax
         add_action( 'wp_ajax_show_shortcodes', array( $this, 'render_shortcode_modal' ) );
+        add_action( 'wp_ajax_sm_get_shortcode_atts', array( $this, 'get_shortcode_atts_panel' ) );
+
 
         $this->includes();
 	}
 
     function includes(){
         require_once dirname(__FILE__).'/cc-products-page.php';
+        require_once dirname(__FILE__).'/shortcode-field.php';
     }
 
     /**
@@ -95,7 +98,7 @@ class shortcode_maker{
                     echo '<ul>';
                     foreach( $shortcode_array as $id => $shortcode ) {
                         ?>
-                        <li>
+                        <li data-id="<?php echo $id; ?>">
                             <?php echo $shortcode; ?>
                         </li>
                     <?php
@@ -106,6 +109,66 @@ class shortcode_maker{
             </div>
 
         </div>
+        <?php
+        exit;
+    }
+
+    /**
+     * get shortcode attribute panel
+     */
+    public function get_shortcode_atts_panel() {
+        ?>
+        <?php
+        $shortcode_atts = get_post_meta( $_POST['shortcode_id'], 'sm_shortcode_atts' , true );
+
+        if( !empty( $shortcode_atts ) ) :
+        ?>
+        <div id="sm-modal-atts" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h3>Attributes for <?php echo $_POST['tag']; ?></h3>
+                <hr/>
+                <?php
+                echo '<div class="sm_shortcode_atts">';
+                ?>
+                <script>
+                    var shortcode_atts = '<?php echo json_encode( SM_Shortcode_Field::convert_to_js_meta( $shortcode_atts ) );?>';
+                </script>
+                <ul>
+                    <li v-for="( key, attr ) in shortcode_atts">
+                        {{ attr.name }}
+                        <input type="text" v-model="attr.value" name="shortcode_atts[{{ key }}][value]">
+                    </li>
+                </ul>
+
+                <button class="shortcode_atts_ok "><?php _e( 'Okay', 'sm' ) ?></button>
+                <button class="shortcode_atts_cancel "><?php _e( 'Cancel', 'sm' ) ?></button>
+                <?php
+                echo '</div>';
+                ?>
+
+                <script>
+                    var sm_attrs = new Vue({
+                        el: '#wpwrap',
+                        data : {
+                            shortcode_atts : JSON.parse(shortcode_atts)
+                        },
+                        methods : {
+                            add_attr_box : function(){
+                                this.shortcode_atts.push({
+                                    name : 'Attribute name',
+                                    value : 'Attribute value'
+                                });
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+        <?php endif; ?>
         <?php
         exit;
     }
@@ -185,9 +248,29 @@ class shortcode_maker{
      * @return mixed
      */
     function shortcode_content($atts,$content = NULL,$tag){
-		if(in_array($tag,$this->shorcode_array)){
-			$post_id = array_search($tag,$this->shorcode_array);
-			return get_post($post_id)->post_content;
+
+        if(in_array($tag,$this->shorcode_array)){
+
+            $post_id = array_search($tag,$this->shorcode_array);
+            $default_atts = get_post_meta( $post_id, 'sm_shortcode_atts', true );
+
+            $atts = shortcode_atts(
+                $default_atts,
+                $atts, $tag );
+
+            $search = array();
+            $replace = array();
+
+            foreach( $atts as $att_name => $att_value ) {
+                $search[] = '%' . $att_name . '%';
+                $replace[] =  $att_value ;
+            }
+
+            if( !$content ) {
+                $content = get_post($post_id)->post_content;
+            }
+
+            return str_replace( $search, $replace, $content );
 		}
 	}
 
@@ -251,8 +334,25 @@ class shortcode_maker{
     /**
      * Add scripts and styles
      */
-    public function enqueue_scripts_styles() {
+    public function admin_enqueue_scripts_styles() {
+        global $post;
         wp_enqueue_style( 'sm-style', plugins_url('css/style.css',__FILE__) );
+        wp_enqueue_script( 'sm-vue-js', plugins_url('js/vue.js',__FILE__) );
+
+        if( isset( $post->ID ) && get_post_type( $post->ID ) == 'sm_shortcode' ) {
+            wp_enqueue_script( 'sm-script-js', plugins_url('js/script.js',__FILE__), array( 'sm-vue-js' ) );
+        }
+
     }
 }
 new shortcode_maker;
+
+// add plugin upgrade notification
+add_action('in_plugin_update_message-shortcode-maker/index.php', 'showUpgradeNotification', 10, 2);
+function showUpgradeNotification($currentPluginMetadata, $newPluginMetadata){
+    // check "upgrade_notice"
+    if (isset($newPluginMetadata->upgrade_notice) && strlen(trim($newPluginMetadata->upgrade_notice)) > 0){
+        echo '<p style="background-color: #d54e21; padding: 10px; color: #f9f9f9; margin-top: 10px"><strong>Important Upgrade Notice:</strong></p> ';
+        echo esc_html($newPluginMetadata->upgrade_notice), '</p>';
+    }
+}
