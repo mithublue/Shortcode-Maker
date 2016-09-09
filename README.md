@@ -26,10 +26,14 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 ## Screenshots ##
 
 1. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-2.png)
+
 2. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-3.png)
+
 3. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-4.png)
-3. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-5.png)
-3. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-6.png)
+
+4. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-5.png)
+
+5. ![Shortcode maker](https://ps.w.org/shortcode-maker/assets/screenshot-6.png)
 
 
 ## Changelog ##
