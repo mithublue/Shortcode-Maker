@@ -5,11 +5,10 @@ Description: A plugin to to let users make shortcodes of their own and use them 
 Plugin URI: http://cybercraftit.com/product/shortcode-maker/
 Author URI: http://cybercraftit.com/
 Author: Mithu A Quayium
-Text Domain: sm
+Text Domain: shortcode-maker
 Version: 2.1.1
 License: GPL2
 */
-
 /**
  * Copyright (c) YEAR Mithu A Quayium (email: cemithu06@gmail.com). All rights reserved.
  *
@@ -91,7 +90,7 @@ class shortcode_maker{
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">×</span>
-                <h3>Shortcodes - Shortcode Maker</h3>
+                <h3><?php _e( 'Shortcodes - Shortcode Maker' , 'shortcode-maker' ); ?></h3>
                 <hr/>
                 <?php
                 echo '<div class="sm_shortcode_list">';
@@ -117,18 +116,14 @@ class shortcode_maker{
      * get shortcode attribute panel
      */
     public function get_shortcode_atts_panel() {
-        ?>
-        <?php
         $shortcode_atts = get_post_meta( $_POST['shortcode_id'], 'sm_shortcode_atts' , true );
+        if( !empty( $shortcode_atts ) ) : ?>
 
-        if( !empty( $shortcode_atts ) ) :
-        ?>
         <div id="sm-modal-atts" class="modal">
-
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">×</span>
-                <h3>Attributes for <?php echo $_POST['tag']; ?></h3>
+                <h3><?php _e( 'Attributes for ', 'shortcode-maker' ); ?><?php echo $_POST['tag']; ?></h3>
                 <hr/>
                 <?php
                 echo '<div class="sm_shortcode_atts">';
@@ -143,12 +138,11 @@ class shortcode_maker{
                     </li>
                 </ul>
 
-                <button class="shortcode_atts_ok "><?php _e( 'Okay', 'sm' ) ?></button>
-                <button class="shortcode_atts_cancel "><?php _e( 'Cancel', 'sm' ) ?></button>
+                <button class="shortcode_atts_ok "><?php _e( 'Okay', 'shortcode-maker' ) ?></button>
+                <button class="shortcode_atts_cancel "><?php _e( 'Cancel', 'shortcode-maker' ) ?></button>
                 <?php
                 echo '</div>';
                 ?>
-
                 <script>
                     var sm_attrs = new Vue({
                         el: '#wpwrap',
@@ -167,7 +161,6 @@ class shortcode_maker{
                 </script>
             </div>
         </div>
-
         <?php endif; ?>
         <?php
         exit;
@@ -178,19 +171,19 @@ class shortcode_maker{
      */
 	function register_shortcode(){
 		$labels = array(
-				'name' => _x('Shortcode', 'post type general name'),
-				'singular_name' => _x('Shortcode', 'post type singular name'),
-				'menu_name' => _x( 'Shortcode', 'admin menu'),
-				'name_admin_bar' => _x( 'Shortcode', 'add new on admin bar'),
-				'add_new' => _x('Add New Shortcode', 'Shortcode'),
-				'add_new_item' => __('Add New Shortcode'),
-				'edit_item' => __('Edit Shortcode'),
-				'new_item' => __('New Shortcode'),
-				'view_item' => __('View Shortcode'),
-				'all_items' => __( 'All Shortcode' ),
-				'search_items' => __('Search Shortcode'),
-				'not_found' =>  __('Nothing found'),
-				'not_found_in_trash' => __('Nothing found in Trash'),
+				'name' => _x('Shortcode', 'post type general name', 'shortcode-maker'),
+				'singular_name' => _x('Shortcode', 'post type singular name','shortcode-maker'),
+				'menu_name' => _x( 'Shortcode', 'admin menu', 'shortcode-maker'),
+				'name_admin_bar' => _x( 'Shortcode', 'add new on admin bar', 'shortcode-maker'),
+				'add_new' => _x('Add New Shortcode', 'Shortcode' , 'shortcode-maker' ),
+				'add_new_item' => __('Add New Shortcode', 'shortcode-maker'),
+				'edit_item' => __('Edit Shortcode', 'shortcode-maker'),
+				'new_item' => __('New Shortcode' , 'shortcode-maker' ),
+				'view_item' => __('View Shortcode', 'shortcode-maker' ),
+				'all_items' => __( 'All Shortcode', 'shortcode-maker' ),
+				'search_items' => __('Search Shortcode', 'shortcode-maker' ),
+				'not_found' =>  __('Nothing found', 'shortcode-maker' ),
+				'not_found_in_trash' => __('Nothing found in Trash', 'shortcode-maker' ),
 				'parent_item_colon' => '',
 				
 			);

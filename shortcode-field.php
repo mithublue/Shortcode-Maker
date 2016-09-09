@@ -13,7 +13,7 @@ class SM_Shortcode_Field {
 
         add_meta_box(
             'sm-extra-attr',
-            __( 'Shortcode Attributes' ),
+            __( 'Shortcode Attributes','shortcode-maker' ),
             array( $this, 'render_shortcode_attributes_meta_box' ),
             $post_type,
             'normal',
@@ -30,14 +30,14 @@ class SM_Shortcode_Field {
         <script>
             var shortcode_atts = <?php echo json_encode($shortcode_atts);?>;
         </script>
-        <p><strong>Note : Provide attibute name withous space inside . You can use these shortcode attributes in content. To do this, add the attributes in the content in wp editor like this
-                %attributes_name%
+        <p><strong><?php _e( 'Note : Provide attibute name withous space inside . You can use these shortcode attributes in content. To do this, add the attributes in the content in wp editor like this
+                %attributes_name%', 'shortcode-maker' );?>
             </strong></p>
-        <a href="javascript:" class="sm-add-attr" @click="add_attr_box()">Add Attribute</a>
+        <a href="javascript:" class="sm-add-attr" @click="add_attr_box()"><?php _e( 'Add Attribute', 'shortcode-maker' ); ?></a>
         <div v-for="( key, attr ) in shortcode_atts">
             <input type="text" v-model="attr.name" name="shortcode_atts[{{ key }}][name]" >
             <input type="text" v-model="attr.value" name="shortcode_atts[{{ key }}][value]">
-            <a href="javascript:" @click="remove_attr(key)" >Remove</a>
+            <a href="javascript:" @click="remove_attr(key)" ><?php _e( 'Remove' , 'shortcode-maker' ); ?></a>
         </div>
         <?php
     }
