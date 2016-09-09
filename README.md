@@ -38,6 +38,11 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 ## Changelog ##
 
+#### 2.2 ####
+
+1. [new] Transation scope added.
+2. [new] Nesting shortcode added.
+
 #### 2.1.1 ####
 
 1. [fix] Problem with apostrophe in attrbutes fixed

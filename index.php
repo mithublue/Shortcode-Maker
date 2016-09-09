@@ -6,7 +6,7 @@ Plugin URI: http://cybercraftit.com/product/shortcode-maker/
 Author URI: http://cybercraftit.com/
 Author: Mithu A Quayium
 Text Domain: shortcode-maker
-Version: 2.1.1
+Version: 2.2
 License: GPL2
 */
 /**
