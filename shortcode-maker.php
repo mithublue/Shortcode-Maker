@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Shortcode Maker
-Description: A plugin to to let users make shortcodes of their own and use them in wp editor
-Plugin URI: http://cybercraftit.com/product/shortcode-maker/
-Author URI: http://cybercraftit.com/
-Author: Mithu A Quayium
-Text Domain: shortcode-maker
-Version: 2.2
-License: GPL2
-*/
+ * Plugin Name: Shortcode Maker
+ * Description: A plugin to to let users make shortcodes of their own and use them in wp editor
+ * Plugin URI: http://cybercraftit.com/product/shortcode-maker/
+ * Author URI: http://cybercraftit.com/
+ * Author: Mithu A Quayium
+ * Text Domain: shortcode-maker
+ * Version: 2.2
+ * License: GPL2
+ */
 /**
  * Copyright (c) YEAR Mithu A Quayium (email: cemithu06@gmail.com). All rights reserved.
  *
