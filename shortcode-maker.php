@@ -6,6 +6,7 @@
  * Author URI: http://cybercraftit.com/
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
+ * Domain Path: /languages
  * Version: 2.2
  * License: GPL2
  */
