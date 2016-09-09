@@ -58,6 +58,8 @@ class shortcode_maker{
         add_action( 'wp_ajax_show_shortcodes', array( $this, 'render_shortcode_modal' ) );
         add_action( 'wp_ajax_sm_get_shortcode_atts', array( $this, 'get_shortcode_atts_panel' ) );
 
+        add_action( 'init', array($this, 'load_textdomain') );
+
 
         $this->includes();
 	}
@@ -66,6 +68,16 @@ class shortcode_maker{
         require_once dirname(__FILE__).'/cc-products-page.php';
         require_once dirname(__FILE__).'/shortcode-field.php';
     }
+
+    /**
+     * Load the translation file for current language.
+     *
+     * @since version 2.2
+     */
+    function load_textdomain() {
+        load_plugin_textdomain( 'shortcode-maker', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
+
 
     /**
      * Convert shortcode array to js
