@@ -38,6 +38,10 @@ e.g.
 
 == Changelog ==
 
+== 3.0 ==
+
+1. [new] PHP Code now can be added to the shortcode definition in editor.
+
 == 2.2 ==
 
 1. [new] Transation scope added.
@@ -67,6 +71,9 @@ e.g.
 1. Plugin Initial version
 
 == Upgrade Notice ==
+
+= 3.0 =
+A major update has been added to the plugin with extended feature and functionalities !
 
 = 2.1 =
 A major update has been added to the plugin with extended feature and functionalities ! 
