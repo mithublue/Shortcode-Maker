@@ -11,6 +11,7 @@ class SM_Shortcode_Field {
     function sm_insert_php($content)
     {
         global $post;
+        if( get_post_type() != 'sm_shortcode') return $content;
         if( !in_array('administrator', get_userdata($post->post_author)->roles )) return $content;
 
         $sm_content = $content;
