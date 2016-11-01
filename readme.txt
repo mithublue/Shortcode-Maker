@@ -17,7 +17,7 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 * You can add shortcode of your own
 * Add attributes as many as you want with the ability to define default value
-* you can write PHP code in definition. To use code, use [php_code][/php_code] in you shortcode definition and place code inside it.
+* you can write PHP code in definition. To use code, use [php_code][/php_code] in your shortcode definition and place code inside it.
 
 
 [youtube https://www.youtube.com/watch?v=WpVpTKAWPuE]
