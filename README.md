@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.6.1
 
-Stable tag: 2.1
+Stable tag: 3.0
 
 License: GPLv2 or later
 
@@ -22,6 +22,11 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 1. Upload `shortcode-maker` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
+## Features ##
+
+* You can add shortcode of your own
+* Add attributes as many as you want with the ability to define default value
+* you can write PHP code in definition. To use code, use [php_code][/php_code] in you shortcode definition and place code inside it.
  
 ## Screenshots ##
 
