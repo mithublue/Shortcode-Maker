@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Shortcode Maker ===
 Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
 Requires at least: 3.0.1
@@ -9,6 +9,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily
 
+== Description ==
+
+The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily.
+
+[youtube https://www.youtube.com/watch?v=WpVpTKAWPuE]
 
 == Installation ==
 
