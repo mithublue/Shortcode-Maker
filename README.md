@@ -6,9 +6,9 @@ Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortco
 
 Requires at least: 3.0.1
 
-Tested up to: 4.6.1
+Tested up to: 4.7
 
-Stable tag: 3.0
+Stable tag: 3.0.1
 
 License: GPLv2 or later
 
