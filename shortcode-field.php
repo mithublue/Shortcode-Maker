@@ -106,6 +106,7 @@ class SM_Shortcode_Field {
     }
 
     public function save_shortcode_data( $post_id ) {
+        if( !isset( $_POST['shortcode_atts'] ) ) return;
         $post_meta = self::convert_to_post_meta( $_POST['shortcode_atts'] );
         update_post_meta( $post_id, 'sm_shortcode_atts', $post_meta );
     }
