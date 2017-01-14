@@ -278,7 +278,7 @@ class shortcode_maker{
             }
 
             if( !$content ) {
-                $content = do_shortcode( get_post($post_id)->post_content );
+                $content = do_shortcode( nl2br( get_post($post_id)->post_content ) );
             }
 
             return str_replace( $search, $replace, $content );
