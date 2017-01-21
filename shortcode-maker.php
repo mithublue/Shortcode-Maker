@@ -40,6 +40,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
+define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
+
 class shortcode_maker{
 
 	private $shorcode_array = array();
@@ -59,6 +62,7 @@ class shortcode_maker{
 
         add_action( 'admin_head', array( $this , 'shortcode_array_js' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts_styles' ) );
+
         //ajax
         add_action( 'wp_ajax_show_shortcodes', array( $this, 'render_shortcode_modal' ) );
         add_action( 'wp_ajax_sm_get_shortcode_atts', array( $this, 'get_shortcode_atts_panel' ) );
@@ -70,8 +74,10 @@ class shortcode_maker{
 	}
 
     function includes(){
+        require_once dirname(__FILE__).'/sm-functions.php';
         require_once dirname(__FILE__).'/cc-products-page.php';
         require_once dirname(__FILE__).'/shortcode-field.php';
+        include_once dirname(__FILE__).'/packaged-shortcodes/packaged-shortcodes.php';
     }
 
     /**
@@ -311,9 +317,9 @@ class shortcode_maker{
 	function sm_add_buttons( $plugin_array )
     {
 		if(get_bloginfo('version') >= 3.9){
-	        $plugin_array['pushortcodes'] = plugin_dir_url( __FILE__ ) . 'js/shortcode-tinymce-button.js';
+	        $plugin_array['pushortcodes'] = plugin_dir_url( __FILE__ ) . 'assets/js/shortcode-tinymce-button.js';
 		}else{
-			$plugin_array['pushortcodes'] = plugin_dir_url( __FILE__ ) . 'js/shortcode-tinymce-button-older.js';
+			$plugin_array['pushortcodes'] = plugin_dir_url( __FILE__ ) . 'assets/js/shortcode-tinymce-button-older.js';
 		}
 
 
@@ -345,13 +351,20 @@ class shortcode_maker{
     /**
      * Add scripts and styles
      */
-    public function admin_enqueue_scripts_styles() {
+    public function admin_enqueue_scripts_styles( $hook ) {
         global $post;
-        wp_enqueue_style( 'sm-style', plugins_url('css/style.css',__FILE__) );
-        wp_enqueue_script( 'sm-vue-js', plugins_url('js/vue.js',__FILE__) );
+
+        if( in_array( $hook, array(
+            'post.php',
+            'post-new.php'
+        ))) {
+            /*SHORTCODE_MAKER_ASSET_PATH*/
+            wp_enqueue_style( 'sm-style', SHORTCODE_MAKER_ASSET_PATH.'/css/style.css' );
+            wp_enqueue_script( 'sm-vue-js', SHORTCODE_MAKER_ASSET_PATH.'/js/vue.js' );
+        }
 
         if( isset( $post->ID ) && get_post_type( $post->ID ) == 'sm_shortcode' ) {
-            wp_enqueue_script( 'sm-script-js', plugins_url('js/script.js',__FILE__), array( 'sm-vue-js' ) );
+            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue-js' ) );
         }
 
     }
