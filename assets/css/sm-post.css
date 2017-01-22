@@ -7195,6 +7195,12 @@
 }
 #shortcode_settings_modal .modal-body{
     overflow-y: scroll;
-    max-height: 75%;
+    max-height: 65%;
+}
+.smps_shortcode_modal{
+    padding: 3%;
+}
+.smps_shortcode_modal .modal-dialog{
+    width: 95%;
 }
 /*# sourceMappingURL=sm-post.css.map */

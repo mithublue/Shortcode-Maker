@@ -18,7 +18,7 @@
                 <textarea v-model="each_tab.content" cols="30" rows="10" class="form-control"></textarea>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" @click="insert_shortcode()">Insert</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_accordion_settings">
@@ -36,11 +36,10 @@
                 <textarea v-model="each_acc.content" cols="30" rows="10" class="form-control"></textarea>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" @click="insert_shortcode()">Insert</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_table_settings">
-    {{ $data | json }}
     <form class="shortcode_settings_form">
         <div class="mb10">
             <a class="btn btn-default" href="javascript:" @click="add_row()"><?php _e( 'Add Row', 'sm' ); ?></a>
@@ -49,16 +48,22 @@
         <div class="form-group">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <td v-for="col_number in col_tracker">
+                            <a href="javascript:" class="btn btn-danger pull-right" @click="remove_col(col_number)"><i class="glyphicon glyphicon-minus"></i></a>
+                        </td>
+                    </tr>
                     <tr v-for="( t_key, t_val ) in table_data">
                         <td v-for="( c_key, c_val) in t_val ">
                             <input type="text" v-model="c_val">
                             <!--<a href="javascript:" class="btn btn-danger br0" @click="remove_td(t_key, c_key)"><i class="glyphicon glyphicon-minus"></i></a>-->
                         </td>
-                        <td><a href="javascript:" class="btn btn-danger br0 pull-right btn-xs" @click="remove_row(t_key)" data-val="{{ t_key }}">Remove</a></td>
+                        <td><a href="javascript:" class="btn btn-danger pull-right btn-xs" @click="remove_row(t_key)" data-val="{{ t_key }}">Remove</a></td>
                     </tr>
                 </table>
             </div>
         </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <!--panel-->
@@ -94,7 +99,7 @@
                 <option v-for="(name,label) in footer_alignments" :value="name">{{ label }}</option>
             </select>
         </div>
-        <button type="button" class="btn btn-primary" @click="insert_shortcode()">Insert</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_alert_settings">
@@ -112,7 +117,7 @@
         <div class="form-group">
             <label><input type="checkbox" v-model="dismissable" > <?php _e('Dismissable','sm'); ?></label>
         </div>
-        <button type="button" class="btn btn-primary" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_heading_settings">
@@ -133,7 +138,7 @@
                 <option v-for="(name,label) in types" :value="name">{{ label }}</option>
             </select>
         </div>
-        <button type="button" class="btn btn-primary" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_quote_settings">
@@ -152,6 +157,6 @@
             <label><?php _e('Author','sm'); ?></label>
             <input type="text" v-model="author" class="form-control">
         </div>
-        <button type="button" class="btn btn-primary" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>

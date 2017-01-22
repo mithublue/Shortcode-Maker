@@ -24,8 +24,6 @@
                     Vue.set(this.tab_data,'tab_' + new Date().getTime(),JSON.parse(JSON.stringify(this.tab_template)));
                 },
                 insert_shortcode : function () {
-                    console.log((JSON.stringify(this.tab_data)));
-                    console.log('[smps_sl_tabs type=' + this.type + ' tab_data=' + JSON.stringify(this.tab_data) + ']');
                     var tab_data_str = '';
                     for( k in this.tab_data ){
                         tab_data_str = tab_data_str + k + ':' + this.tab_data[k]['title'] + '|' + this.tab_data[k]['content'] + ',';
@@ -60,7 +58,6 @@
                         acc_data_str = acc_data_str + k + ':' + this.acc_data[k]['title'] + '|' + this.acc_data[k]['content'] + ',';
                     }
                     var shortcode = '[smps_sl_accordion acc_data="' + acc_data_str + '"]';
-                    console.log(shortcode);
                     tinyMCE.activeEditor.selection.setContent( shortcode );
                 }
             },
@@ -74,7 +71,8 @@
             data : function () {
                 return {
                     table_data : {},
-                    col_template : {}
+                    col_template : {},
+                    col_tracker : []
                 }
             },
             methods : {
@@ -82,25 +80,50 @@
                     var col_val = '';/*'td_' + new Date().getTime()*/
                     var col_key = new Date().getTime();
                     Vue.set(this.col_template, col_key, col_val );
-                    console.log(this.col_template);
 
                     for( var k in this.table_data ) {
                         Vue.set( this.table_data[k],col_key,col_val);
                     }
+
+                    //col nums
+                    this.col_tracker.push(this.col_tracker.length);
                 },
                 add_row : function () {
                     Vue.set( this.table_data, 'tr_' + new Date().getTime(), JSON.parse( JSON.stringify( this.col_template ) ) );
+                },
+                remove_col : function (col_number) {
+                    console.log(col_number);
+                    //remove col of table data
+                    for( var k in this.table_data ) {
+                        Vue.delete( this.table_data[k], Object.keys(this.table_data[k])[col_number] );
+                    }
+                    //remove col of col template
+                    Vue.delete( this.col_template, Object.keys(this.col_template)[col_number]);
+                    //remove from col tracker
+                    this.col_tracker.splice( -1, 1 );
                 },
                 remove_td : function ( t_key, c_key ) {
                     Vue.delete( this.table_data[t_key],c_key);
                 },
                 remove_row : function ( t_key ) {
-                    console.log(t_key);
                     Vue.delete( this.table_data, t_key );
+                    if( !Object.keys(this.table_data).length ) {
+                        this.col_template = {};
+                        this.col_tracker = [];
+                    }
                 },
                 insert_shortcode : function () {
-                    var shortcode = '[smps_sl_table type="' + this.type + '" header="' + this.header + '" header_alignment="' + this.header_alignment + '"' +
-                        ' body="' + this.body + '" footer="' + this.footer + '" footer_alignment="'+ this.footer_alignment +'"]';
+
+                    var table_data_str = '';
+                    for( var tr_key in this.table_data ) {
+                        table_data_str = table_data_str + tr_key + ':' ;
+                        for ( var td_key in this.table_data[tr_key] ) {
+                            table_data_str = table_data_str /*+ td_key + '|'*/ + this.table_data[tr_key][td_key] + ',';
+                        }
+                        table_data_str = table_data_str + ';';
+                    }
+
+                    var shortcode = '[smps_sl_table table_data="' + table_data_str + '"]';
                     tinyMCE.activeEditor.selection.setContent( shortcode );
                 }
             },

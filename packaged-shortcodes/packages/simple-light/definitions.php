@@ -7,7 +7,6 @@ foreach ( $items as $item => $label ) {
 class Smps_Simple_Light_Shortcodes {
 
     public static function render_tabs( $atts, $content, $tag ) {
-
         $tab_data = array();
         if( isset( $atts['tab_data'] ) ) {
 
@@ -98,6 +97,7 @@ class Smps_Simple_Light_Shortcodes {
         $atts['acc_data'] = $tab_data;
 
         $atts = shortcode_atts( array(
+            'opened_tab' => 1,
             'acc_data' => array(
                 'acc1' => array(
                     'title' => 'Accordion 1 Title',
@@ -126,7 +126,7 @@ class Smps_Simple_Light_Shortcodes {
                         <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $acc_key; ?>"><?php echo $accordion['title']; ?></a>
                     </h4>
                 </div>
-                <div id="<?php echo $acc_key; ?>" class="panel-collapse collapse in">
+                <div id="<?php echo $acc_key; ?>" class="panel-collapse collapse <?php echo $i == $atts['opened_tab'] ? 'in' : ''; ?>">
                     <div class="panel-body">
                         <?php echo $accordion['content']; ?>
                     </div>
@@ -145,8 +145,19 @@ class Smps_Simple_Light_Shortcodes {
      * @param $tag
      */
     public static function render_table( $atts, $content, $tag ) {
+        $first_level = explode( ';', $atts['table_data'] );
+        $table_data = array();
+
+        foreach ( $first_level as $key => $data ) {
+            //pri($data);
+            $second_level = explode( ':', trim($data,',') );
+            if( count( $second_level ) == 1 ) continue;
+            $td_data = explode(',',$second_level[1]);
+            $table_data[$second_level[0]] = $td_data;
+        }
+        $atts['table_data'] = $table_data;
+
         $atts = shortcode_atts( array(
-            'col_num' => 2,
             'table_data' => array(
                 'thead' => array( 'Name', 'Email' ),
                 'tbody' => array(
@@ -160,15 +171,15 @@ class Smps_Simple_Light_Shortcodes {
         <div class="bs-container">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
-                    <thead>
+                    <!--<thead>
                     <tr>
-                        <?php foreach ( $atts['table_data']['thead'] as $key => $label ) : ?>
-                        <th><?php echo $label; ?></th>
-                        <?php endforeach;?>
+                        <?php /*foreach ( $atts['table_data']['thead'] as $key => $label ) : */?>
+                        <th><?php /*echo $label; */?></th>
+                        <?php /*endforeach;*/?>
                     </tr>
-                    </thead>
+                    </thead>-->
                     <tbody>
-                    <?php foreach ( $atts['table_data']['tbody'] as $key => $tr ) : ?>
+                    <?php foreach ( $atts['table_data']/*['tbody']*/ as $key => $tr ) : ?>
                         <tr>
                             <?php foreach ( $tr as $k => $td ) : ?>
                                 <td><?php echo $td; ?></td>

@@ -10,11 +10,10 @@ class SM_Packaged_Shortcodes_Admin {
         ?>
         <div class="bs-container smps_app">
             <!-- Modal -->
-            <div class="modal fade" id="shortcode_settings_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade smps_shortcode_modal" id="shortcode_settings_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">{{ settings_modal_label }}</h4>
                         </div>
                         <div class="modal-body">
@@ -44,7 +43,7 @@ class SM_Packaged_Shortcodes_Admin {
                                     $s_items = isset( $settigs['items'] ) ? $settigs['items'] : array();
                                     foreach ( $s_items as $item_name => $item_label ) {
                                         ?>
-                                        <a href="#" @click="get_settings_html( '<?php echo $classname.'_Admin'; ?>', '<?php echo $item_name; ?>','<?php echo $item_label; ?>')" class="btn btn-primary br0" data-toggle="modal" data-target="#shortcode_settings_modal"><?php echo $item_label; ?></a>
+                                        <a href="#" @click="get_settings_html( '<?php echo $classname.'_Admin'; ?>', '<?php echo $item_name; ?>','<?php echo $item_label; ?>')" class="btn btn-default br0" data-toggle="modal" data-target="#shortcode_settings_modal"><?php echo $item_label; ?></a>
                                         <?php
                                     }
                                     ?>
