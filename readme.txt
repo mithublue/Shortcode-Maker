@@ -13,7 +13,7 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 = Our Official Support Forum =
 
-To get fast suport , You can contact through our official forum site.
+To get faster support , You can contact through our official forum site.
 Official support forum : http://supports.cybercraftit.com/supports/support/shortcode-maker/
 
 
