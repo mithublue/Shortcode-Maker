@@ -68,10 +68,15 @@ class shortcode_maker{
         add_action( 'wp_ajax_sm_get_shortcode_atts', array( $this, 'get_shortcode_atts_panel' ) );
 
         add_action( 'init', array($this, 'load_textdomain') );
+        register_activation_hook( __FILE__, array( $this, 'plugin_activation_task' ) );
 
 
         $this->includes();
 	}
+
+	public function plugin_activation_task() {
+	    do_action( 'shortcode_maker_activation_task' );
+    }
 
     function includes(){
         require_once dirname(__FILE__).'/sm-functions.php';
@@ -372,8 +377,8 @@ class shortcode_maker{
 new shortcode_maker;
 
 // add plugin upgrade notification
-add_action('in_plugin_update_message-shortcode-maker/index.php', 'showUpgradeNotification', 10, 2);
-function showUpgradeNotification($currentPluginMetadata, $newPluginMetadata){
+add_action('in_plugin_update_message-shortcode-maker/index.php', 'sm_showUpgradeNotification', 10, 2);
+function sm_showUpgradeNotification($currentPluginMetadata, $newPluginMetadata){
     // check "upgrade_notice"
     if (isset($newPluginMetadata->upgrade_notice) && strlen(trim($newPluginMetadata->upgrade_notice)) > 0){
         echo '<p style="background-color: #d54e21; padding: 10px; color: #f9f9f9; margin-top: 10px"><strong>Important Upgrade Notice:</strong></p> ';

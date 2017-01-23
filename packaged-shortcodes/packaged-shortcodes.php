@@ -29,6 +29,7 @@ class SM_Packaged_Shortcodes {
 
         //add panel in admin editor page to add the shortcodes buttons
         add_action( 'edit_form_after_title', array( 'SM_Packaged_Shortcodes_Admin', 'shortcode_editor_panel' ) );
+        add_action( 'shortcode_maker_activation_task', array( $this, 'set_data_on_activation' ) );
         $this->includes();
     }
 
@@ -66,9 +67,28 @@ class SM_Packaged_Shortcodes {
                             <?php
                             while (false !== ($entry = readdir($handle))) {
                                 if( $entry == '.' || $entry == '..' ) continue;
+                                include_once 'packages/'.$entry.'/'.$entry.'.php';
                                 ?>
                                 <div class="col-sm-3">
-                                    <label><input type="checkbox" name="sm_shortcode_packages[<?php echo $entry; ?>]" value="<?php echo $entry; ?>" <?php echo in_array( $entry, $sm_get_shortcode_packages )? 'checked' : ''; ?>> <?php echo $entry; ?></label>
+                                    <label></label>
+                                    <?php $package_settings = sm_get_package_settings( '', $entry );?>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h6 class="panel-title">
+                                                <label>
+                                                    <input type="checkbox" name="sm_shortcode_packages[<?php echo $entry; ?>]" value="<?php echo $entry; ?>" <?php echo in_array( $entry, $sm_get_shortcode_packages )? 'checked' : ''; ?>>
+                                                    <?php echo $package_settings['name']; ?>
+                                                </label>
+                                            </h6>
+                                        </div>
+                                        <div class="panel panel-body">
+                                            <?php
+                                            foreach ( $package_settings['items'] as $item ) {
+                                                echo '<div>'.$item.'</div>';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
                                 </div>
                                 <?php
                             }
@@ -94,6 +114,9 @@ class SM_Packaged_Shortcodes {
      */
     public function save_added_packages() {
         if( isset( $_POST['save_added_packages'] ) ) {
+            if( !isset( $_POST['sm_shortcode_packages'] ) || !is_array( $_POST['sm_shortcode_packages'] ) ) {
+                $_POST['sm_shortcode_packages'] = array();
+            }
             sm_save_shortcode_packages($_POST['sm_shortcode_packages']);
         }
     }
@@ -119,6 +142,18 @@ class SM_Packaged_Shortcodes {
             wp_enqueue_script( 'sm-post-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sm-post.js', array( 'jquery','sm-vue-js' ) );
         }
 
+    }
+
+    /**
+     * save data on plugin activation
+     */
+    function set_data_on_activation() {
+        $sm_shortcode_packages = sm_get_shortcode_packages();
+        if( empty( $sm_shortcode_packages ) ) {
+            sm_save_shortcode_packages( array(
+                'simple-light' => 'simple-light'
+            ) );
+        }
     }
 }
 

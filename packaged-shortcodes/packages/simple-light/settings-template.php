@@ -1,21 +1,37 @@
 <template id="smps_simple_light_tabs_settings">
     <form class="shortcode_settings_form">
-        <div class="form-group">
-            <select v-model="type" class="form-control">
-                <option v-for="(name,label) in types" :value="name">{{ label }}</option>
-            </select>
-        </div>
-        <div class="mb10">
-            <a class="btn btn-default" href="javascript:" @click="add_tab()"><?php _e( 'Add Tab', 'sm' ); ?></a>
-        </div>
-        <div v-for="(key, each_tab) in tab_data">
+        <div class="bs-container">
             <div class="form-group">
-                <label><?php _e( 'Tab title', 'sm' ); ?></label>
-                <input type="text" v-model="each_tab.title" class="form-control">
+                <select v-model="type" class="form-control">
+                    <option v-for="(name,label) in types" :value="name">{{ label }}</option>
+                </select>
             </div>
-            <div class="form-group">
-                <label><?php _e( 'Tab content', 'sm' ); ?></label>
-                <textarea v-model="each_tab.content" cols="30" rows="10" class="form-control"></textarea>
+            <div class="mb10">
+                <a class="btn btn-default" href="javascript:" @click="add_tab()"><?php _e( 'Add Tab', 'sm' ); ?></a>
+            </div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-{{ type }}">
+                <li v-for="(tab_key, tab_object) in tab_data" @dblclick="tab_target = tab_key">
+                    <a href="#{{ tab_key }}" data-toggle="tab">
+                        <template v-if="tab_target != tab_key">
+                            {{ tab_object.title }}
+                            <a href="javascript:" class="btn btn-xs btn-danger br0" @click="remove_tab(tab_key)"><i class="glyphicon glyphicon-minus"></i></a>
+                        </template>
+                        <input type="text" v-model="tab_object.title" v-if="tab_target == tab_key">
+                        <a href="javascript:" class="btn btn-default br0 btn-xs" v-if="tab_target == tab_key" @click="tab_target = ''"><?php _e( 'Save', 'sm' ); ?></a>
+                    </a>
+                </li>
+                <li><a href="javascript:" @click="add_tab()">+</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content mt20 mb20">
+                <div v-for="(tab_key, tab_object) in tab_data" class="tab-pane fade" :id="tab_key" @dblclick="content_target = tab_key">
+                    <template v-if="content_target != tab_key">
+                        {{ tab_object.content }}
+                    </template>
+                    <textarea class="form-control mb20" v-model="tab_object.content" cols="30" rows="10" v-if="content_target == tab_key"></textarea>
+                    <a href="javascript:" class="btn btn-default br0" v-if="content_target == tab_key" @click="content_target = ''"><?php _e( 'Save', 'sm' ); ?></a>
+                </div>
             </div>
         </div>
         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
@@ -23,17 +39,32 @@
 </template>
 <template id="smps_simple_light_accordion_settings">
     <form class="shortcode_settings_form">
-        <div class="mb10">
-            <a class="btn btn-default" href="javascript:" @click="add_item()"><?php _e( 'Add Item', 'sm' ); ?></a>
-        </div>
-        <div v-for="(key, each_acc) in acc_data">
-            <div class="form-group">
-                <label><?php _e( 'Accordion title', 'sm' ); ?></label>
-                <input type="text" v-model="each_acc.title" class="form-control">
+        <div class="bs-container mb10">
+            <div class="mb10">
+                <a class="btn btn-default" href="javascript:" @click="add_item()"><?php _e( 'Add Item', 'sm' ); ?></a>
             </div>
-            <div class="form-group">
-                <label><?php _e( 'Accordion content', 'sm' ); ?></label>
-                <textarea v-model="each_acc.content" cols="30" rows="10" class="form-control"></textarea>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default"  v-for="(key, each_acc) in acc_data">
+                    <div class="panel-heading" @dblclick="target_acc = key">
+                        <h4 class="panel-title">
+                            <template v-if="target_acc != key">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#{{ key }}">{{ each_acc.title }}</a>
+                                <a href="javascript:" class="btn btn-xs btn-danger br0 pull-right" @click="remove_accordion(key)" style="color: #FFFFFF;"><?php _e('Remove','sm'); ?></a>
+                            </template>
+                            <input type="text" v-model="each_acc.title" v-if="target_acc == key" class="form-control">
+                            <a href="javascript:" class="btn btn-default br0 mt10" v-if="target_acc == key" @click="target_acc = ''"><?php _e( 'Save', 'sm' ); ?></a>
+                        </h4>
+                    </div>
+                    <div :id="key" class="panel-collapse collapse">
+                        <div class="panel-body" @dblclick="target_content = key">
+                            <template v-if="target_content != key">
+                                {{ each_acc.content }}
+                            </template>
+                            <textarea v-model="each_acc.content" cols="30" rows="10" class="form-control" v-if="target_content == key"></textarea>
+                            <a href="javascript:" class="btn btn-default br0 mt10" v-if="target_content == key" @click="target_content = ''"><?php _e( 'Save', 'sm' ); ?></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>

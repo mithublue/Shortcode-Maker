@@ -16,7 +16,9 @@
                     types : {
                         'tabs' : 'Tabs',
                         'pills' : 'Pills'
-                    }
+                    },
+                    tab_target : '',
+                    content_target : ''
                 }
             },
             methods : {
@@ -30,6 +32,9 @@
                     }
                     var shortcode = '[smps_sl_tabs tab_data="' + tab_data_str + '" type="' + this.type + '" ]';
                     tinyMCE.activeEditor.selection.setContent( shortcode );
+                },
+                remove_tab : function ( tab_key ) {
+                    Vue.delete( this.tab_data, tab_key );
                 }
             },
         });
@@ -45,7 +50,9 @@
                     acc_template : {
                         'title' : 'Item Label',
                         'content' : 'Item content'
-                    }
+                    },
+                    target_acc : '',
+                    target_content : ''
                 }
             },
             methods : {
@@ -59,6 +66,9 @@
                     }
                     var shortcode = '[smps_sl_accordion acc_data="' + acc_data_str + '"]';
                     tinyMCE.activeEditor.selection.setContent( shortcode );
+                },
+                remove_accordion : function (key) {
+                    Vue.delete(this.acc_data,key);
                 }
             },
         });

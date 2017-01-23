@@ -1,7 +1,6 @@
 <?php
 
 function sm_save_shortcode_packages( $data ) {
-    if( empty( $data ) || !is_array( $data ) ) return;
     update_option( 'sm_shortcode_packages', $data );
 }
 
