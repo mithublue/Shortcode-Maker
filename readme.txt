@@ -11,10 +11,31 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 == Description ==
 
+= Our Official Support Forum =
+
+To get fast suport , You can contact through our official forum site.
+Official support forum : http://supports.cybercraftit.com/supports/support/shortcode-maker/
+
+
+= NEW FEATURE : PACKAGED SHORTCODES INCLUDED ! =
+
+With packaged shortcodes, you can add different widgets/UI elementns to your site now
+The elements are
+
+* Tabs
+* Accordion
+* Table
+* Panel
+* Alert
+* Heading
+* Quote
+
+
 The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily.
 
 = Features =
 
+* You can use built in shortcodes to create widgets like tabs, alert, accordion, table etc
 * You can add shortcode of your own
 * Add attributes as many as you want with the ability to define default value
 * you can write PHP code in definition. To use code, use [php_code][/php_code] in your shortcode definition and place code inside it.
@@ -37,13 +58,22 @@ e.g.
 1. screenshot-5
 2. screenshot-1
 3. screenshot-2
-4. screenshot-3
-5. screenshot-4
-6. screenshot-5
-7. screenshot-6
+4. screenshot-7
+5. screenshot-8
+6. screenshot-9
+7. screenshot-3
+8. screenshot-4
+9. screenshot-5
+10. screenshot-6
 
 
 == Changelog ==
+
+== 4.0 ==
+
+1. [new] Packaged shortcode added.
+2. [new] Builtin shortcodes for different widgets added.
+3. [fix] Shortcode content format fixed
 
 == 3.0 ==
 
@@ -78,6 +108,9 @@ e.g.
 1. Plugin Initial version
 
 == Upgrade Notice ==
+
+= 4.0 =
+A major update has been added to the plugin with extended feature and functionalities !
 
 = 3.0 =
 A major update has been added to the plugin with extended feature and functionalities !

@@ -15,7 +15,6 @@
                 },
                 remove_attr : function( key ) {
                     this.shortcode_atts.splice(key,1);
-                    //sm_shortcode.$delete(this.shortcode_atts,key);
                 }
             }
         });
