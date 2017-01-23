@@ -46,7 +46,7 @@ class Smps_Simple_Light {
             include_once 'admin-panel.php';
         });
 
-        add_action( 'admin_init', function () {
+        add_action( 'admin_head', function () {
             include 'settings-template.php';
         });
     }
