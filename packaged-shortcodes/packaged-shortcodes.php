@@ -55,8 +55,8 @@ class SM_Packaged_Shortcodes {
         $sm_get_shortcode_packages = sm_get_shortcode_packages();
         ?>
         <form method="post">
+            <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce( 'smps-package-list' ); ?>">
             <?php
-
             if ($handle = opendir(SHORTCODE_MAKER_ROOT.'/packaged-shortcodes/packages')) {
 
                 /* This is the correct way to loop over the directory. */
@@ -114,6 +114,10 @@ class SM_Packaged_Shortcodes {
      */
     public function save_added_packages() {
         if( isset( $_POST['save_added_packages'] ) ) {
+
+            $nonce = $_REQUEST['_wpnonce'];
+            if ( ! wp_verify_nonce( $nonce, 'smps-package-list' ) ) return;
+
             if( !isset( $_POST['sm_shortcode_packages'] ) || !is_array( $_POST['sm_shortcode_packages'] ) ) {
                 $_POST['sm_shortcode_packages'] = array();
             }
