@@ -28,7 +28,7 @@
                 insert_shortcode : function () {
                     var tab_data_str = '';
                     for( k in this.tab_data ){
-                        tab_data_str = tab_data_str + k + ':' + this.tab_data[k]['title'] + '|' + this.tab_data[k]['content'] + ',';
+                        tab_data_str = tab_data_str + k + ':' + this.tab_data[k]['title'] + '|' + this.tab_data[k]['content'] + ',,';
                     }
                     var shortcode = '[smps_sl_tabs tab_data="' + tab_data_str + '" type="' + this.type + '" ]';
                     tinyMCE.activeEditor.selection.setContent( shortcode );
@@ -62,7 +62,7 @@
                 insert_shortcode : function () {
                     var acc_data_str = '';
                     for( k in this.acc_data ){
-                        acc_data_str = acc_data_str + k + ':' + this.acc_data[k]['title'] + '|' + this.acc_data[k]['content'] + ',';
+                        acc_data_str = acc_data_str + k + ':' + this.acc_data[k]['title'] + '|' + this.acc_data[k]['content'] + ',,';
                     }
                     var shortcode = '[smps_sl_accordion acc_data="' + acc_data_str + '"]';
                     tinyMCE.activeEditor.selection.setContent( shortcode );
@@ -70,7 +70,7 @@
                 remove_accordion : function (key) {
                     Vue.delete(this.acc_data,key);
                 }
-            },
+            }
         });
 
         /**
@@ -237,7 +237,7 @@
                     tinyMCE.activeEditor.selection.setContent( shortcode );
                 }
             }
-        })
+        });
 
         /**
          * Quote

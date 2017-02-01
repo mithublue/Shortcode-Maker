@@ -7193,14 +7193,18 @@
     -moz-border-radius:100px;
     border-radius:100px;
 }
-#shortcode_settings_modal .modal-body{
-    overflow-y: scroll;
-    max-height: 65%;
-}
 .smps_shortcode_modal{
     padding: 3%;
 }
 .smps_shortcode_modal .modal-dialog{
     width: 95%;
+    height: 100%;
+}
+.smps_shortcode_modal .modal-content{
+    height:100%;
+}
+#shortcode_settings_modal .modal-body{
+    overflow-y: scroll;
+    max-height: 65%;
 }
 /*# sourceMappingURL=sm-post.css.map */

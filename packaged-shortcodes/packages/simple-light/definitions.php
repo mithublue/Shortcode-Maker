@@ -11,7 +11,7 @@ class Smps_Simple_Light_Shortcodes {
         if( isset( $atts['tab_data'] ) ) {
 
 
-            $first_level = explode(',',$atts['tab_data']);
+            $first_level = explode(',,',$atts['tab_data']);
 
             foreach ( $first_level as $k => $tab_string ) {
 
@@ -80,7 +80,7 @@ class Smps_Simple_Light_Shortcodes {
         if( isset( $atts['acc_data'] ) ) {
 
 
-            $first_level = explode(',',$atts['acc_data']);
+            $first_level = explode(',,',$atts['acc_data']);
 
             foreach ( $first_level as $k => $tab_string ) {
                 if( empty( $tab_string ) ) continue;
