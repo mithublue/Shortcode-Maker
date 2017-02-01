@@ -191,3 +191,70 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
+<template id="smps_simple_light_button_settings">
+    <?php
+    $pages = get_posts(array('post_type' => 'page'));
+    ?>
+    <form class="shortcode_settings_form">
+        <!--types-->
+        <div class="form-group">
+            <label><?php _e( 'Type', 'sm' ); ?></label>
+            <select v-model="type" class="form-control">
+                <option v-for="(name,label) in types" :value="name">{{ label }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><?php _e( 'Shape', 'sm' ); ?></label>
+            <select v-model="shape" class="form-control">
+                <option v-for="(name,label) in shapes" :value="name">{{ label }}</option>
+            </select>
+        </div>
+        <!--size-->
+        <div class="form-group">
+            <label><?php _e( 'Size', 'sm' ); ?></label>
+            <select v-model="size" class="form-control">
+                <option v-for="(name,label) in sizes" :value="name">{{ label }}</option>
+            </select>
+        </div>
+        <!--text-->
+        <div class="form-group">
+            <label><input type="checkbox" v-model="enable_text"> <?php _e( 'Enable Text', 'sm' ); ?></label>
+        </div>
+        <div class="form-group" v-if="enable_text">
+            <input type="text" v-model="text" class="form-control">
+        </div>
+        <!--icon-->
+        <div class="form-group">
+            <label><input type="checkbox" v-model="enable_icon"> <?php _e( 'Enable Icon', 'sm' ); ?></label>
+        </div>
+        <div class="form-group" v-if="enable_icon">
+            <input type="text" v-model="icon" class="form-control">
+        </div>
+        <!--redirection-->
+        <div class="form-group">
+            <label><?php _e( 'Redirect to', 'sm' ); ?></label>
+            <select v-model="redirection_type" class="form-control">
+                <option v-for="(name,label) in redirection_types" :value="name">{{ label }}</option>
+            </select>
+        </div>
+        <!--if redirection = page-->
+        <div class="form-group" v-if="redirection_type == 'to_page'">
+            <label><?php _e( 'Select redirection page', 'sm' ); ?></label>
+            <select v-model="page" class="form-control">
+                <?php foreach ( $pages as $page ) :?>
+                <option value="<?php echo $page->ID; ?>"><?php echo get_the_title($page->ID); ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <!--if redirection = url -->
+        <div class="form-group" v-if="redirection_type == 'url'">
+            <label><?php _e( 'Redirect URL', 'sm' ); ?></label>
+            <input type="text" v-model="url" class="form-control">
+        </div>
+        <!--open in newtab-->
+        <div class="form-group">
+            <label><input type="checkbox" v-model="open_newtab"> <?php _e( 'Open in New Tab', 'sm' ); ?></label>
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+    </form>
+</template>

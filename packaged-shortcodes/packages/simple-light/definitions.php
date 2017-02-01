@@ -258,6 +258,12 @@ class Smps_Simple_Light_Shortcodes {
     <?php
     }
 
+    /**
+     * quote
+     * @param $atts
+     * @param $content
+     * @param $tag
+     */
     public static function render_quote( $atts, $content, $tag ) {
         $atts = shortcode_atts( array(
             'alignment' => 'left', //right, left
@@ -276,5 +282,53 @@ class Smps_Simple_Light_Shortcodes {
             </blockquote>
         </div>
     <?php
+    }
+
+    public static function render_button( $atts, $content, $tag ) {
+        $atts = shortcode_atts( array(
+            'type' => 'default', //right, left
+            'size' => '',
+            'enable_text' => 'true',
+            'text' => 'Click me',
+            'enable_icon' => 'false',
+            'icon' => '', // h2,h3,h4,h5,h6
+            'shape' => 'rounded',
+            'redirection_type' => 'same_page',
+            'url' => '',
+            'page' => '',
+            'open_newtab' => 'false'
+        ), $atts, $tag );
+        ?>
+        <div class="bs-container" style="display: inline;">
+            <?php
+            if( $atts['redirection_type'] == 'url' ) {
+                $redirect_to = $atts['url'];
+            } else if( $atts['redirection_type'] == 'page' ) {
+                $redirect_to = get_page_url( $atts['page'] );
+            }
+            switch ( $atts['redirection_type'] ) {
+                case 'url' :
+                    $redirect_to = $atts['url'];
+                    break;
+                case 'same_page' :
+                    $redirect_to = '';
+                    break;
+                case 'page' :
+                    $redirect_to = get_page_url($atts['page']);
+                    break;
+            }
+            ?>
+            <a href="<?php echo $redirect_to; ?>" <?php echo $atts['open_newtab'] == 'true' ? 'target="_blank"' : '' ;?> class="btn btn-<?php echo $atts['type']; ?> btn-<?php echo $atts['size']; ?> <?php echo $atts['shape'] == 'normal' ? 'br0' : ''; ?>">
+                <?php
+                if( $atts['icon'] == 'true' ) :
+                    ?>
+                    <i class="glyphicon glyphicon-<?php echo $atts['icon']; ?>"></i>
+                    <?php
+                    endif;
+                ?>
+                <?php echo $atts['enable_text'] == 'true' ? $atts['text'] : ''; ?>
+            </a>
+        </div>
+        <?php
     }
 }
