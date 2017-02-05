@@ -31,7 +31,7 @@ class Smps_Simple_Light {
                 'heading' => 'Heading',
                 'quote' => 'Quote',
                 'button' => 'Button',
-                'social_media_button' => 'Social Media Button'
+                //'social_media_button' => 'Social Media Button'
             ))
         );
     }
