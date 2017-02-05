@@ -275,6 +275,7 @@ class shortcode_maker{
 
             $post_id = array_search($tag,$this->shorcode_array);
             $default_atts = get_post_meta( $post_id, 'sm_shortcode_atts', true );
+            !is_array($default_atts) ? $default_atts = array() : '';
 
             $atts = shortcode_atts(
                 $default_atts,

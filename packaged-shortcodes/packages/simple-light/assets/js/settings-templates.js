@@ -261,6 +261,68 @@
                     tinyMCE.activeEditor.selection.setContent( shortcode );
                 }
             }
-        })
+        });
+
+        Vue.component( 'smps_simple_light_button_settings',{
+            template : '#smps_simple_light_button_settings',
+            data : function () {
+                return {
+                    type : 'default',
+                    types : {
+                        'primary' : 'Primary',
+                        'success' : 'Success',
+                        'info' : 'Info',
+                        'warning' : 'Warning',
+                        'danger' : 'Danger',
+                        'default' : 'Default'
+                    },
+                    'enable_text' : true,
+                    'text' : 'Button',
+                    'enable_icon' : false,
+                    'icon' : '',
+                    'shape' : 'rounded',
+                    'shapes' : {
+                        'rounded' : 'Rounded',
+                        'normal' : 'Normal'
+                    },
+                    size : '',
+                    sizes : {
+                        'lg' : 'Large',
+                        '' : 'Default',
+                        'sm' : 'Small',
+                        'xs' : 'Mini',
+                        'block' : 'Block'
+                    },
+                    redirection_type : 'same_page',
+                    redirection_types : {
+                        'to_page' : 'To a Page',
+                        'same_page' : 'Same Page',
+                        'url' : 'Set Manually'
+                    },
+                    open_newtab : false,
+                    url : 'http://',
+                    page : '',
+                    pages : {}
+                }
+            },
+            methods : {
+                insert_shortcode : function () {
+                    var shortcode = '[smps_sl_button ' +
+                        'type="'+ this.type +'" ' +
+                        'size="'+ this.size +'" ' +
+                        'enable_text="'+ this.enable_text +'" ' +
+                        'text="'+ this.text+'" ' +
+                        'enable_icon="'+ this.enable_icon +'" ' +
+                        'icon="'+ this.icon +'" ' +
+                        'shape="'+ this.shape +'" ' +
+                        'redirection_type="' + this.redirection_type + '" ' +
+                        'url="'+ this.url +'" ' +
+                        'page="'+ this.page +'" ' +
+                        'open_newtab="'+ this.open_newtab +'"' +
+                        ']';
+                    tinyMCE.activeEditor.selection.setContent( shortcode );
+                }
+            }
+        } )
     });
 }(jQuery));

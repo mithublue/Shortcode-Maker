@@ -22,7 +22,7 @@ class Smps_Simple_Light {
     public static function settings() {
         return array(
             'name' => 'Simple Light',
-            'items' => array(
+            'items' => apply_filters('simple_light_shortcode_items',array(
                 'tabs' => 'Tabs',
                 'accordion' => 'Accordion',
                 'table' => 'Table',
@@ -30,7 +30,9 @@ class Smps_Simple_Light {
                 'alert' => 'Alert',
                 'heading' => 'Heading',
                 'quote' => 'Quote',
-            )
+                'button' => 'Button',
+                'social_media_button' => 'Social Media Button'
+            ))
         );
     }
 
