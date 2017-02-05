@@ -29,6 +29,7 @@ The elements are
 * Alert
 * Heading
 * Quote
+* Button
 
 
 The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily.
