@@ -17,6 +17,7 @@ if( !function_exists( 'pri' ) ) {
 
 function sm_get_package_settings( $classname = '', $slug = '' ) {
     if( $classname ) {
+        if( !class_exists( $classname ) ) return;
         return $classname::settings();
     }
 
