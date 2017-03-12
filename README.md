@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.7
 
-Stable tag: 3.0.1
+Stable tag: 4.0.4
 
 License: GPLv2 or later
 
@@ -42,6 +42,20 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 
 ## Changelog ##
+
+## 4.0.4 ##
+
+1. [modification] Shortcode processor changed
+
+
+## 4.0.3 ##
+
+1. [fix] "unexpected T_PAAMAYIM_NEKUDOTAYIM" error fixed
+
+## 4.0.2 ##
+
+1. [new] Button shortcode added to 'Simple light' package
+2. [fix] Issue with rendering shortcode without parameter fixed.
 
 ## 4.0.1 ##
 
