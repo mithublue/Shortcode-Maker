@@ -30,15 +30,16 @@ class SM_Packaged_Shortcodes_Admin {
                 <ul class="nav nav-tabs" role="tablist">
                     <?php
                     $tab_contents = '';
+                    $i = 0;
                     foreach ( $shortcode_packages as $name => $package ) : ?>
-                        <li role="presentation" class="active"><a href="#<?php echo $name; ?>" aria-controls="<?php echo $name; ?>" role="tab" data-toggle="tab">
+                        <li role="presentation" <?php echo $i == 0 ? 'class="active"' : '';  ?>><a href="#<?php echo $name; ?>" aria-controls="<?php echo $name; ?>" role="tab" data-toggle="tab">
                                 <?php
                                 $classname = sm_get_package_classname( $name );
                                 $settigs = sm_get_package_settings( $classname );
                                 echo $settigs['name'];
                                 ob_start();
                                 ?>
-                                <div role="tabpanel" class="tab-pane active" id="<?php echo $name; ?>">
+                                <div role="tabpanel" class="tab-pane <?php echo $i == 0 ? 'active' : '';  ?>" id="<?php echo $name; ?>">
                                     <?php
                                     $s_items = isset( $settigs['items'] ) ? $settigs['items'] : array();
                                     foreach ( $s_items as $item_name => $item_label ) {
@@ -53,6 +54,7 @@ class SM_Packaged_Shortcodes_Admin {
                                 ob_end_clean();
                                 ?>
                             </a></li>
+                        <?php $i++; ?>
                     <?php endforeach; ?>
                 </ul>
                 <!-- Tab panes -->

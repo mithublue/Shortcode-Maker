@@ -25,6 +25,7 @@ class SM_Shortcode_Field {
 
     function sm_insert_php($content)
     {
+        return $content;
         $sm_content = do_shortcode($content);
         preg_match_all('!\[php_code[^\]]*\](.*?)\[/php_code[^\]]*\]!is',$sm_content,$will_bontrager_matches);
         $will_bontrager_nummatches = count($will_bontrager_matches[0]);
