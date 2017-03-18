@@ -6,7 +6,7 @@ Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortco
 
 Requires at least: 3.0.1
 
-Tested up to: 4.7
+Tested up to: 4.7.3
 
 Stable tag: 4.0.4
 
@@ -42,6 +42,12 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 
 ## Changelog ##
+
+## 4.0.5 ##
+
+1. [new] Improved UI/UX with clean HTML structure
+2. [new] New action added
+
 
 ## 4.0.4 ##
 

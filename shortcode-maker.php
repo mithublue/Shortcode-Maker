@@ -7,7 +7,7 @@
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 4.0.4
+ * Version: 4.0.5
  * License: GPL2
  */
 /**
