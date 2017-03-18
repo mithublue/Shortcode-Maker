@@ -290,4 +290,9 @@ class Smps_Simple_Light_Shortcodes {
         </div>
         <?php
     }
+
+    public static function __callStatic ($method, $args) {
+        do_action( 'smps_reder_shortcode', $method, $args);
+        return false;
+    }
 }
