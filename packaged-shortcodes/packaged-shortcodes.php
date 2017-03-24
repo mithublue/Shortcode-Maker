@@ -159,7 +159,7 @@ class SM_Packaged_Shortcodes {
         $sm_shortcode_packages = sm_get_shortcode_packages();
         if( empty( $sm_shortcode_packages ) ) {
             sm_save_shortcode_packages( array(
-                'simple-light' => 'simple-light'
+                'simple-light' => 'packages/simple-light'
             ) );
         }
     }
