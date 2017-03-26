@@ -43,6 +43,11 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 ## Changelog ##
 
+## 4.0.7 ##
+
+1. [fix] Icon path fixed
+
+
 ## 4.0.6 ##
 
 1. [fix] Issue with including package file fixed

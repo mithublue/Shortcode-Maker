@@ -3,7 +3,7 @@ Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
 Requires at least: 3.0.1
 Tested up to: 4.7.3
-Stable tag: 4.0.6
+Stable tag: 4.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,10 @@ e.g.
 
 
 == Changelog ==
+
+== 4.0.7 ==
+
+1. [fix] Icon path fixed
 
 == 4.0.6 ==
 
