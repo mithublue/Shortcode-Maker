@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.7.3
 
-Stable tag: 4.0.4
+Stable tag: 4.0.8
 
 License: GPLv2 or later
 
@@ -42,6 +42,10 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 
 ## Changelog ##
+
+## 4.0.8 ##
+
+1. [new] Shortcode enabled in widget content
 
 ## 4.0.7 ##
 
