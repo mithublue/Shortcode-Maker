@@ -70,15 +70,21 @@ class shortcode_maker{
         add_action( 'init', array($this, 'load_textdomain') );
         register_activation_hook( __FILE__, array( $this, 'plugin_activation_task' ) );
 
+        add_filter( 'widget_text', array( $this, 'render_widget_shortcode' ) );
 
         $this->includes();
 	}
+
+	function render_widget_shortcode( $text ) {
+	    return do_shortcode( $text );
+    }
 
 	public function plugin_activation_task() {
 	    do_action( 'shortcode_maker_activation_task' );
     }
 
     function includes(){
+        require_once dirname(__FILE__).'/vote.php';
         require_once dirname(__FILE__).'/sm-functions.php';
         require_once dirname(__FILE__).'/cc-products-page.php';
         require_once dirname(__FILE__).'/shortcode-field.php';
