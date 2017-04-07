@@ -42,7 +42,7 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 * you can write PHP code in definition. To use code, use [php_code][/php_code] in your shortcode definition and place code inside it.
 
 
-[youtube https://www.youtube.com/watch?v=WpVpTKAWPuE]
+[youtube https://www.youtube.com/watch?v=H_dSHHiou9Q&feature=youtu.be]
 
 == Installation ==
 
