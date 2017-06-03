@@ -372,11 +372,11 @@ class shortcode_maker{
         ))) {
             /*SHORTCODE_MAKER_ASSET_PATH*/
             wp_enqueue_style( 'sm-style', SHORTCODE_MAKER_ASSET_PATH.'/css/style.css' );
-            wp_enqueue_script( 'sm-vue-js', SHORTCODE_MAKER_ASSET_PATH.'/js/vue.js' );
+            wp_enqueue_script( 'sm-vue', SHORTCODE_MAKER_ASSET_PATH.'/js/vue.js' );
         }
 
         if( isset( $post->ID ) && get_post_type( $post->ID ) == 'sm_shortcode' ) {
-            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue-js' ) );
+            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue' ) );
         }
 
     }
