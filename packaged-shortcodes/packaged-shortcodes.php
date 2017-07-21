@@ -30,6 +30,9 @@ class SM_Packaged_Shortcodes {
         //add panel in admin editor page to add the shortcodes buttons
         add_action( 'edit_form_after_title', array( 'SM_Packaged_Shortcodes_Admin', 'shortcode_editor_panel' ) );
         add_action( 'shortcode_maker_activation_task', array( $this, 'set_data_on_activation' ) );
+
+        //save meta to post
+        add_action( 'save_post' , array( $this, 'save_post_meta' ) );
         $this->includes();
     }
 
@@ -143,13 +146,29 @@ class SM_Packaged_Shortcodes {
             'post-new.php',
             'post.php'
         ) ) ) {
+            //colorpicker
+            wp_enqueue_style('wp-color-picker');
+
             wp_enqueue_style( 'smps-swal-css', SHORTCODE_MAKER_ASSET_PATH.'/css/sweetalert.css' );
             wp_enqueue_style( 'sm-post-css', SHORTCODE_MAKER_ASSET_PATH.'/css/sm-post.css' );
+            //timepicker addon css
+            wp_enqueue_style( 'sm-timepicker-css', SHORTCODE_MAKER_ASSET_PATH.'/css/timepicker-addon.css' );
 
             wp_enqueue_script( 'smps-swal-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sweetalert.min.js', array( 'jquery' ) );
-            wp_enqueue_script( 'sm-post-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sm-post.js', array( 'jquery','sm-vue' ) );
+            wp_enqueue_script( 'sm-post-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sm-post.js', array( 'jquery','sm-vue', 'wp-color-picker','jquery-ui-datepicker' ), false, true );
+            //timepicker addon
+            wp_enqueue_script('sm-timepicker-addon', SHORTCODE_MAKER_ASSET_PATH.'/js/timepicker-addon.js', array('jquery-ui-datepicker'));
+
         }
 
+    }
+
+    /*save necessary meta*/
+    public function save_post_meta( $post_id ) {
+
+        if( isset( $_POST['sm_hide_shortcode_panel'] ) ) {
+            update_post_meta( $post_id, 'sm_hide_shortcode_panel', $_POST['sm_hide_shortcode_panel'] );
+        }
     }
 
     /**

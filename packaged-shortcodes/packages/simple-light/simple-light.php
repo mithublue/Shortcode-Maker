@@ -23,14 +23,74 @@ class Smps_Simple_Light {
         return array(
             'name' => 'Packaged shortcodes',
             'items' => apply_filters('simple_light_shortcode_items',array(
-                'tabs' => 'Tabs',
-                'accordion' => 'Accordion',
-                'table' => 'Table',
-                'panel' => 'Panel',
-                'alert' => 'Alert',
-                'heading' => 'Heading',
-                'quote' => 'Quote',
-                'button' => 'Button',
+                'tabs' => array(
+                    'section' => 'Content',
+                    'label' => 'Tabs'
+                ),
+                'accordion' => array(
+                    'section' => 'Content',
+                    'label' => 'Accordion'
+                ),
+                'table' => array(
+                    'section' => 'Content',
+                    'label' => 'Table'
+                ),
+                'panel' => array(
+                    'section' => 'Content',
+                    'label' => 'Panel'
+                ),
+                'alert' => array(
+                    'section' => 'Content',
+                    'label' => 'Alert'
+                ),
+                'heading' => array(
+                    'section' => 'Content',
+                    'label' => 'Heading'
+                ),
+                'quote' => array(
+                    'section' => 'Content',
+                    'label' => 'Quote'
+                ),
+                'button' => array(
+                    'section' => 'Content',
+                    'label' => 'Button'
+                ),
+                'spoiler' => array(
+                    'section' => 'Content',
+                    'label' => 'Spoiler'
+                ),
+                'list' => array(
+                    'section' => 'Content',
+                    'label' => 'List'
+                ),
+                'highlight' => array(
+                    'section' => 'Content',
+                    'label' => 'Highlight'
+                ),
+                'restricted_content' => array(
+                    'section' => 'Content',
+                    'label' => 'Restricted Content'
+                ),
+                'note' => array(
+                    'section' => 'Content',
+                    'label' => 'Note'
+                ),
+                'youtube' => array(
+                    'section' => 'Media',
+                    'label' => 'Youtube'
+                ),
+                'vimeo' => array(
+                    'section' => 'Media',
+                    'label' => 'Vimeo'
+                ),
+                'image' => array(
+                    'section' => 'Media',
+                    'label' => 'Image'
+                ),
+                'scheduler' => array(
+                    'section' => 'Content',
+                    'label' => 'Scheduler'
+                )
                 //'social_media_button' => 'Social Media Button'
             ))
         );
@@ -59,15 +119,23 @@ class Smps_Simple_Light {
     }
 
     function admin_enqueue_scripts_styles( $hook ) {
+        global $post;
         if( in_array( $hook, array(
             'post-new.php',
             'post.php'
         ) ) ) {
+            $shortcode_settings_data = apply_filters( 'sm_shortcode_settings_data', array());
+            $hide_shortcode_panel = get_post_meta( $post->ID,'sm_hide_shortcode_panel', true);
+            ?>
+            <script>
+                var sm_settings_data = JSON.parse('<?php echo json_encode($shortcode_settings_data); ?>');
+                var sm_object = {};
+                var hide_shortcode_panel = '<?php echo $hide_shortcode_panel; ?>';
+            </script>
+            <?php
             wp_enqueue_script( 'simple-light-settings-template' , plugins_url('assets/js/settings-templates.js',__FILE__), array( 'jquery' ) );
         }
     }
-
-
 }
 
 Smps_Simple_Light::get_instance();

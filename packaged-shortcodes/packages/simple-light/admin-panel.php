@@ -6,7 +6,8 @@ class Smps_Simple_Light_Admin {
         add_action( 'smps_shortcode_settings', function ( $items )  {
             foreach ( $items as $item_name => $item_label ) {
                 ?>
-                <smps_simple_light_<?php echo $item_name; ?>_settings v-if="target_class == 'Smps_Simple_Light_Admin' && target_item == '<?php echo $item_name; ?>'"></smps_simple_light_<?php echo $item_name; ?>_settings>
+                <smps_simple_light_<?php echo $item_name; ?>_settings v-if="target_class == 'Smps_Simple_Light_Admin' && target_item == '<?php echo $item_name; ?>'"
+                ></smps_simple_light_<?php echo $item_name; ?>_settings>
                 <?php
             }
             ?>
