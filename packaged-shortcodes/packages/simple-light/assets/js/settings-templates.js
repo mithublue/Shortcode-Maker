@@ -685,6 +685,6 @@
         var data = encodeURIComponent(JSON.stringify(settings_data));
         var shortcode = '[' + shortcode_name + ' data="' + data + '" ]';
         tinyMCE.activeEditor.selection.setContent( shortcode );
-        smps_app.reset_all();
+        smps_app.dismiss_settings_panel();
     }
 }(jQuery));

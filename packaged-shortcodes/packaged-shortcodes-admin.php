@@ -12,7 +12,9 @@ class SM_Packaged_Shortcodes_Admin {
         <div class="bs-container smps_app mt20" v-cloak>
             <input type="hidden" name="sm_hide_shortcode_panel" v-model="hide_packaged_shortcode_panel">
             <!-- Modal -->
-            <div class="modal fade smps_shortcode_modal" id="shortcode_settings_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal smps_shortcode_modal" id="shortcode_settings_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            v-show="show_shortcode_settings_panel"
+            >
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -30,7 +32,7 @@ class SM_Packaged_Shortcodes_Admin {
                             <?php ?>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" @click="dismiss_settings_panel()">Close</button>
+                            <button type="button" class="btn btn-default" @click="dismiss_settings_panel()">Close</button>
                         </div>
                     </div>
                 </div>
@@ -61,11 +63,9 @@ class SM_Packaged_Shortcodes_Admin {
 
                                     $sections[$item_array['section']] = $item_array['section'];
                                     ?><!--br0-->
-                                        <a href="#" @click="get_settings_html( '<?php echo $classname.'_Admin'; ?>', '<?php echo $item_name; ?>','<?php echo $item_array['label']; ?>')"
+                                        <a href="javascript:" @click="get_settings_html( '<?php echo $classname.'_Admin'; ?>', '<?php echo $item_name; ?>','<?php echo $item_array['label']; ?>');"
                                            class="btn btn-default mb5"
                                            :class="{ active : edit_target_item == '<?php echo $item_name; ?>' }"
-                                           data-toggle="modal"
-                                           data-target="#shortcode_settings_modal"
                                            data-section="<?php echo $item_array['section']; ?>"
                                            data-item_name="<?php echo $item_name; ?>"
                                            v-if="!visible_button_section || visible_button_section == '<?php echo $item_array['section']; ?>'"
@@ -74,6 +74,8 @@ class SM_Packaged_Shortcodes_Admin {
                                     }
                                     ?>
                                 </div>
+                                <!--data-toggle="modal"
+                                           data-target="#shortcode_settings_modal"-->
                                 <?php
                                 $tab_contents .= ob_get_contents();
                                 ob_end_clean();

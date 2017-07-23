@@ -10,6 +10,9 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
         smps_app = new Vue({
             el : '.smps_app',
             data : {
+                //
+                show_shortcode_settings_panel : false,
+
                 hide_packaged_shortcode_panel : hide_shortcode_panel,/*false*/
                 target_class : '',
                 target_item : '',
@@ -28,10 +31,12 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
                     smps_app.target_item = shortcode_name;
                     smps_app.settings_modal_label = item_label;
 
+                    smps_app.show_shortcode_settings_panel = true;
                     //smps_app.$emit( 'edit_mode', smps_app.edit_target_item, smps_app.edit_target_item_data );
                 },
                 dismiss_settings_panel : function () {
                     this.reset_all();
+                    smps_app.show_shortcode_settings_panel = false;
                 },
                 make_section_visible : function ( section ) {
                     smps_app.visible_button_section = section;
@@ -80,6 +85,19 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 
             });
         }
+
+        $(document).on( 'click', '.sm_feature_notice .notice-dismiss', function () {
+            $.post(
+                ajaxurl,
+                {
+                    action : 'sm_dismiss_feature_notice',
+                    feature_notice_dissmiss : 1
+                },
+                function (data) {
+
+                }
+            )
+        });
     });
 }(jQuery));
 //# sourceMappingURL=sm-post.js.map

@@ -3,7 +3,7 @@ Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 4.0.9
+Stable tag: 5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,13 @@ e.g.
 
 
 == Changelog ==
+
+== 5.0 ==
+
+1. [new] Numerous builtin shortcodes
+2. [new] Edit mode for inserted shortcodes through easy interface
+3. [new] Shortcode types added
+4. [new] Improved shortcode values processing system
 
 == 4.0.9 ==
 
@@ -150,6 +157,9 @@ e.g.
 1. Plugin Initial version
 
 == Upgrade Notice ==
+
+= 5.0 =
+A major update has been added to the plugin with extended feature and functionalities !
 
 = 4.0 =
 A major update has been added to the plugin with extended feature and functionalities !

@@ -30,10 +30,26 @@ class SM_Packaged_Shortcodes {
         //add panel in admin editor page to add the shortcodes buttons
         add_action( 'edit_form_after_title', array( 'SM_Packaged_Shortcodes_Admin', 'shortcode_editor_panel' ) );
         add_action( 'shortcode_maker_activation_task', array( $this, 'set_data_on_activation' ) );
+        add_action( 'admin_notices', array( $this, 'show_admin_notices' ) );
 
         //save meta to post
         add_action( 'save_post' , array( $this, 'save_post_meta' ) );
         $this->includes();
+    }
+
+    public function show_admin_notices() {
+
+        if( SHORTCODE_MAKER_VERSION >= 5.0 ) {
+
+            if( !get_option( 'sm_dismiss_feature_notice' ) ) {
+                ?>
+                <div class="notice notice-info is-dismissible sm_feature_notice">
+                    <p><?php _e( 'Shortcode maker is now more advanced with builtin packages and shortcode editable feature, click here to learn more !', 'sample-text-domain' ); ?></p>
+                </div>
+                <?php
+            }
+        }
+
     }
 
     public function includes() {
