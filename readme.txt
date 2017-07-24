@@ -1,6 +1,6 @@
 === Shortcode Maker ===
 Contributors: mithublue,cybercraftit
-Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
+Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 Requires at least: 3.0.1
 Tested up to: 4.8
 Stable tag: 5.0
