@@ -42,9 +42,10 @@ class SM_Packaged_Shortcodes {
         if( SHORTCODE_MAKER_VERSION >= 5.0 ) {
 
             if( !get_option( 'sm_dismiss_feature_notice' ) ) {
+                require_once SHORTCODE_MAKER_ROOT . '/documentation/documentation.php';
                 ?>
                 <div class="notice notice-info is-dismissible sm_feature_notice">
-                    <p><?php _e( 'Shortcode maker is now more advanced with builtin packages and shortcode editable feature, click here to learn more !', 'sample-text-domain' ); ?></p>
+                    <p><?php _e( 'Shortcode maker is now more advanced with builtin packages and shortcode editable feature, <a href="javascript:" data-toggle="modal" data-target="#sm_doc_modal" class="sm_doc_link" style="color: #FFFFFF;font-weight: bold;">click here to learn more !</a>', 'sample-text-domain' ); ?></p>
                 </div>
                 <?php
             }

@@ -9,6 +9,7 @@ class SM_Packaged_Shortcodes_Admin {
         $shortcode_packages = sm_get_shortcode_packages();
         /*hide shortcode panel*/
         ?>
+
         <div class="bs-container smps_app mt20" v-cloak>
             <input type="hidden" name="sm_hide_shortcode_panel" v-model="hide_packaged_shortcode_panel">
             <!-- Modal -->

@@ -85,7 +85,6 @@ class shortcode_maker{
     }
 
     function includes(){
-        require_once dirname(__FILE__).'/documentation.php';
         require_once dirname(__FILE__).'/ajax-action.php';
         require_once dirname(__FILE__).'/vote.php';
         require_once dirname(__FILE__).'/sm-functions.php';

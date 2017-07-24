@@ -97,6 +97,8 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 
                 }
             )
+        }).on('click','.sm_doc_link',function () {
+
         });
     });
 }(jQuery));

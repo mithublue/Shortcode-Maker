@@ -134,6 +134,7 @@ class Smps_Simple_Light {
             </script>
             <?php
             wp_enqueue_script( 'simple-light-settings-template' , plugins_url('assets/js/settings-templates.js',__FILE__), array( 'jquery' ) );
+            do_action( 'simple_light_admin_enqueue_scripts' );
         }
     }
 }
