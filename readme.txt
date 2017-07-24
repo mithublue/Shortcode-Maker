@@ -30,6 +30,15 @@ The elements are
 * Heading
 * Quote
 * Button
+* Spoiler
+* List
+* Highlight
+* Restricted Content
+* Note
+* Youtube
+* Vimeo
+* Image
+* Scheduler
 
 
 The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily.
@@ -73,6 +82,15 @@ e.g.
 == 5.0 ==
 
 1. [new] Numerous builtin shortcodes
+    * Spoiler
+    * List
+    * Highlight
+    * Restricted Content
+    * Note
+    * Youtube
+    * Vimeo
+    * Image
+    * Scheduler
 2. [new] Edit mode for inserted shortcodes through easy interface
 3. [new] Shortcode types added
 4. [new] Improved shortcode values processing system
