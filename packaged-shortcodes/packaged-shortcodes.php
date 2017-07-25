@@ -38,8 +38,10 @@ class SM_Packaged_Shortcodes {
     }
 
     public function show_admin_notices() {
+        global $pagenow;
 
         if( SHORTCODE_MAKER_VERSION >= 5.0 ) {
+            if( !in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) return;
 
             if( !get_option( 'sm_dismiss_feature_notice' ) ) {
                 require_once SHORTCODE_MAKER_ROOT . '/documentation/documentation.php';
