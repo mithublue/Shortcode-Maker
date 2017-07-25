@@ -74,7 +74,11 @@ e.g.
 7. screenshot-3
 8. screenshot-4
 9. screenshot-5
-10. screenshot-6
+10. screenshot-10
+11. screenshot-11
+12. screenshot-12
+13. screenshot-13
+14. screenshot-14
 
 
 == Changelog ==
