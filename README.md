@@ -2,13 +2,13 @@
 
 Contributors: mithublue,cybercraftit
 
-Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode
+Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 
 Requires at least: 3.0.1
 
 Tested up to: 4.8
 
-Stable tag: 4.0.9
+Stable tag: 5.0
 
 License: GPLv2 or later
 
@@ -42,6 +42,28 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 
 
 ## Changelog ##
+
+## Changelog ##
+
+## 5.0 ##
+
+1. [new] Numerous builtin shortcodes
+    * Spoiler
+    * List
+    * Highlight
+    * Restricted Content
+    * Note
+    * Youtube
+    * Vimeo
+    * Image
+    * Scheduler
+2. [new] Edit mode for inserted shortcodes through easy interface
+3. [new] Shortcode types added
+4. [new] Improved shortcode values processing system
+
+## 4.0.9 ##
+
+1. [fix] Issue with typing left arrow in editor and title field fixed
 
 ## 4.0.8 ##
 
