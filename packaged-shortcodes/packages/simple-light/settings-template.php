@@ -584,3 +584,103 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
+<template id="smps_simple_light_post_loop_settings">
+    <form class="shortcode_settings_form">
+        <div class="mb5">
+            <label><?php _e('Category', 'smps');?></label>
+            <input type="text" v-model="s.category" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Author', 'smps');?></label>
+            <input type="text" v-model="s.author" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Posts per page', 'smps');?></label>
+            <input type="number" v-model="s.posts_per_page" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Order by', 'smps');?></label>
+            <select name="orderby" id="" v-model="s.orderby" class="form-control">
+                <option :value="name" v-for="(name,label) in orderby_opts">{{ label }}</option>
+            </select>
+        </div>
+        <div class="mb5">
+            <label><?php _e('Post status', 'smps');?></label>
+            <select name="orderby" id="" v-model="s.post_status" class="form-control">
+                <option :value="name" v-for="(name,label) in post_status_opts">{{ label }}</option>
+            </select>
+        </div>
+        <div class="mb5">
+            <label><?php _e('Class','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.class">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Id','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.Id">
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+    </form>
+</template>
+<template id="smps_simple_light_post_meta_settings">
+    <form class="shortcode_settings_form">
+        <div class="mb5">
+            <label><?php _e('Post ID', 'smps');?></label>
+            <input type="text" v-model="s.id" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Field name', 'smps');?></label>
+            <input type="text" v-model="s.author" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Field\'s value, if the field value is missing', 'smps');?></label>
+            <input type="text" v-model="s.default_value" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Class','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.class">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Id','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.Id">
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+    </form>
+</template>
+<template id="smps_simple_light_option_settings">
+    <form class="shortcode_settings_form">
+        <div class="mb5">
+            <label><?php _e('Option name', 'smps');?></label>
+            <input type="text" v-model="s.name" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Default value, if the option has no values', 'smps');?></label>
+            <input type="text" v-model="s.value" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Class','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.class">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Id','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.Id">
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+    </form>
+</template>
+<template id="smps_simple_light_menu_settings">
+    <form class="shortcode_settings_form">
+        <div class="mb5">
+            <label><?php _e('Menu name', 'smps');?></label>
+            <input type="text" v-model="s.name" class="form-control">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Class','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.class">
+        </div>
+        <div class="mb5">
+            <label><?php _e('Id','smps'); ?></label>
+            <input type="text" class="form-control" v-model="s.Id">
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+    </form>
+</template>

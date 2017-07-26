@@ -90,7 +90,28 @@ class Smps_Simple_Light {
                 'scheduler' => array(
                     'section' => 'Content',
                     'label' => 'Scheduler'
+                ),
+                'post_loop' => array(
+                    'section' => 'Content',
+                    'label' => 'Post/Content List'
+                ),
+                'post_meta' => array(
+                    'section' => 'Content',
+                    'label' => 'Post Meta Data'
+                ),
+                'option' => array(
+                    'section' => 'Content',
+                    'label' => 'Option'
+                ),
+                'category_list' => array(
+                    'section' => 'Content',
+                    'label' => 'Category List'
+                ),
+                'menu' => array(
+                    'section' => 'Content',
+                    'label' => 'Menu'
                 )
+
                 //'social_media_button' => 'Social Media Button'
             ))
         );
@@ -124,7 +145,18 @@ class Smps_Simple_Light {
             'post-new.php',
             'post.php'
         ) ) ) {
-            $shortcode_settings_data = apply_filters( 'sm_shortcode_settings_data', array());
+            $shortcode_settings_data = apply_filters( 'sm_shortcode_settings_data',
+                array(
+                    'post_loop' => array(
+                        'orderby' => array(
+                            'date' => 'Date',
+                            'ID' => 'ID',
+                            'title' => 'Title'
+                        ),
+                        'post_statuses' => get_post_statuses()
+                    )
+                )
+            );
             $hide_shortcode_panel = get_post_meta( $post->ID,'sm_hide_shortcode_panel', true);
             ?>
             <script>

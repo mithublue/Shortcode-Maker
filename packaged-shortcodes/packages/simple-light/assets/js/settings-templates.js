@@ -680,6 +680,118 @@
         });
     });
 
+    //post_loop
+    Vue.component( 'smps_simple_light_post_loop_settings',{
+        template : '#smps_simple_light_post_loop_settings',
+        data : function () {
+            return {
+                component_name : 'post_loop',
+                s : {
+                    category : '',
+                    author : '',
+                    posts_per_page : 5,
+                    orderby : 'date',
+                    post_type : 'post',
+                    post_status : 'publish',
+                    tag : '',
+                    order : 'DESC',
+                    class : '',
+                    Id : ''
+                },
+                orderby_opts :  sm_settings_data.post_loop.orderby,
+                post_status_opts : sm_settings_data.post_loop.post_statuses
+            }
+        },
+        methods : {
+            insert_shortcode : function () {
+                sm_object.insert_shortcode( this.s, 'smps_sl_post_loop' );
+            }
+        },
+        ready : function () {
+            if ( smps_app.edit_target_item == this.component_name ) {
+                this.s = smps_app.edit_target_item_data;
+            }
+        }
+    } );
+
+    //post meta
+    Vue.component( 'smps_simple_light_post_meta_settings',{
+        template : '#smps_simple_light_post_meta_settings',
+        data : function () {
+            return {
+                component_name : 'post_meta',
+                s : {
+                    id : '',
+                    key : '',
+                    default_value : '',
+                    class : '',
+                    Id : ''
+                }
+            }
+        },
+        methods : {
+            insert_shortcode : function () {
+                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+            }
+        },
+        ready : function () {
+            if ( smps_app.edit_target_item == this.component_name ) {
+                this.s = smps_app.edit_target_item_data;
+            }
+        }
+    } );
+
+    //option
+    Vue.component( 'smps_simple_light_option_settings',{
+        template : '#smps_simple_light_option_settings',
+        data : function () {
+            return {
+                component_name : 'option',
+                s : {
+                    name : '',
+                    value : '',
+                    class : '',
+                    Id : ''
+                }
+            }
+        },
+        methods : {
+            insert_shortcode : function () {
+                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+            }
+        },
+        ready : function () {
+            if ( smps_app.edit_target_item == this.component_name ) {
+                this.s = smps_app.edit_target_item_data;
+            }
+        }
+    } );
+
+    //menu
+    Vue.component( 'smps_simple_light_menu_settings',{
+        template : '#smps_simple_light_menu_settings',
+        data : function () {
+            return {
+                component_name : 'menu',
+                s : {
+                    name : '',
+                    class : '',
+                    Id : ''
+                }
+            }
+        },
+        methods : {
+            insert_shortcode : function () {
+                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+            }
+        },
+        ready : function () {
+            if ( smps_app.edit_target_item == this.component_name ) {
+                this.s = smps_app.edit_target_item_data;
+            }
+        }
+    } );
+
 
     sm_object.insert_shortcode = function ( settings_data, shortcode_name ) {
         var data = encodeURIComponent(JSON.stringify(settings_data));
@@ -687,4 +799,5 @@
         tinyMCE.activeEditor.selection.setContent( shortcode );
         smps_app.dismiss_settings_panel();
     }
+
 }(jQuery));
