@@ -44,7 +44,7 @@ define( 'SHORTCODE_MAKER_VERSION', '5.0' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 
-class shortcode_maker{
+class shortcode_maker{ 
 
 	private $shorcode_array = array();
 
