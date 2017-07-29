@@ -91,7 +91,7 @@ class Smps_Simple_Light {
                     'section' => 'Content',
                     'label' => 'Scheduler'
                 ),
-                'post_loop' => array(
+                /*'post_loop' => array(
                     'section' => 'Content',
                     'label' => 'Post/Content List'
                 ),
@@ -110,7 +110,7 @@ class Smps_Simple_Light {
                 'menu' => array(
                     'section' => 'Content',
                     'label' => 'Menu'
-                )
+                )*/
 
                 //'social_media_button' => 'Social Media Button'
             ))
