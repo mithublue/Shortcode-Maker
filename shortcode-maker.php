@@ -7,7 +7,7 @@
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0
+ * Version: 5.0.1
  * License: GPL2
  */
 /**
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SHORTCODE_MAKER_VERSION', '5.0' );
+define( 'SHORTCODE_MAKER_VERSION', '5.0.1' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 

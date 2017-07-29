@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.8
 
-Stable tag: 5.0
+Stable tag: 5.0.1
 
 License: GPLv2 or later
 
@@ -44,6 +44,10 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 ## Changelog ##
 
 ## Changelog ##
+
+## 5.0.1 ##
+
+1. [new] New action hooks added
 
 ## 5.0 ##
 
