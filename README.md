@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.8
 
-Stable tag: 5.0.1
+Stable tag: 5.0.2
 
 License: GPLv2 or later
 
@@ -27,6 +27,39 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 * You can add shortcode of your own
 * Add attributes as many as you want with the ability to define default value
 * you can write PHP code in definition. To use code, use [php_code][/php_code] in your shortcode definition and place code inside it.
+ 
+ ## NEW FEATURE : PACKAGED SHORTCODES INCLUDED ! ##
+ 
+ With packaged shortcodes, you can add different widgets/UI elementns to your site now
+ The elements are
+ 
+ * Tabs
+ * Accordion
+ * Table
+ * Panel
+ * Alert
+ * Heading
+ * Quote
+ * Button
+ * Spoiler
+ * List
+ * Highlight
+ * Restricted Content
+ * Note
+ * Youtube
+ * Vimeo
+ * Image
+ * Scheduler
+ * Post List
+ * Page List
+ * Post Meta Data
+ * Option
+ * Category List
+ * Menu
+ 
+ 
+ The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily.
+ 
  
 ## Screenshots ##
 
