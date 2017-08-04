@@ -478,7 +478,214 @@ pri($data);
     }
 
 
-    public static function render_post_loop( $atts, $content, $tag ) {
+    public static function render_post_loop( $atts, $content, $tag )
+    {
+
+        $atts = shortcode_atts(array(
+            'data' => '{}'
+        ), $atts, $tag);
+
+        $data = json_decode(stripslashes(urldecode($atts['data'])), true);
+
+
+        $args = array();
+
+        if ($data['category__in']) {
+            $args['category__in'] = $data['category__in'];
+        }
+
+        if ($data['author']) {
+            $args['author'] = $data['author'];
+        }
+
+
+        if ($data['posts_per_page']) {
+            $args['posts_per_page'] = $data['posts_per_page'];
+        }
+
+        if ($data['orderby']) {
+            $args['orderby'] = $data['orderby'];
+        }
+
+        /*if( $data['post_type'] ) {
+            $args['post_type'] = $data['post_type'];
+        }*/
+
+        if ($data['post_status']) {
+            $args['post_status'] = $data['post_status'];
+        }
+
+        if ($data['tag']) {
+            $args['tag'] = $data['tag'];
+        }
+
+        if ($data['order']) {
+            $args['order'] = $data['order'];
+        }
+
+        if ($data['nopaging']) {
+            $args['nopaging'] = $data['nopaging'];
+        }
+
+        $the_query = new WP_Query($args);
+
+
+        // run the loop based on the query
+        if ($the_query->have_posts()) { ?>
+            <div id="<?php echo $data['Id']; ?>" class="sm_post_listing <?php echo $data['class']; ?>">
+            <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+                <div class="sm_featured_img">
+                    <?php the_post_thumbnail();?>
+                </div>
+                <div class="sm_title"><h2><?php the_title(); ?></h2></div>
+                <div class="sm_excerpt">
+                    <?php the_excerpt();?>
+                </div>
+                <?php
+            endwhile;
+            ?>
+            </div><!--sm_post_listing-->
+            <?php
+            $postContent = ob_get_clean();
+            return $postContent;
+
+        }
+    }
+
+
+    /**
+     * render page list
+     * @param $atts
+     * @param $content
+     * @param $tag
+     * @return string
+     */
+    public static function render_page_loop( $atts, $content, $tag )
+    {
+
+        $atts = shortcode_atts(array(
+            'data' => '{}'
+        ), $atts, $tag);
+
+        $data = json_decode(stripslashes(urldecode($atts['data'])), true);
+
+
+        $args = array();
+
+
+        if ($data['posts_per_page']) {
+            $args['posts_per_page'] = $data['posts_per_page'];
+        }
+
+        if ($data['orderby']) {
+            $args['orderby'] = $data['orderby'];
+        }
+
+        /*if( $data['post_type'] ) {
+            $args['post_type'] = $data['post_type'];
+        }*/
+
+        if ($data['post_status']) {
+            $args['post_status'] = $data['post_status'];
+        }
+
+        if ($data['order']) {
+            $args['order'] = $data['order'];
+        }
+
+        if ($data['nopaging']) {
+            $args['nopaging'] = $data['nopaging'];
+        }
+
+        $args['post_type'] = 'page';
+
+        $the_query = new WP_Query($args);
+
+
+        // run the loop based on the query
+        if ($the_query->have_posts()) { ?>
+            <div id="<?php echo $data['Id']; ?>" class="sm_post_listing <?php echo $data['class']; ?>">
+                <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+                    <div class="sm_title"><h2><?php the_title(); ?></h2></div>
+                    <div class="sm_excerpt">
+                        <?php the_excerpt();?>
+                    </div>
+                    <?php
+                endwhile;
+                ?>
+            </div><!--sm_post_listing-->
+            <?php
+            $postContent = ob_get_clean();
+            return $postContent;
+
+        }
+    }
+
+
+    /**
+     * Post meta
+     *
+     * @param $atts
+     * @param $content
+     * @param $tag
+     */
+    public static function render_post_meta( $atts, $content, $tag ) {
+
+        global $post;
+
+        $atts = shortcode_atts( array(
+            'data' => '{}'
+        ), $atts, $tag );
+
+        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $value = '';
+
+        if( $data['key'] ) {
+            if( $data['id'] ) {
+                $value = get_post_meta($data['id'],$data['key'], true );
+            } else {
+                if ( isset( $post->ID ) ) {
+                    $value = get_post_meta( $post->ID, $data['key'], true );
+                }
+            }
+        }
+
+        echo '<span class="'.$data['class'].'" id="'.$data['Id'].'">';
+        if( $value ) {
+            echo $value;
+        } else {
+            echo $data['default_value'];
+        }
+        echo '</span>';
+
+    }
+
+    /**
+     * Render option
+     * @param $atts
+     * @param $content
+     * @param $tag
+     */
+    public static function render_option( $atts, $content, $tag ) {
+
+        $atts = shortcode_atts( array(
+            'data' => '{}'
+        ), $atts, $tag );
+
+        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+
+        echo '<span class="'.$data['class'].'" id="'.$data['Id'].'">';
+        echo get_option( $data['name'],$data['value']);
+        echo '</span>';
+    }
+
+    /**
+     * Category list
+     * @param $atts
+     * @param $content
+     * @param $tag
+     */
+    public static function render_category_list( $atts, $content, $tag ) {
 
         $atts = shortcode_atts( array(
             'data' => '{}'
@@ -488,161 +695,24 @@ pri($data);
 
         $args = array();
 
-        $args = array(
-
-//////Author Parameters - Show posts associated with certain author.
-            //'author' => 1,2,3,                        //(int) - use author id [use minus (-) to exclude authors by ID ex. 'author' => -1,-2,-3,]
-//////Category Parameters - Show posts associated with certain categories.
-            //'category__in' => array( 2, 6 ),          //(array) - use category id.
-            //'category__not_in' => array( 2, 6 ),      //(array) - use category id.
-
-
-//////Post & Page Parameters - Display content based on post and page parameters.
-            //'p' => 1,                               //(int) - use post id.
-            //'name' => 'hello-world',                //(string) - use post slug.
-            //'page_id' => 1,                         //(int) - use page id.
-            //'pagename' => 'sample-page',            //(string) - use page slug.
-            //'pagename' => 'contact_us/canada',      //(string) - Display child page using the slug of the parent and the child page, separated ba slash
-            //'post_parent' => 1,                     //(int) - use page id. Return just the child Pages.
-            //'post__in' => array(1,2,3),             //(array) - use post ids. Specify posts to retrieve.
-            //'post__not_in' => array(1,2,3),         //(array) - use post ids. Specify post NOT to retrieve.
-            //NOTE: you cannot combine 'post__in' and 'post__not_in' in the same query
-
-//////Pagination Parameters
-            //'paged' => get_query_var('page'),       //(int) - number of page. Show the posts that would normally show up just on page X when usinthe "Older Entries" link.
-            //NOTE: You should set get_query_var( 'page' ); if you want your query to work with pagination. Since Wordpress 3.0.2, you dget_query_var( 'page' ) instead of get_query_var( 'paged' ). The pagination parameter 'paged' for WP_Query() remains the same.
-//////Offset Parameter
-            //'offset' => 3,                          //(int) - number of post to displace or pass over.
-//////Order & Orderby Parameters - Sort retrieved posts.
-            //Possible Values:
-            //'ASC' - ascending order from lowest to highest values (1, 2, 3; a, b, c).
-            //'DESC' - descending order from highest to lowest values (3, 2, 1; c, b, a).
-            //'orderby' => 'date',                    //(string) - Sort retrieved posts by parameter. Defaults to 'date'.
-            //Possible Values://
-            //'none' - No order (available with Version 2.8).
-            //'ID' - Order by post id. Note the captialization.
-            //'author' - Order by author.
-            //'title' - Order by title.
-            //'date' - Order by date.
-            //'modified' - Order by last modified date.
-            //'parent' - Order by post/page parent id.
-            //'rand' - Random order.
-            //'comment_count' - Order by number of comments (available with Version 2.9).
-            //'menu_order' - Order by Page Order. Used most often for Pages (Order field in the EdiPage Attributes box) and for Attachments (the integer fields in the Insert / Upload MediGallery dialog), but could be used for any post type with distinct 'menu_order' values (theall default to 0).
-            //'meta_value' - Note that a 'meta_key=keyname' must also be present in the query. Note alsthat the sorting will be alphabetical which is fine for strings (i.e. words), but can bunexpected for numbers (e.g. 1, 3, 34, 4, 56, 6, etc, rather than 1, 3, 4, 6, 34, 56 as yomight naturally expect).
-            //'meta_value_num' - Order by numeric meta value (available with Version 2.8). Also notthat a 'meta_key=keyname' must also be present in the query. This value allows for numericasorting as noted above in 'meta_value'.
-            //'post__in' - Preserve post ID order given in the post__in array (available with Version 3.5).
-);
-
-        if( $data['category__in'] ) {
-            $args['category__in'] = $data['category__in'];
+        if( $data['parent_id'] ) {
+            $args['child_of'] = $data['parent_id'];
         }
 
-        if( $data['author'] ) {
-            $args['author'] = $data['author'];
+        if( $data['exclude'] ) {
+            $args['exclude'] = $data['exclude'];
         }
 
+        $args['title_li'] = $data['title_li'];
+        $args['hide_empty'] = $data['hide_empty'];
+        $args['hierarchical'] = $data['hierarchical'];
+        $args['order'] = $data['order'];
+        $args['separator'] = $data['separator'];
+        $args['show_count'] = $data['show_count'];
+        $args['show_option_all'] = $data['show_option_all'];
+        $args['show_option_none'] = $data['show_option_none'];
 
-        if( $data['posts_per_page'] ) {
-            $args['posts_per_page'] = $data['posts_per_page'];
-        }
-
-        if( $data['orderby'] ) {
-            $args['orderby'] = $data['orderby'];
-        }
-
-        /*if( $data['post_type'] ) {
-            $args['post_type'] = $data['post_type'];
-        }*/
-
-        if( $data['post_status'] ) {
-            $args['post_status'] = $data['post_status'];
-        }
-
-        if( $data['tag'] ) {
-            $args['tag'] = $data['tag'];
-        }
-
-        if( $data['order'] ) {
-            $args['order'] = $data['order'];
-        }
-
-        if( $data['nopaging'] ) {
-            $args['nopaging'] = $data['nopaging'];
-        }
-
-        $the_query = new WP_Query( $args );
-// The Loop
-        if ( $the_query->have_posts() ) :
-            ?>
-            <div class="smps_post_loop">
-                <?php
-                while ( $the_query->have_posts() ) : $the_query->the_post();
-                    echo get_the_ID();
-                    ?>
-                    <div class="sm_each_post">
-                        <div class="thumbnail">
-                            <?php the_post_thumbnail(); ?>
-                        </div>
-                        <div class="title">
-                            <?php the_title(); ?>
-                        </div>
-                        <div>
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
-                    <?php
-                endwhile; ?>
-            </div>
-        <?php
-        endif;
-// Reset Post Data
-        wp_reset_postdata();
-    }
-
-
-
-    /**
-     *
-     */
-    public static function render_page_loop( $atts, $content, $tag ) {
-
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-
-    }
-
-    public static function render_post_meta( $atts, $content, $tag ) {
-
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-
-    }
-
-    public static function render_option( $atts, $content, $tag ) {
-
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-
-    }
-
-    public static function render_category_list( $atts, $content, $tag ) {
-
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-
+        wp_list_categories($args);
     }
 
     public static function render_menu( $atts, $content, $tag ) {
@@ -652,6 +722,14 @@ pri($data);
         ), $atts, $tag );
 
         $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+
+        ?>
+        <div class="<?php echo $data['class']; ?>" id="<?php echo $data['Id']; ?>">
+            <?php wp_nav_menu( array(
+                'menu' => $data['name']
+            ) ); ?>
+        </div>
+<?php
 
     }
 

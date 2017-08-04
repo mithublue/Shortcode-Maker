@@ -723,8 +723,8 @@
                 component_name : 'page_loop',
                 s : {
                     posts_per_page : 5,
+                    nopaging : 1,
                     orderby : 'date',
-                    post_type : 'page',
                     post_status : 'publish',
                     order : 'DESC',
                     class : '',
@@ -805,16 +805,16 @@
         template : '#smps_simple_light_category_list_settings',
         data : function () {
             return {
-                component_name : 'option',
+                component_name : 'category_list',
                 s : {
                     title_li : 'Categories',
                     parent_id : 0,
                     exclude : [],
-                    hide_empty : 0,
+                    hide_empty : 1,
                     hierarchical : 1,
                     order : 'ASC',
                     separator : '<br/>',
-                    show_count : 0,
+                    show_count : 1,
                     show_option_all : '',
                     show_option_none : 'No categories',
                     class : '',
