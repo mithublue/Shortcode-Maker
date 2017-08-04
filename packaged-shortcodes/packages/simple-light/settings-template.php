@@ -452,66 +452,66 @@
             <?php do_action( 'sm_top_settings_youtube'); ?>
             <div class="mb5">
                 <label><?php _e( 'URL', 'smps' ); ?></label>
-                <input type="url" v-model="s.url">
+                <input type="url" class="form-control" v-model="s.url">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Width', 'smps' ); ?></label>
-                <input type="number" v-model="s.width">
+                <input type="number" class="form-control" v-model="s.width">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Height', 'smps' ); ?></label>
-                <input type="number" v-model="s.height">
+                <input type="number" class="form-control" v-model="s.height">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Responsive', 'smps' ); ?></label>
-                <select v-model="s.responsive">
+                <select v-model="s.responsive" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Controls', 'smps' ); ?></label>
-                <select v-model="s.controls">
+                <select v-model="s.controls" class="form-control">
                     <option :value="k" v-for="(k, label) in controls_opt">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Autohide', 'smps' ); ?></label>
-                <select v-model="s.autohide">
+                <select v-model="s.autohide" class="form-control">
                     <option :value="k" v-for="(k, label) in autohide_opt">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Show title bar', 'smps' ); ?></label>
-                <select v-model="s.show_title_bar">
+                <select v-model="s.show_title_bar" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Autoplay', 'smps' ); ?></label>
-                <select v-model="s.autoplay">
+                <select v-model="s.autoplay" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Loop', 'smps' ); ?></label>
-                <select v-model="s.loop">
+                <select v-model="s.loop" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Related videos', 'smps' ); ?></label>
-                <select v-model="s.related_videos">
+                <select v-model="s.related_videos" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Full screen button', 'smps' ); ?></label>
-                <select v-model="s.full_screen_button">
+                <select v-model="s.full_screen_button" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
@@ -532,26 +532,26 @@
             <?php do_action( 'sm_top_settings_vimeo'); ?>
             <div class="mb5">
                 <label><?php _e( 'URL', 'smps' ); ?></label>
-                <input type="s.url" v-model="s.url">
+                <input type="s.url" v-model="s.url" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Width', 'smps' ); ?></label>
-                <input type="submit.number" v-model="s.width">
+                <input type="submit.number" v-model="s.width" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Height', 'smps' ); ?></label>
-                <input type="s.number" v-model="s.height">
+                <input type="s.number" v-model="s.height" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Loop', 'smps' ); ?></label>
-                <select v-model="s.loop">
+                <select v-model="s.loop" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Autoplay', 'smps' ); ?></label>
-                <select v-model="s.autoplay">
+                <select v-model="s.autoplay" class="form-control">
                     <option value="yes"><?php _e( 'Yes', 'smps' ); ?></option>
                     <option value="no"><?php _e( 'No', 'smps' ); ?></option>
                 </select>
@@ -638,11 +638,11 @@
             </div>
             <div class="mb5">
                 <label><?php _e('Alternative text','smps'); ?></label>
-                <textarea cols="30" rows="10" v-model="s.alternative_text"></textarea>
+                <textarea cols="30" rows="10" v-model="s.alternative_text" class="form-control"></textarea>
             </div>
             <div class="mb5">
                 <label><?php _e('Content','smps'); ?></label>
-                <textarea cols="30" rows="10" v-model="s.content"></textarea>
+                <textarea cols="30" rows="10" v-model="s.content" class="form-control"></textarea>
             </div>
             <?php do_action( 'sm_bottom_settings_scheduler'); ?>
         </div>
@@ -681,7 +681,6 @@
             </div>
             <div class="mb5">
                 <label><?php _e('Show navigation', 'smps');?></label>
-                <input type="number" v-model="s.posts_per_page" class="form-control">
                 <select v-model="s.nopaging" class="form-control">
                     <option value="0"><?php _e( 'True', 'smps' ); ?></option>
                     <option value="1"><?php _e( 'False', 'smps' ); ?></option>
@@ -727,6 +726,13 @@
                 <input type="number" v-model="s.posts_per_page" class="form-control">
             </div>
             <div class="mb5">
+                <label><?php _e('Show navigation', 'smps');?></label>
+                <select v-model="s.nopaging" class="form-control">
+                    <option value="0"><?php _e( 'True', 'smps' ); ?></option>
+                    <option value="1"><?php _e( 'False', 'smps' ); ?></option>
+                </select>
+            </div>
+            <div class="mb5">
                 <label><?php _e('Order by', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.orderby" class="form-control">
                     <option :value="name" v-for="(name,label) in orderby_opts">{{ label }}</option>
@@ -767,7 +773,7 @@
             </div>
             <div class="mb5">
                 <label><?php _e('Field name', 'smps');?></label>
-                <input type="text" v-model="s.author" class="form-control">
+                <input type="text" v-model="s.key" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e('Field\'s value, if the field value is missing', 'smps');?></label>
@@ -829,11 +835,11 @@
             </div>
             <div class="mb5">
                 <label><?php _e( 'Exclude', 'smps' ); ?></label>
-                <select v-model="exclude" class="form-control" id="" multiple>
+                <select v-model="s.exclude" class="form-control" id="" multiple>
                     <?php
                     foreach ( $categories as $k => $category ) {
                         ?>
-                        <option value="<?php echo $category->term_id; ?>"><?php echo $category->name ; ?></option>
+                        <option :value="<?php echo $category->term_id; ?>"><?php echo $category->name ; ?></option>
                         <?php
                     }
                     ?>
@@ -841,14 +847,14 @@
             </div>
             <div class="mb5">
                 <label><?php _e( 'Hide empty', 'smps' ); ?></label>
-                <select v-model="hide_empty" class="form-control">
+                <select v-model="s.hide_empty" class="form-control">
                     <option value="1"><?php _e( 'True', 'smps' ) ; ?></option>
                     <option value="0"><?php _e( 'False', 'smps' ) ; ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Hierarchical', 'smps' ); ?></label>
-                <select v-model="hierarchical" class="form-control">
+                <select v-model="s.hierarchical" class="form-control">
                     <option value="1"><?php _e( 'True', 'smps' ) ; ?></option>
                     <option value="0"><?php _e( 'False', 'smps' ) ; ?></option>
                 </select>
@@ -861,22 +867,22 @@
             </div>
             <div class="mb5">
                 <label><?php _e( 'Separator', 'smps' ); ?></label>
-                <input type="text" class="form-control" v-model="separator">
+                <input type="text" class="form-control" v-model="s.separator">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Show count', 'smps' ); ?></label>
-                <select v-model="show_count" class="form-control">
+                <select v-model="s.show_count" class="form-control">
                     <option value="1"><?php _e( 'True', 'smps' ) ; ?></option>
                     <option value="0"><?php _e( 'False', 'smps' ) ; ?></option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Text to show all option', 'smps' ); ?></label>
-                <input type="text" class="form-control" v-model="show_option_all">
+                <input type="text" class="form-control" v-model="s.show_option_all">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Text to show no option', 'smps' ); ?></label>
-                <input type="text" class="form-control" v-model="show_option_none">
+                <input type="text" class="form-control" v-model="s.show_option_none">
             </div>
             <div class="mb5">
                 <label><?php _e('Class','smps'); ?></label>
@@ -892,12 +898,23 @@
     </form>
 </template>
 <template id="smps_simple_light_menu_settings">
+    <?php $nav_menus = get_terms( 'nav_menu', array( 'hide_empty' => true ) ); ?>
     <form class="shortcode_settings_form">
         <div class="bs-container mb10">
             <?php do_action( 'sm_top_settings_menu'); ?>
             <div class="mb5">
                 <label><?php _e('Menu name', 'smps');?></label>
-                <input type="text" v-model="s.name" class="form-control">
+                <!--<input type="text" v-model="s.name" class="form-control">-->
+                <select v-model="s.name" class="form-control">
+                    <option value=""><?php _e( 'Select a menu', 'smps' ); ?></option>
+                    <?php
+                    foreach ( $nav_menus as $k => $menu ) {
+                        ?>
+                        <option value="<?php echo $menu->slug; ?>"><?php echo $menu->name; ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
             </div>
             <div class="mb5">
                 <label><?php _e('Class','smps'); ?></label>

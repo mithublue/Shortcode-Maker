@@ -95,6 +95,10 @@ class Smps_Simple_Light {
                     'section' => 'Content',
                     'label' => 'Post/Content List'
                 ),
+                'page_loop' => array(
+                    'section' => 'Content',
+                    'label' => 'Page List'
+                ),
                 'post_meta' => array(
                     'section' => 'Content',
                     'label' => 'Post Meta Data'
@@ -148,6 +152,14 @@ class Smps_Simple_Light {
             $shortcode_settings_data = apply_filters( 'sm_shortcode_settings_data',
                 array(
                     'post_loop' => array(
+                        'orderby' => array(
+                            'date' => 'Date',
+                            'ID' => 'ID',
+                            'title' => 'Title'
+                        ),
+                        'post_statuses' => get_post_statuses()
+                    ),
+                    'page_loop' => array(
                         'orderby' => array(
                             'date' => 'Date',
                             'ID' => 'ID',

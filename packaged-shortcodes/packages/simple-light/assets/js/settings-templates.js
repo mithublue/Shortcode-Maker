@@ -687,24 +687,57 @@
             return {
                 component_name : 'post_loop',
                 s : {
-                    category : '',
+                    category__in : '',
                     author : '',
                     posts_per_page : 5,
+                    nopaging : 1,
                     orderby : 'date',
-                    post_type : 'post',
                     post_status : 'publish',
                     tag : '',
                     order : 'DESC',
                     class : '',
                     Id : ''
                 },
+                order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
                 orderby_opts :  sm_settings_data.post_loop.orderby,
                 post_status_opts : sm_settings_data.post_loop.post_statuses
             }
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_post_loop' );
+                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+            }
+        },
+        ready : function () {
+            if ( smps_app.edit_target_item == this.component_name ) {
+                this.s = smps_app.edit_target_item_data;
+            }
+        }
+    } );
+
+    //page_loop
+    Vue.component( 'smps_simple_light_page_loop_settings',{
+        template : '#smps_simple_light_page_loop_settings',
+        data : function () {
+            return {
+                component_name : 'page_loop',
+                s : {
+                    posts_per_page : 5,
+                    nopaging : 1,
+                    orderby : 'date',
+                    post_status : 'publish',
+                    order : 'DESC',
+                    class : '',
+                    Id : ''
+                },
+                order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
+                orderby_opts :  sm_settings_data.page_loop.orderby,
+                post_status_opts : sm_settings_data.page_loop.post_statuses
+            }
+        },
+        methods : {
+            insert_shortcode : function () {
+                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
         ready : function () {
@@ -753,6 +786,41 @@
                     class : '',
                     Id : ''
                 }
+            }
+        },
+        methods : {
+            insert_shortcode : function () {
+                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+            }
+        },
+        ready : function () {
+            if ( smps_app.edit_target_item == this.component_name ) {
+                this.s = smps_app.edit_target_item_data;
+            }
+        }
+    } );
+
+    //category_list
+    Vue.component( 'smps_simple_light_category_list_settings',{
+        template : '#smps_simple_light_category_list_settings',
+        data : function () {
+            return {
+                component_name : 'category_list',
+                s : {
+                    title_li : 'Categories',
+                    parent_id : 0,
+                    exclude : [],
+                    hide_empty : 1,
+                    hierarchical : 1,
+                    order : 'ASC',
+                    separator : '<br/>',
+                    show_count : 1,
+                    show_option_all : '',
+                    show_option_none : 'No categories',
+                    class : '',
+                    Id : ''
+                },
+                order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
             }
         },
         methods : {
