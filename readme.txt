@@ -89,6 +89,11 @@ e.g.
 
 == Changelog ==
 
+== 5.0.2 ==
+
+1. [new] New shortcode modules added e.g : Post list, page list, category list, menu, option, post meta etc
+
+
 == 5.0.1 ==
 
 1. [new] New action hooks added
