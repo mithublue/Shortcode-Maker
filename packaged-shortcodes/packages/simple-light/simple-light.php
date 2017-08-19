@@ -139,8 +139,8 @@ class Smps_Simple_Light {
     }
 
     function wp_enqueue_scripts_styles( $hook ) {
-        wp_enqueue_style( 'simple-light-css' , plugins_url('assets/css/simple-light.css',__FILE__) );
-        wp_enqueue_script( 'simple-light-js' , plugins_url('assets/js/simple-light.js',__FILE__), array( 'jquery' ) );
+        wp_enqueue_style( 'simple-light-css' , SHORTCODE_MAKER_ASSET_PATH.'/css/simple-light.css' );
+        wp_enqueue_script( 'simple-light-js' , SHORTCODE_MAKER_ASSET_PATH.'/js/simple-light.js', array( 'jquery' ) );
     }
 
     function admin_enqueue_scripts_styles( $hook ) {

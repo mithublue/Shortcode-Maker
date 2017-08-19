@@ -7,7 +7,7 @@
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0.2
+ * Version: 5.0.2.1
  * License: GPL2
  */
 /**
@@ -85,6 +85,11 @@ class shortcode_maker{
     }
 
     function includes(){
+
+        if( file_exists( dirname(__FILE__).'/pro/loader.php' )) {
+            include_once dirname(__FILE__).'/pro/loader.php';
+        }
+
         require_once dirname(__FILE__).'/ajax-action.php';
         require_once dirname(__FILE__).'/vote.php';
         require_once dirname(__FILE__).'/sm-functions.php';
