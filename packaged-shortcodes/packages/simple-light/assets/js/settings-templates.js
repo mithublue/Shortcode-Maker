@@ -860,6 +860,47 @@
         }
     } );
 
+    /*custom shortcode*/
+    Vue.component('sm_custom_shortcode',{
+        template : '#sm_custom_shortcode',
+        props : ['tag','id'],
+        data : function () {
+            return {
+                shortcode_atts : {}
+            };
+        },
+        methods : {
+            insert_shortcode : function () {
+                var atts_string = '';
+
+                for( v in _this.shortcode_atts ) {
+                    atts_string = atts_string + ' ' + v + '="' + _this.shortcode_atts[v] + '"';
+                }
+                tinyMCE.activeEditor.selection.setContent('[' + _this.tag + ' ' + atts_string + '][/' + _this.tag + ']' );
+                smps_app.dismiss_settings_panel();
+            }
+        },
+        created : function () {
+            _this = this;
+            $.post(
+                ajaxurl,
+                {
+                    action : 'sm_get_shortcode_atts',
+                    shortcode_id : _this.id,
+                    tag : _this.tag
+                },
+                function( data ) {
+                    if( data.success == true ) {
+                        _this.shortcode_atts = data.data.shortcode_atts
+                    } else {
+                        tinyMCE.activeEditor.selection.setContent('[' + _this.tag + '][/' + _this.tag + ']' );
+                        smps_app.dismiss_settings_panel();
+                    }
+                }
+            );
+        }
+    });
+
 
     sm_object.insert_shortcode = function ( settings_data, shortcode_name ) {
         var data = encodeURIComponent(JSON.stringify(settings_data));

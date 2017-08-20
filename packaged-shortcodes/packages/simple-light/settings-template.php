@@ -929,3 +929,19 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
+<!--custom shortcode-->
+<template id="sm_custom_shortcode">
+    <div>
+        <?php
+        echo '<div class="sm_shortcode_atts">';
+        ?>
+        <div class="form-group" v-for="( key, attr ) in shortcode_atts">
+            <label>{{ key }}</label>
+            <input type="text" class="form-control" v-model="attr">
+        </div>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
+    </div>
+</template>
+<?php do_action( 'sm_shortcode_settings_template' ); ?>
+
+

@@ -3,7 +3,7 @@ Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 5.0.2.1
+Stable tag: 5.0.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,13 @@ e.g.
 
 
 == Changelog ==
+
+== 5.0.2.2 ==
+
+1. [new] Custom shortcode now will be listed in packaged shortcode panel
+2. [new] Shortcode button chooser has been removed from tinymce
+3. [new] Php shortcode support removed
+
 
 == 5.0.2.1 ==
 
