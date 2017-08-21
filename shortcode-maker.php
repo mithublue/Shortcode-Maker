@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
  * Plugin Name: Shortcode Maker
  * Description: A plugin to to let users make shortcodes of their own and use them in wp editor
