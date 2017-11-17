@@ -6,9 +6,9 @@ Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortco
 
 Requires at least: 3.0.1
 
-Tested up to: 4.8
+Tested up to: 4.8.9
 
-Stable tag: 5.0.2
+Stable tag: 5.0.2.4
 
 License: GPLv2 or later
 
@@ -77,6 +77,21 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 ## Changelog ##
 
 ## Changelog ##
+
+## 5.0.2.4 ##
+
+1. [fix] Error in showing shortcode items list in admin panel fixed.
+
+## 5.0.2.3 ##
+
+1. [fix] Error in fetching custom shortcodes fixed
+
+## 5.0.2.2 ##
+
+1. [new] Custom shortcode now will be listed in packaged shortcode panel
+2. [new] Shortcode button chooser has been removed from tinymce
+3. [new] Php shortcode support removed
+
 
 ## 5.0.2 ##
 

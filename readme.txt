@@ -2,8 +2,8 @@
 Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 Requires at least: 3.0.1
-Tested up to: 4.8
-Stable tag: 5.0.2.3
+Tested up to: 4.8.9
+Stable tag: 5.0.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,10 +89,13 @@ e.g.
 
 == Changelog ==
 
+== 5.0.2.4 ==
+
+1. [fix] Error in showing shortcode items list in admin panel fixed.
+
 == 5.0.2.3 ==
 
 1. [fix] Error in fetching custom shortcodes fixed
-
 
 == 5.0.2.2 ==
 
