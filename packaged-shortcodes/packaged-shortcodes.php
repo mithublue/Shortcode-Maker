@@ -87,7 +87,7 @@ class SM_Packaged_Shortcodes {
                         <div class="row">
                             <?php
                             $package_dirs = apply_filters('smps_package_dir', array(
-                                'simple-light' => SHORTCODE_MAKER_ROOT.'/packaged-shortcodes/packages/simple-light'
+                                'simple-light' => 'packages/simple-light'
                             ));
 
                             foreach ( $package_dirs as  $entry => $package_dir ) {
@@ -99,8 +99,6 @@ class SM_Packaged_Shortcodes {
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h6 class="panel-title">
-                                                <?php
-                                                ?>
                                                 <label>
                                                     <input type="checkbox" name="sm_shortcode_packages[<?php echo $entry; ?>]" value="<?php echo $package_dir; ?>" <?php echo in_array( addslashes($package_dir), $sm_get_shortcode_packages )? 'checked' : ''; ?>>
                                                     <?php echo $package_settings['name']; ?>
@@ -109,8 +107,9 @@ class SM_Packaged_Shortcodes {
                                         </div>
                                         <div class="panel panel-body">
                                             <?php
-                                            foreach ( $package_settings['items'] as $item ) {
-                                                echo '<div>'.$item.'</div>';
+
+                                            foreach ( $package_settings['items'] as $k => $item ) {
+                                                echo '<div>'.$item['label'].'</div>';
                                             }
                                             ?>
                                         </div>
