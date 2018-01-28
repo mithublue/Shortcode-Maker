@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Plugin Name: Shortcode Maker
  * Description: A plugin to to let users make shortcodes of their own and use them in wp editor
@@ -7,7 +7,7 @@
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0.2.4
+ * Version: 5.0.2.5
  * License: GPL2
  */
 /**
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SHORTCODE_MAKER_VERSION', '5.0.2.4' );
+define( 'SHORTCODE_MAKER_VERSION', '5.0.2.5' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 
@@ -106,9 +106,9 @@ class shortcode_maker{
         require_once dirname(__FILE__).'/ajax-action.php';
         require_once dirname(__FILE__).'/vote.php';
         require_once dirname(__FILE__).'/sm-functions.php';
-        require_once dirname(__FILE__).'/cc-products-page.php';
         require_once dirname(__FILE__).'/shortcode-field.php';
         include_once dirname(__FILE__).'/packaged-shortcodes/packaged-shortcodes.php';
+        require_once dirname(__FILE__).'/more-products.php';
     }
 
     /**
@@ -206,7 +206,7 @@ class shortcode_maker{
 				'not_found' =>  __('Nothing found', 'shortcode-maker' ),
 				'not_found_in_trash' => __('Nothing found in Trash', 'shortcode-maker' ),
 				'parent_item_colon' => '',
-				
+
 			);
 			$args = array(
 				'labels' => $labels,
@@ -224,7 +224,7 @@ class shortcode_maker{
 				'title',
 				'editor',
 				),
-		
+
 			);
 			register_post_type( 'sm_shortcode' , $args );
 	}
@@ -238,7 +238,7 @@ class shortcode_maker{
 		if( isset( $_POST['post_type'] ) && $_POST['post_type'] == 'sm_shortcode'){
 			$this->shorcode_array[$post_id] = get_the_title($post_id);
 			update_option('shortcode_list',$this->shorcode_array);
-			
+
 		}
 	}
 

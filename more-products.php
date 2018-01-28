@@ -10,7 +10,7 @@ class CC_Product_Page {
     }
 
     public function add_product_page() {
-        add_menu_page ( 'Cybercraft Products', 'Cybercraft Products', 'manage_options', __FILE__, array( $this, 'build_plugin_page' ) );
+        add_submenu_page ( 'edit.php?post_type=sm_shortcode', 'Cybercraft Products', 'Cybercraft Products', 'manage_options', __FILE__, array( $this, 'build_plugin_page' ) );
     }
 
     function build_plugin_page() {
@@ -18,7 +18,8 @@ class CC_Product_Page {
             $admin_path = trailingslashit( str_replace( site_url() . '/', ABSPATH, get_admin_url() ) );
             require_once( $admin_path . 'includes/plugin-install.php' );
         }
-        $call_api = plugins_api( 'query_plugins', array( 'author' => 'cybercraftit', 'fields' => array( 'banners' => true ) ) );
+        $call_api = plugins_api( 'query_plugins', array( 'author' => array( 'cybercraftit', 'mithublue', 'zenithx' ), 'fields' => array( 'banners' => true ) ) );
+
         if ( is_wp_error( $call_api ) ) {
             echo '<pre>' . print_r( $call_api->get_error_message(), true ) . '</pre>';
         } else {
@@ -35,7 +36,6 @@ class CC_Product_Page {
                 <?php
             }
             echo '</div>';
-
         }
     }
 
