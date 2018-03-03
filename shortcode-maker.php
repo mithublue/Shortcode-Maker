@@ -7,7 +7,7 @@
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0.2.5
+ * Version: 5.0.2.6
  * License: GPL2
  */
 /**
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SHORTCODE_MAKER_VERSION', '5.0.2.5' );
+define( 'SHORTCODE_MAKER_VERSION', '5.0.2.6' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 
@@ -340,3 +340,19 @@ function sm_showUpgradeNotification($currentPluginMetadata, $newPluginMetadata){
         echo esc_html($newPluginMetadata->upgrade_notice), '</p>';
     }
 }
+
+function wp_upe_upgrade_completed( $upgrader_object, $options ) {
+    // The path to our plugin's main file
+    $our_plugin = plugin_basename( __FILE__ );
+    // If an update has taken place and the updated type is plugins and the plugins element exists
+    if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+        // Iterate through the plugins being updated and check if ours is there
+        foreach( $options['plugins'] as $plugin ) {
+            if( $plugin == $our_plugin ) {
+                // Set a transient to record that our plugin has just been updated
+                SM_Packaged_Shortcodes::set_data_on_activation();
+            }
+        }
+    }
+}
+add_action( 'upgrader_process_complete', 'wp_upe_upgrade_completed', 10, 2 );
