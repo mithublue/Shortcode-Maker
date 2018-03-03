@@ -1,11 +1,17 @@
 <?php
 
+function sm_get_all_shortcode_packages() {
+    return apply_filters('smps_package_dir', array(
+        'simple-light' => 'Simple Light'
+    ));
+}
+
 function sm_save_shortcode_packages( $data ) {
-    update_option( 'sm_shortcode_packages', $data );
+    update_option( 'sm_shortcode_package_list', $data );
 }
 
 function sm_get_shortcode_packages() {
-    $sm_shortcode_packages = get_option( 'sm_shortcode_packages' );
+    $sm_shortcode_packages = get_option( 'sm_shortcode_package_list' );
     return !is_array( $sm_shortcode_packages ) ? array() : $sm_shortcode_packages;
 }
 

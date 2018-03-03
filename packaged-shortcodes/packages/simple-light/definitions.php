@@ -12,7 +12,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         ?>
         <div class="bs-container">
@@ -50,7 +53,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         ?>
         <div class="bs-container">
@@ -89,7 +95,12 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
+
         ?>
         <div class="bs-container">
             <div class="table-responsive">
@@ -122,7 +133,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         ?>
         <div class="bs-container">
@@ -153,7 +167,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
         ?>
         <div class="bs-container">
             <div class="alert alert-<?php echo $data['type']; ?> alert-<?php echo $data['dismissable'] == 'true' ? 'dismissable' : ''; ?>">
@@ -174,7 +191,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
         ?>
         <div class="bs-container">
             <<?php echo $data['type'] ; ?> class="text-<?php echo $data['text_align'];?>"><?php echo $data['text'];?></<?php echo $data['type'];?>>
@@ -193,7 +213,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
         ?>
         <div class="bs-container">
             <blockquote class="pull-<?php echo $data['alignment'];?>">
@@ -219,7 +242,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
         ?>
         <div class="bs-container" style="display: inline;">
             <?php
@@ -262,7 +288,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
         ?>
         <div class="bs-container sm-spoiler">
             <div class="panel panel-<?php echo $data['style']; ?> <?php echo $data['is_open'] == 'yes' ? 'sm-open' : 'sm-close'; ?>">
@@ -287,7 +316,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
 
         echo '<'.$data['list_type'].' class="'.$data['class'].'" id="'.$data['id'].'">';
@@ -312,7 +344,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         /*highlight shortcode definition goes here*/
         echo '<span class="'.$data['class'].'" id="'.$data['id'].'" style="background:'. $data['background'] .';color:'.$data['text_color'].';">' . $data['content'] . '</span>';
@@ -330,7 +365,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         /*memberContent shortcode definition goes here*/
         if( is_user_logged_in() ) {
@@ -352,7 +390,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         pri($data);
         /*Note shortcode definition goes here*/
@@ -379,7 +420,10 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         /*Youtube shortcode definition goes here*/
         $video_id = ( preg_match( '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $data['url'], $match ) ) ? $match[1] : false;
@@ -406,9 +450,11 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
-        pri($data);
         /*Vimeo shortcode definition goes here*/
         ?>
         <iframe src="https://player.vimeo.com/video/225888984?autoplay=<?php echo $data['autoplay'] == 'no' ? 0 : 1; ?>&loop=<?php echo $data['loop'] == 'no' ? 0 : 1; ?>"
@@ -434,8 +480,11 @@ class Smps_Simple_Light_Shortcodes {
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-pri($data);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
+
         ?>
         <img src="<?php echo $data['src'];?>" width="<?php echo $data['width']?$data['width'] : '';?>" height="<?php echo $data['height']?$data['height']:'';?>"
              class="<?php echo $data['class'];?> <?php echo $data['responsive'] == 'yes' ? 'img-responsive':''; ?>"
@@ -456,7 +505,10 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         $time = time();
         $viewable = 0;
@@ -485,7 +537,10 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag);
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])), true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
 
         $args = array();
@@ -567,7 +622,10 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag);
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])), true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
 
         $args = array();
@@ -637,7 +695,11 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
+
         $value = '';
 
         if( $data['key'] ) {
@@ -672,7 +734,10 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         echo '<span class="'.$data['class'].'" id="'.$data['Id'].'">';
         echo get_option( $data['name'],$data['value']);
@@ -691,7 +756,10 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         $args = array();
 
@@ -721,7 +789,10 @@ pri($data);
             'data' => '{}'
         ), $atts, $tag );
 
-        $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        $data = json_decode( base64_decode( $atts['data'] ),true );
+        if( !is_array( $data ) ) {
+            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
+        }
 
         ?>
         <div class="<?php echo $data['class']; ?>" id="<?php echo $data['Id']; ?>">
