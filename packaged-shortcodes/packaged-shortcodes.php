@@ -25,7 +25,7 @@ class SM_Packaged_Shortcodes {
     public function __construct() {
 
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts_styles' ) );
-        add_action( 'shortcode_maker_activation_task', array( $this, 'set_data_on_activation' ) );
+        add_action( 'shortcode_maker_activation_task', array( __CLASS__, 'set_data_on_activation' ) );
         add_action( 'admin_notices', array( $this, 'show_admin_notices' ) );
 
 
@@ -92,7 +92,7 @@ class SM_Packaged_Shortcodes {
     /**
      * save data on plugin activation
      */
-    function set_data_on_activation() {
+    public static function set_data_on_activation() {
         $sm_shortcode_packages = sm_get_shortcode_packages();
         if( empty( $sm_shortcode_packages ) ) {
             $all_packages = sm_get_all_shortcode_packages();
