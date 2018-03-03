@@ -903,7 +903,8 @@
 
 
     sm_object.insert_shortcode = function ( settings_data, shortcode_name ) {
-        var data = encodeURIComponent(JSON.stringify(settings_data));
+        //var data = encodeURIComponent(JSON.stringify(settings_data));
+        var data = btoa(JSON.stringify(settings_data));
         var shortcode = '[' + shortcode_name + ' data="' + data + '" ]';
         tinyMCE.activeEditor.selection.setContent( shortcode );
         smps_app.dismiss_settings_panel();
