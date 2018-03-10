@@ -71,10 +71,6 @@ class Smps_Simple_Light {
                     'section' => 'Content',
                     'label' => 'Restricted Content'
                 ),
-                'note' => array(
-                    'section' => 'Content',
-                    'label' => 'Note'
-                ),
                 'youtube' => array(
                     'section' => 'Media',
                     'label' => 'Youtube'
@@ -134,13 +130,13 @@ class Smps_Simple_Light {
         });
 
         add_action( 'admin_head', function () {
-            include 'settings-template.php';
+            //include 'settings-template.php';
         });
     }
 
     function wp_enqueue_scripts_styles( $hook ) {
-        wp_enqueue_style( 'simple-light-css' , SHORTCODE_MAKER_ASSET_PATH.'/css/simple-light.css' );
-        wp_enqueue_script( 'simple-light-js' , SHORTCODE_MAKER_ASSET_PATH.'/js/simple-light.js', array( 'jquery' ) );
+        wp_enqueue_style( 'sm-front-bs' , SHORTCODE_MAKER_ASSET_PATH.'/css/bootstrap-4.0.0.min.css' );
+        wp_enqueue_script( 'sm-front-bs-js' , SHORTCODE_MAKER_ASSET_PATH.'/js/bootstrap-4.0.0.min.js', array( 'jquery' ) );
     }
 
     function admin_enqueue_scripts_styles( $hook ) {
@@ -177,7 +173,8 @@ class Smps_Simple_Light {
                 var hide_shortcode_panel = '<?php echo $hide_shortcode_panel; ?>';
             </script>
             <?php
-            wp_enqueue_script( 'simple-light-settings-template' , plugins_url('assets/js/settings-templates.js',__FILE__), array( 'jquery' ) );
+            include 'settings-template.php';
+            wp_enqueue_script( 'simple-light-settings-template' , plugins_url('assets/js/settings-templates.js',__FILE__), array( 'jquery' ), false, true );
             do_action( 'simple_light_admin_enqueue_scripts' );
         }
     }

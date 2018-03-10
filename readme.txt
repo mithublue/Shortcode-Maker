@@ -3,7 +3,7 @@ Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 Requires at least: 3.0.1
 Tested up to: 4.9.4
-Stable tag: 5.0.2.6
+Stable tag: 5.0.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,9 @@ The plugin to help you make shortcode by yourself or chose builtin shortcodes to
 To get faster support , You can contact through our official forum site.
 Official support forum : http://supports.cybercraftit.com/supports/support/shortcode-maker/
 
+= NEW FEATURE : Added bootstrap v4.0.0 compatibility=
 
-= NEW FEATURE : PACKAGED SHORTCODES INCLUDED ! =
+= FEATURE : PACKAGED SHORTCODES INCLUDED ! =
 
 With packaged shortcodes, you can add different widgets/UI elementns to your site now
 The elements are

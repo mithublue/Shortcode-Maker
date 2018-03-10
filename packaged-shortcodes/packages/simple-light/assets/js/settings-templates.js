@@ -151,44 +151,13 @@
             template : '#smps_simple_light_panel_settings',
             data : function () {
                 return {
-                    component_name : 'panel',
-                    s : {
-                        'type' : 'primary',
-                        'header' : 'Panel Title',
-                        'header_alignment' : 'left',
-                        'body' : 'Panel content !',
-                        'footer' : 'Footer text',
-                        'footer_alignment' : 'left',
-                    },
-                    'types' : {
-                        'primary' : 'Primary',
-                        'success' : 'Success',
-                        'info' : 'Info',
-                        'warning' : 'Warning',
-                        'danger' : 'Danger',
-                        'default' : 'Default'
-                    },
-                    'header_alignments' : {
-                        'right' : 'Right',
-                        'center' : 'Center',
-                        'left' : 'Left'
-                    },
-                    'footer_alignments' : {
-                        'right' : 'Right',
-                        'center' : 'Center',
-                        'left' : 'Left'
-                    }
+
                 }
             },
             methods : {
-                insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_panel' );
-                }
             },
             ready : function () {
-                if ( smps_app.edit_target_item == this.component_name ) {
-                    this.s = smps_app.edit_target_item_data;
-                }
+
             }
         } );
         //alert
@@ -357,32 +326,11 @@
             template : '#smps_simple_light_spoiler_settings',
             data : function () {
                 return {
-                    component_name : 'spoiler',
-                    s : {
-                        title : 'Spoiler Title',
-                        is_open : 'yes',
-                        style : 'default',
-                        class : '',
-                        content : 'Spoiler content',
-                    },
-                    open_opts : { 'yes' : 'Yes', 'no' : 'No'},
-                    styles : { 'default' : 'Default',
-                        'danger' : 'Danger',
-                        'warning' : 'Warning',
-                        'info' : 'Info',
-                        'success' : 'Success'
-                    }
                 }
             },
             methods : {
-                insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_spoiler' );
-                },
             },
             ready : function () {
-                if ( smps_app.edit_target_item == this.component_name ) {
-                    this.s = smps_app.edit_target_item_data;
-                }
             }
         });
 
@@ -478,35 +426,6 @@
             methods : {
                 insert_shortcode : function () {
                     sm_object.insert_shortcode( this.s, 'smps_sl_restricted_content' );
-                }
-            },
-            ready : function () {
-                $('.colorpicker').wpColorPicker();
-
-                if ( smps_app.edit_target_item == this.component_name ) {
-                    this.s = smps_app.edit_target_item_data;
-                }
-            }
-        });
-        //note
-        Vue.component( 'smps_simple_light_note_settings', {
-            template : '#smps_simple_light_note_settings',
-            data : function () {
-                return {
-                    component_name : 'note',
-                    s : {
-                        bg_color : '',
-                        text_color : '',
-                        radius : '0',
-                        class : '',
-                        Id : '',
-                        content : 'Test note'
-                    }
-                }
-            },
-            methods : {
-                insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_note' );
                 }
             },
             ready : function () {

@@ -7,7 +7,7 @@
  * Author: Mithu A Quayium
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0.2.6
+ * Version: 5.0.2.7
  * License: GPL2
  */
 /**
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SHORTCODE_MAKER_VERSION', '5.0.2.6' );
+define( 'SHORTCODE_MAKER_VERSION', '5.0.2.7' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 
@@ -63,7 +63,6 @@ class shortcode_maker{
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts_styles' ) );
 
         //ajax
-        add_action( 'wp_ajax_show_shortcodes', array( $this, 'render_shortcode_modal' ) );
         add_action( 'wp_ajax_sm_get_shortcode_atts', array( $this, 'get_shortcode_atts_panel' ) );
 
         add_action( 'init', array($this, 'load_textdomain') );
@@ -73,6 +72,8 @@ class shortcode_maker{
 
         //add to the custom item panel
         add_filter( 'simple_light_shortcode_items', array( $this, 'add_in_packaged_shortcode_panel' ) );
+        add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'sm_action_links' ) );
+        add_action( 'admin_notices', array( $this, 'plugin_admin_notice' ) );
 
         $this->includes();
 	}
@@ -132,40 +133,6 @@ class shortcode_maker{
     <?php
     }
 
-    /**
-     * Render the shortcode modal
-     */
-    function render_shortcode_modal() {
-        $shortcode_array =  json_decode( stripslashes( $_POST['shortcode_array'] ), true );
-        //is_array( $shortcode_array ) ? '' : $shortcode_array = array();
-        ?>
-
-        <div id="sm-modal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">×</span>
-                <h3><?php _e( 'Shortcodes - Shortcode Maker' , 'shortcode-maker' ); ?></h3>
-                <hr/>
-                <?php
-                echo '<div class="sm_shortcode_list">';
-                    echo '<ul>';
-                    foreach( $shortcode_array as $id => $shortcode ) {
-                        ?>
-                        <li data-id="<?php echo $id; ?>">
-                            <?php echo $shortcode; ?>
-                        </li>
-                    <?php
-                    }
-                    echo '</ul>';
-                echo '</div>';
-                ?>
-            </div>
-
-        </div>
-        <?php
-        exit;
-    }
 
     /**
      * get shortcode attribute panel
@@ -304,10 +271,6 @@ class shortcode_maker{
 	}
 
 
-
-
-
-
     /**
      * Add scripts and styles
      */
@@ -327,6 +290,42 @@ class shortcode_maker{
             wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue' ) );
         }
 
+        if( in_array( $hook, array(
+            'sm_shortcode_page_smps_shortcode_packages',
+            'post-new.php',
+            'post.php'
+        ) ) ) {
+
+            //colorpicker
+            wp_enqueue_style('wp-color-picker');
+            wp_enqueue_style( 'sm-post-css', SHORTCODE_MAKER_ASSET_PATH.'/css/sm-post.css' );
+            //timepicker addon css
+            wp_enqueue_style( 'sm-timepicker-css', SHORTCODE_MAKER_ASSET_PATH.'/css/timepicker-addon.css' );
+            wp_enqueue_script( 'sm-post-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sm-post.js', array( 'jquery','sm-vue', 'wp-color-picker','jquery-ui-datepicker' ), false, true );
+            //timepicker addon
+            wp_enqueue_script('sm-timepicker-addon', SHORTCODE_MAKER_ASSET_PATH.'/js/timepicker-addon.js', array('jquery-ui-datepicker'));
+        }
+
+    }
+
+    public function plugin_admin_notice() {
+        global $post, $pagenow;
+        $admin_notices = sm_get_notice( 'sm_admin_notices' );
+        if( !isset( $admin_notices['modification_notice']['is_dismissed'] ) || !$admin_notices['modification_notice']['is_dismissed'] ) {
+            if( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) {
+                ?>
+                <div class="sm_modification_notice notice notice-success is-dismissible">
+                    <p><?php _e( 'Need to modify Shortcode Maker ? Don\'t worry. We are letting you modify it as you need ! Please, feel free to <a href="https://cybercraftit.com/contact/" target="_blank">contact us</a>.', 'sm' ); ?></p>
+                </div>
+                <?php
+            }
+        }
+
+    }
+
+    public function sm_action_links( $links ) {
+        $links[] = '<a href="https://cybercraftit.com/contact/" target="_blank">'.__( 'Ask for Modification', 'sm' ).'</a>';
+        return $links;
     }
 }
 new shortcode_maker;
