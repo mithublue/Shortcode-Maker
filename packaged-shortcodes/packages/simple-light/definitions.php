@@ -25,12 +25,13 @@ class Smps_Simple_Light_Shortcodes {
                 $output = '';
                 $i = 0;
                 foreach ( $data['tab_data'] as $tab_key => $tab ) : $i++; ?>
-                    <li class="<?php echo $i == 1? 'active':''; ?>"><a href="#<?php echo $tab_key ; ?>" data-toggle="tab"><?php echo $tab['title']; ?></a>
+                    <li class="nav-item">
+                        <a href="#<?php echo $tab_key ; ?>" class="<?php echo $i == 1? 'active show':''; ?> nav-link" data-toggle="tab"><?php echo $tab['title']; ?></a>
                     </li>
                     <?php
                     ob_start();
                     ?>
-                    <div class="tab-pane fade <?php echo $i == 1? 'in active':''; ?>" id="<?php echo $tab_key; ?>">
+                    <div class="tab-pane fade <?php echo $i == 1? 'in active show':''; ?>" id="<?php echo $tab_key; ?>">
                         <?php echo nl2br($tab['content']); ?>
                     </div>
                     <?php
@@ -48,7 +49,6 @@ class Smps_Simple_Light_Shortcodes {
     }
 
     public static function render_accordion( $atts, $content, $tag ) {
-
         $atts = shortcode_atts( array(
             'data' => '{}'
         ), $atts, $tag );
@@ -56,23 +56,22 @@ class Smps_Simple_Light_Shortcodes {
         $data = json_decode( base64_decode( $atts['data'] ),true );
         if( !is_array( $data ) ) {
             $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-        }
-
-        ?>
+        } ?>
         <div class="bs-container">
-            <div class="panel-group" id="accordion">
+            <div id="accordion">
                 <?php
-                $output = '';
                 $i = 0;
                 foreach ( $data['acc_data'] as $acc_key => $accordion ) : $i++; ?>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $acc_key; ?>"><?php echo $accordion['title']; ?></a>
-                            </h4>
+                    <div class="card">
+                        <div class="card-header" id="heading-<?php echo $acc_key; ?>">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-<?php echo $acc_key; ?>" aria-expanded="false" aria-controls="collapse-<?php echo $accordion['content']; ?>">
+                                    <?php echo $accordion['title']; ?>
+                                </button>
+                            </h5>
                         </div>
-                        <div id="<?php echo $acc_key; ?>" class="panel-collapse collapse <?php echo isset( $data['opened_tab'] ) && $i == $data['opened_tab'] ? 'in' : ''; ?>">
-                            <div class="panel-body">
+                        <div id="collapse-<?php echo $acc_key; ?>" class="collapse <?php echo $i == 1 ? 'show' : ''; ?>" aria-labelledby="heading-<?php echo $acc_key; ?>" data-parent="#accordion">
+                            <div class="card-body">
                                 <?php echo $accordion['content']; ?>
                             </div>
                         </div>
@@ -103,60 +102,17 @@ class Smps_Simple_Light_Shortcodes {
 
         ?>
         <div class="bs-container">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
-                    <!--<thead>
+            <table class="table table-striped">
+                <tbody>
+                <?php foreach ( $data['table_data']/*['tbody']*/ as $key => $tr ) : ?>
                     <tr>
-                        <?php /*foreach ( $atts['table_data']['thead'] as $key => $label ) : */?>
-                        <th><?php /*echo $label; */?></th>
-                        <?php /*endforeach;*/?>
+                        <?php foreach ( $tr as $k => $td ) : ?>
+                            <td><?php echo $td; ?></td>
+                        <?php endforeach; ?>
                     </tr>
-                    </thead>-->
-                    <tbody>
-                    <?php foreach ( $data['table_data']/*['tbody']*/ as $key => $tr ) : ?>
-                        <tr>
-                            <?php foreach ( $tr as $k => $td ) : ?>
-                                <td><?php echo $td; ?></td>
-                            <?php endforeach; ?>
-                        </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    <?php
-    }
-
-
-    public static function render_panel( $atts, $content, $tag ) {
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode( base64_decode( $atts['data'] ),true );
-        if( !is_array( $data ) ) {
-            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-        }
-
-        ?>
-        <div class="bs-container">
-            <div class="panel panel-<?php echo $data['type']; ?>">
-                <?php if( !empty( $data['header'] ) ) : ?>
-                    <div class="panel-heading text-<?php echo $data['header_alignment']; ?>">
-                        <?php echo $data['header']; ?>
-                    </div>
-                <?php endif; ?>
-                <?php if( !empty( $data['body'] ) ) : ?>
-                    <div class="panel-body">
-                        <?php echo nl2br($data['body']); ?>
-                    </div>
-                <?php endif; ?>
-                <?php if( !empty( $data['footer'] ) ) : ?>
-                    <div class="panel-footer text-<?php echo $data['footer_alignment']; ?>">
-                        <?php echo $data['footer']; ?>
-                    </div>
-                <?php endif; ?>
-            </div>
+                <?php endforeach;?>
+                </tbody>
+            </table>
         </div>
     <?php
     }
@@ -173,11 +129,13 @@ class Smps_Simple_Light_Shortcodes {
         }
         ?>
         <div class="bs-container">
-            <div class="alert alert-<?php echo $data['type']; ?> alert-<?php echo $data['dismissable'] == 'true' ? 'dismissable' : ''; ?>">
-                <?php if( $data['dismissable'] == 'true' ) : ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <?php endif; ?>
+            <div class="alert alert-<?php echo $data['type']; ?> alert-<?php echo $data['dismissable'] == 'true' ? 'dismissible' : ''; ?> fade show" role="alert">
                 <?php echo $data['content']; ?>
+                <?php if( $data['dismissable'] == 'true' ) : ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
     <?php
@@ -219,13 +177,12 @@ class Smps_Simple_Light_Shortcodes {
         }
         ?>
         <div class="bs-container">
-            <blockquote class="pull-<?php echo $data['alignment'];?>">
+            <blockquote class="blockquote mb-0 pull-<?php echo $data['alignment'];?>">
                 <p><?php echo $data['quote']; ?></p>
                 <?php if( $data['author'] ) : ?>
-                    <small><?php echo $data['author']; ?>
-                        <!--<cite title="Source Title">Source Title</cite>-->
-                    </small>
+                    <footer class="blockquote-footer"><?php echo $data['author']; ?></footer>
                 <?php endif; ?>
+
             </blockquote>
         </div>
     <?php
@@ -282,28 +239,7 @@ class Smps_Simple_Light_Shortcodes {
      * @param $content
      * @param $tag
      */
-    public static function render_spoiler( $atts, $content, $tag ) {
-
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode( base64_decode( $atts['data'] ),true );
-        if( !is_array( $data ) ) {
-            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-        }
-        ?>
-        <div class="bs-container sm-spoiler">
-            <div class="panel panel-<?php echo $data['style']; ?> <?php echo $data['is_open'] == 'yes' ? 'sm-open' : 'sm-close'; ?>">
-                <div class="panel-heading"><i class="fa fa-plus sm-heading-open"></i><i class="fa fa-minus sm-heading-close"></i> <?php echo $data['title']; ?></div>
-                <div class="panel-body sm-spoiler-body">
-                    <?php echo $data['content']; ?>
-                </div>
-            </div>
-        </div>
-<?php
-
-    }
+    public static function render_spoiler( $atts, $content, $tag ) {}
 
     /**
      * list
@@ -371,42 +307,14 @@ class Smps_Simple_Light_Shortcodes {
         }
 
         /*memberContent shortcode definition goes here*/
+
         if( is_user_logged_in() ) {
+
             echo nl2br($data['restricted_content']);
         } else {
             $data['login_text'] = str_replace( '%login%', '<a href="'.wp_login_url().'">login</a>',$data['login_text']);
             echo '<span style="background:'. $data['bg_color'] .';">'. $data['login_text'] .'</span>';
         }
-    }
-
-    /**
-     * Note (note)
-     * @param $atts
-     * @param $content
-     * @param $tag
-     */
-    public static function render_note( $atts, $content, $tag ) {
-        $atts = shortcode_atts( array(
-            'data' => '{}'
-        ), $atts, $tag );
-
-        $data = json_decode( base64_decode( $atts['data'] ),true );
-        if( !is_array( $data ) ) {
-            $data = json_decode(stripslashes(urldecode($atts['data'])),true);
-        }
-
-        pri($data);
-        /*Note shortcode definition goes here*/
-        ?>
-        <div class="bs-container">
-            <div class="well <?php echo $data['class']; ?>" id="<?php echo $data['Id']; ?>"
-            style="background-color: <?php echo $data['bg_color']; ?>; color: <?php echo $data['text_color']; ?>;
-                -webkit-border-radius: <?php echo $data['radius']; ?>px;-moz-border-radius: <?php echo $data['radius']; ?>px;border-radius: <?php echo $data['radius']; ?>px;
-                "
-            ><?php echo $data['content']; ?></div>
-        </div>
-
-<?php
     }
 
     /**
@@ -484,7 +392,6 @@ class Smps_Simple_Light_Shortcodes {
         if( !is_array( $data ) ) {
             $data = json_decode(stripslashes(urldecode($atts['data'])),true);
         }
-
         ?>
         <img src="<?php echo $data['src'];?>" width="<?php echo $data['width']?$data['width'] : '';?>" height="<?php echo $data['height']?$data['height']:'';?>"
              class="<?php echo $data['class'];?> <?php echo $data['responsive'] == 'yes' ? 'img-responsive':''; ?>"

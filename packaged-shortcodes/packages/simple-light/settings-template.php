@@ -115,39 +115,9 @@
     <form class="shortcode_settings_form">
         <div class="bs-container mb10">
             <?php do_action( 'sm_top_settings_panel'); ?>
-            <div class="form-group">
-                <label><?php _e('Type','sm'); ?></label>
-                <select v-model="s.type" class="form-control">
-                    <option v-for="(name,label) in types" :value="name">{{ label }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label><?php _e('Title','sm'); ?></label>
-                <input type="text" v-model="s.header" class="form-control">
-            </div>
-            <div class="form-group">
-                <label><?php _e('Title Alignment','sm'); ?></label>
-                <select v-model="s.header_alignment" class="form-control">
-                    <option v-for="(name,label) in header_alignments" :value="name">{{ label }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label><?php _e('Content','sm'); ?></label>
-                <textarea v-model="s.body" cols="30" rows="10" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-                <label><?php _e('Footer','sm'); ?></label>
-                <input type="text" v-model="s.footer" class="form-control">
-            </div>
-            <div class="form-group">
-                <label><?php _e('Footer Alignment','sm'); ?></label>
-                <select v-model="s.footer_alignment" class="form-control">
-                    <option v-for="(name,label) in footer_alignments" :value="name">{{ label }}</option>
-                </select>
-            </div>
+            <?php _e( 'Coming soon', 'sm' ); ?>
             <?php do_action( 'sm_bottom_settings_panel'); ?>
         </div>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_alert_settings">
@@ -295,33 +265,9 @@
     <form class="shortcode_settings_form">
         <div class="bs-container mb10">
             <?php do_action( 'sm_top_settings_spoiler'); ?>
-            <div class="form-group">
-                <label><?php _e('Title','smps'); ?></label>
-                <input type="text" class="form-control" v-model="s.title">
-            </div>
-            <div class="form-group">
-                <label><?php _e('Open by default','smps'); ?></label>
-                <select v-model="s.is_open" id="">
-                    <option :value="k" v-for="(k, v) in open_opts">{{ v }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label><?php _e('Style','smps'); ?></label>
-                <select v-model="s.style" id="">
-                    <option :value="k" v-for="(k, v) in styles">{{ v }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label><?php _e('Class','smps'); ?></label>
-                <input type="text" class="form-control" v-model="s.class">
-            </div>
-            <div class="form-group">
-                <label><?php _e('Content','smps'); ?></label>
-                <p><textarea v-model="s.content" cols="150" rows="10"></textarea></p>
-            </div>
+            <?php _e( 'Coming soon', 'sm' ); ?>
             <?php do_action( 'sm_bottom_settings_spoiler'); ?>
         </div>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="insert_shortcode()"> <?php _e('Insert','sm'); ?></button>
     </form>
 </template>
 <template id="smps_simple_light_list_settings">
