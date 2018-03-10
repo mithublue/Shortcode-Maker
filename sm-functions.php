@@ -1,5 +1,6 @@
 <?php
 
+
 function sm_get_all_shortcode_packages() {
     return apply_filters('smps_package_dir', array(
         'simple-light' => 'Simple Light'
@@ -15,6 +16,13 @@ function sm_get_shortcode_packages() {
     return !is_array( $sm_shortcode_packages ) ? array() : $sm_shortcode_packages;
 }
 
+if( !function_exists( 'sm_get_notice' ) ) {
+    function sm_get_notice ( $notice_name =  'sm_admin_notices'  ) {
+        $notice = get_option( $notice_name );
+        if( !is_array( $notice ) ) $notice = array();
+        return $notice;
+    }
+}
 if( !function_exists( 'pri' ) ) {
     function pri($data) {
         echo '<pre>';print_r($data);echo '</pre>';
