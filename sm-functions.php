@@ -16,6 +16,15 @@ function sm_get_shortcode_packages() {
     return !is_array( $sm_shortcode_packages ) ? array() : $sm_shortcode_packages;
 }
 
+if( !function_exists( 'sm_is_pro' ) ) {
+    function sm_is_pro() {
+        if( is_file( SHORTCODE_MAKER_ROOT.'/pro/loader.php' ) ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 if( !function_exists( 'sm_get_notice' ) ) {
     function sm_get_notice ( $notice_name =  'sm_admin_notices'  ) {
         $notice = get_option( $notice_name );
