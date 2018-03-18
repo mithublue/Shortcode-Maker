@@ -1,6 +1,5 @@
 (function ($) {
     $(document).ready(function () {
-
         /**
          * tabs
          */
@@ -37,6 +36,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -74,6 +74,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -138,6 +139,8 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
+
                 this.add_col();
                 this.add_row();
 
@@ -157,7 +160,7 @@
             methods : {
             },
             ready : function () {
-
+                sm_object.merge_settings(this,this.component_name);
             }
         } );
         //alert
@@ -171,14 +174,7 @@
                         content : '',
                         dismissable : true
                     },
-                    types : {
-                        'primary' : 'Primary',
-                        'success' : 'Success',
-                        'info' : 'Info',
-                        'warning' : 'Warning',
-                        'danger' : 'Danger',
-                        'default' : 'Default'
-                    }
+                    types : sm_common_props.style_types
                 }
             },
             methods : {
@@ -187,7 +183,9 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
+                    console.log(smps_app.edit_target_item_data);
                     this.s = smps_app.edit_target_item_data;
                 }
             }
@@ -227,6 +225,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -258,6 +257,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -270,7 +270,7 @@
                 return {
                     component_name : 'button',
                     s : {
-                        type : 'default',
+                        type : 'success',
                         enable_text : true,
                         text : 'Button',
                         enable_icon : false,
@@ -282,14 +282,7 @@
                         url : 'http://',
                         page : '',
                     },
-                    types : {
-                        'primary' : 'Primary',
-                        'success' : 'Success',
-                        'info' : 'Info',
-                        'warning' : 'Warning',
-                        'danger' : 'Danger',
-                        'default' : 'Default'
-                    },
+                    types : sm_common_props.style_types,
                     shapes : {
                         'rounded' : 'Rounded',
                         'normal' : 'Normal'
@@ -316,6 +309,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -331,6 +325,7 @@
             methods : {
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
             }
         });
 
@@ -372,6 +367,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -399,6 +395,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 $('.colorpicker').wpColorPicker();
 
                 if ( smps_app.edit_target_item == this.component_name ) {
@@ -429,6 +426,8 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
+
                 $('.colorpicker').wpColorPicker();
 
                 if ( smps_app.edit_target_item == this.component_name ) {
@@ -477,6 +476,7 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -506,9 +506,11 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
+
             }
         });
 
@@ -534,6 +536,8 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
+
                 var this_comp = this;
                 $('.upload_image_button').click(function() {
 
@@ -590,8 +594,8 @@
                 }
             },
             ready : function () {
+                sm_object.merge_settings(this,this.component_name);
                 this.reset_datepicker();
-
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }
@@ -618,8 +622,6 @@
                     Id : ''
                 },
                 order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
-                orderby_opts :  sm_settings_data.post_loop.orderby,
-                post_status_opts : sm_settings_data.post_loop.post_statuses
             }
         },
         methods : {
@@ -628,6 +630,7 @@
             }
         },
         ready : function () {
+            sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
             }
@@ -660,6 +663,7 @@
             }
         },
         ready : function () {
+            sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
             }
@@ -687,6 +691,7 @@
             }
         },
         ready : function () {
+            sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
             }
@@ -713,6 +718,7 @@
             }
         },
         ready : function () {
+            sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
             }
@@ -748,6 +754,7 @@
             }
         },
         ready : function () {
+            sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
             }
@@ -773,6 +780,8 @@
             }
         },
         ready : function () {
+            sm_object.merge_settings(this,this.component_name);
+
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
             }
@@ -817,6 +826,9 @@
                     }
                 }
             );
+        },
+        ready: function () {
+            sm_object.merge_settings(this,this.component_name);
         }
     });
 
@@ -827,6 +839,15 @@
         var shortcode = '[' + shortcode_name + ' data="' + data + '" ]';
         tinyMCE.activeEditor.selection.setContent( shortcode );
         smps_app.dismiss_settings_panel();
+    }
+
+    sm_object.merge_settings = function (_this,component_name) {
+        if( typeof sm_settings_data[component_name] != 'undefined' ) {
+            _this.s = $.extend({},_this.s,sm_settings_data[component_name].s);
+        }
+        if( typeof sm_settings_data[component_name] != 'undefined' ) {
+            _this.$data = $.extend({},_this.$data,sm_settings_data[component_name].data);
+        }
     }
 
 }(jQuery));

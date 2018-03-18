@@ -3,6 +3,7 @@
         <div class="bs-container">
             <?php do_action( 'sm_top_settings_tabs'); ?>
             <div class="form-group">
+                <label><?php _e( 'Tab Type', 'sm' ); ?></label>
                 <select v-model="s.type" class="form-control">
                     <option v-for="(name,label) in types" :value="name">{{ label }}</option>
                 </select>

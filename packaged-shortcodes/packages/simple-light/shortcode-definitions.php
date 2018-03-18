@@ -1,10 +1,12 @@
 <?php
-$items = Smps_Simple_Light::settings()['items'];
-foreach ( $items as $item => $label ) {
-    add_shortcode( 'smps_sl_'.$item, array( 'Smps_Simple_Light_Shortcodes', 'render_'.$item ) );
-}
+class SM_Shortcode_Definitions {
 
-class Smps_Simple_Light_Shortcodes {
+    public static function init() {
+        $items = Smps_Simple_Light::settings()['items'];
+        foreach ( $items as $item => $label ) {
+            add_shortcode( 'smps_sl_'.$item, array( __CLASS__, 'render_'.$item ) );
+        }
+    }
 
     public static function render_tabs( $atts, $content, $tag ) {
 
@@ -128,15 +130,13 @@ class Smps_Simple_Light_Shortcodes {
             $data = json_decode(stripslashes(urldecode($atts['data'])),true);
         }
         ?>
-        <div class="bs-container">
-            <div class="alert alert-<?php echo $data['type']; ?> alert-<?php echo $data['dismissable'] == 'true' ? 'dismissible' : ''; ?> fade show" role="alert">
-                <?php echo $data['content']; ?>
-                <?php if( $data['dismissable'] == 'true' ) : ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                <?php endif; ?>
-            </div>
+        <div class="alert alert-<?php echo $data['type']; ?> alert-<?php echo $data['dismissable'] == 'true' ? 'dismissible' : ''; ?> fade show" role="alert">
+            <?php echo $data['content']; ?>
+            <?php if( $data['dismissable'] == 'true' ) : ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            <?php endif; ?>
         </div>
     <?php
     }
@@ -717,3 +717,6 @@ class Smps_Simple_Light_Shortcodes {
     }
 }
 
+if( !sm_is_pro() ) {
+    SM_Shortcode_Definitions::init();
+}
