@@ -21,7 +21,8 @@
                     tab_template : {
                         'title' : 'Tab Label',
                         'content' : 'Tab content'
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -35,7 +36,7 @@
                     Vue.delete( this.s.tab_data, tab_key );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -60,6 +61,7 @@
                         'title' : 'Item Label',
                         'content' : 'Item content'
                     },
+                    x_data: {}
                 }
             },
             methods : {
@@ -73,7 +75,7 @@
                     Vue.delete(this.s.acc_data,key);
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -94,13 +96,13 @@
                         col_template : {},
                         col_tracker : []
                     },
-
+                    x_data: {}
                 }
             },
             methods : {
                 add_col : function () {
                     var col_val = '';/*'td_' + new Date().getTime()*/
-                    var col_key = new Date().getTime();
+                    var col_key = 'td_' + new Date().getTime();
                     Vue.set(this.s.col_template, col_key, col_val );
 
                     for( var k in this.s.table_data ) {
@@ -111,7 +113,7 @@
                     this.s.col_tracker.push(this.s.col_tracker.length);
                 },
                 add_row : function () {
-                    Vue.set( this.s.table_data, 'tr_' + new Date().getTime(), JSON.parse( JSON.stringify( this.s.col_template ) ) );
+                    Vue.set( this.s.table_data, 'tr_' + new Date().getTime(), this.s.col_template /*JSON.parse( JSON.stringify(  ) )*/ );
                 },
                 remove_col : function (col_number) {
                     console.log(col_number);
@@ -138,11 +140,11 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_table' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
 
-                this.add_col();
-                this.add_row();
+                /*this.add_col();
+                this.add_row();*/
 
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -154,7 +156,7 @@
             template : '#smps_simple_light_panel_settings',
             data : function () {
                 return {
-
+                    x_data: {}
                 }
             },
             methods : {
@@ -174,7 +176,8 @@
                         content : '',
                         dismissable : true
                     },
-                    types : sm_common_props.style_types
+                    types : sm_common_props.style_types,
+                    x_data: {}
                 }
             },
             methods : {
@@ -182,7 +185,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_alert' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     console.log(smps_app.edit_target_item_data);
@@ -216,7 +219,8 @@
                         h4 : 'h4',
                         h5 : 'h5',
                         h6 : 'h6'
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -224,7 +228,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_heading' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -248,7 +252,8 @@
                     alignments : {
                         'right' : 'Right',
                         'left' : 'Left'
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -256,7 +261,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_quote' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -299,7 +304,8 @@
                         'same_page' : 'Same Page',
                         'url' : 'Set Manually'
                     },
-                    pages : {}
+                    pages : {},
+                    x_data: {}
                 }
             },
             methods : {
@@ -308,7 +314,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_button' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -320,11 +326,12 @@
             template : '#smps_simple_light_spoiler_settings',
             data : function () {
                 return {
+                    x_data: {}
                 }
             },
             methods : {
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
             }
         });
@@ -340,7 +347,8 @@
                         list_type : 'ul',
                         class : '',
                         id : ''
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -366,7 +374,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_list' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -386,7 +394,8 @@
                         class : '',
                         id : '',
                         content : ''
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -394,7 +403,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_highlight' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 $('.colorpicker').wpColorPicker();
 
@@ -417,7 +426,8 @@
                         login_text : 'This content is for registered users only. Please %login%.',
                         login_link_url : 'default',
                         restricted_content : 'This content is visible for loggedin users only'
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -425,7 +435,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_restricted_content' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
 
                 $('.colorpicker').wpColorPicker();
@@ -467,7 +477,8 @@
                         0 : 'Do not hide controls',
                         1 : 'Hide all controls on mouseout',
                         2 : 'Hide progressbar on mouseout'
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -475,7 +486,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_youtube' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -497,7 +508,8 @@
                         autoplay : 'no',
                         class : '',
                         Id : ''
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -505,7 +517,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_vimeo' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -527,7 +539,8 @@
                         responsive : 'yes',
                         class : '',
                         Id : ''
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -535,7 +548,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_image' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
 
                 var this_comp = this;
@@ -572,7 +585,8 @@
                         content : '',
                         class : '',
                         Id : ''
-                    }
+                    },
+                    x_data: {}
                 }
             },
             methods : {
@@ -593,7 +607,7 @@
                     sm_object.insert_shortcode( this.s, 'smps_sl_scheduler' );
                 }
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 this.reset_datepicker();
                 if ( smps_app.edit_target_item == this.component_name ) {
@@ -622,6 +636,7 @@
                     Id : ''
                 },
                 order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
+                x_data: {}
             }
         },
         methods : {
@@ -629,7 +644,7 @@
                 sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
-        ready : function () {
+        created : function () {
             sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
@@ -654,7 +669,8 @@
                 },
                 order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
                 orderby_opts :  sm_settings_data.page_loop.orderby,
-                post_status_opts : sm_settings_data.page_loop.post_statuses
+                post_status_opts : sm_settings_data.page_loop.post_statuses,
+                x_data: {}
             }
         },
         methods : {
@@ -662,7 +678,7 @@
                 sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
-        ready : function () {
+        mounted : function () {
             sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
@@ -682,7 +698,8 @@
                     default_value : '',
                     class : '',
                     Id : ''
-                }
+                },
+                x_data: {}
             }
         },
         methods : {
@@ -690,7 +707,7 @@
                 sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
-        ready : function () {
+        mounted : function () {
             sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
@@ -709,7 +726,8 @@
                     value : '',
                     class : '',
                     Id : ''
-                }
+                },
+                x_data: {}
             }
         },
         methods : {
@@ -717,7 +735,7 @@
                 sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
-        ready : function () {
+        mounted : function () {
             sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
@@ -746,6 +764,7 @@
                     Id : ''
                 },
                 order_opts : { 'DESC' : 'DESC', 'ASC' : 'ASC' },
+                x_data: {}
             }
         },
         methods : {
@@ -753,7 +772,7 @@
                 sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
-        ready : function () {
+        mounted : function () {
             sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
@@ -771,7 +790,8 @@
                     name : '',
                     class : '',
                     Id : ''
-                }
+                },
+                x_data: {}
             }
         },
         methods : {
@@ -779,7 +799,7 @@
                 sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
             }
         },
-        ready : function () {
+        mounted : function () {
             sm_object.merge_settings(this,this.component_name);
 
             if ( smps_app.edit_target_item == this.component_name ) {
@@ -794,7 +814,8 @@
         props : ['tag','id'],
         data : function () {
             return {
-                shortcode_atts : {}
+                shortcode_atts : {},
+                x_data: {}
             };
         },
         methods : {
@@ -827,7 +848,7 @@
                 }
             );
         },
-        ready: function () {
+        mounted: function () {
             sm_object.merge_settings(this,this.component_name);
         }
     });
@@ -842,12 +863,12 @@
     }
 
     sm_object.merge_settings = function (_this,component_name) {
+
         if( typeof sm_settings_data[component_name] != 'undefined' ) {
-            _this.s = $.extend({},_this.s,sm_settings_data[component_name].s);
+            _this.s = Object.assign({},_this.s,sm_settings_data[component_name].s);
+            _this.x_data = Object.assign({},sm_settings_data[component_name].data);
         }
-        if( typeof sm_settings_data[component_name] != 'undefined' ) {
-            _this.$data = $.extend({},_this.$data,sm_settings_data[component_name].data);
-        }
+        console.log(_this.$data);
     }
 
 }(jQuery));

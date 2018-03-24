@@ -98,10 +98,10 @@ class SM_Shortcode_Definitions {
 
         $data = json_decode( base64_decode( $atts['data'] ),true );
 
+
         if( !is_array( $data ) ) {
             $data = json_decode(stripslashes(urldecode($atts['data'])),true);
         }
-
         ?>
         <div class="bs-container">
             <table class="table table-striped">
@@ -177,7 +177,7 @@ class SM_Shortcode_Definitions {
         }
         ?>
         <div class="bs-container">
-            <blockquote class="blockquote mb-0 pull-<?php echo $data['alignment'];?>">
+            <blockquote class="blockquote mb-0 float-<?php echo $data['alignment'];?>">
                 <p><?php echo $data['quote']; ?></p>
                 <?php if( $data['author'] ) : ?>
                     <footer class="blockquote-footer"><?php echo $data['author']; ?></footer>
