@@ -71,7 +71,7 @@ class shortcode_maker{
         add_filter( 'widget_text', array( $this, 'render_widget_shortcode' ) );
 
         //add to the custom item panel
-        add_filter( 'simple_light_shortcode_items', array( $this, 'add_in_packaged_shortcode_panel' ) );
+        add_filter( 'smps_shortcode_items', array( $this, 'add_in_packaged_shortcode_panel' ) );
         add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array( $this, 'sm_action_links' ) );
         add_action( 'admin_notices', array( $this, 'plugin_admin_notice' ) );
         $this->includes();
@@ -109,6 +109,9 @@ class shortcode_maker{
         require_once dirname(__FILE__).'/shortcode-field.php';
         include_once dirname(__FILE__).'/packaged-shortcodes/packaged-shortcodes.php';
         require_once dirname(__FILE__).'/more-products.php';
+        if( !sm_is_pro() ) {
+            include_once SHORTCODE_MAKER_ROOT.'/pro-demo.php';
+        }
     }
 
     /**

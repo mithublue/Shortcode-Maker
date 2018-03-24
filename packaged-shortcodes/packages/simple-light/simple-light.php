@@ -1,5 +1,4 @@
 <?php
-
 class Smps_Simple_Light {
 
     /**
@@ -22,94 +21,94 @@ class Smps_Simple_Light {
     public static function settings() {
         return array(
             'name' => 'Packaged shortcodes',
-            'items' => apply_filters('simple_light_shortcode_items',array(
+            'items' => apply_filters('smps_shortcode_items',array(
                 'tabs' => array(
                     'section' => 'Content',
-                    'label' => 'Tabs'
+                    'label' => __('Tabs','sm')
                 ),
                 'accordion' => array(
                     'section' => 'Content',
-                    'label' => 'Accordion'
+                    'label' => __('Accordion','sm')
                 ),
                 'table' => array(
                     'section' => 'Content',
-                    'label' => 'Table'
+                    'label' => __('Table','sm')
                 ),
                 'panel' => array(
                     'section' => 'Content',
-                    'label' => 'Panel'
+                    'label' => __('Panel','sm')
                 ),
                 'alert' => array(
                     'section' => 'Content',
-                    'label' => 'Alert'
+                    'label' => __('Alert','sm')
                 ),
                 'heading' => array(
                     'section' => 'Content',
-                    'label' => 'Heading'
+                    'label' => __('Heading','sm')
                 ),
                 'quote' => array(
                     'section' => 'Content',
-                    'label' => 'Quote'
+                    'label' => __('Quote','sm')
                 ),
                 'button' => array(
                     'section' => 'Content',
-                    'label' => 'Button'
+                    'label' => __('Button','sm')
                 ),
                 'spoiler' => array(
                     'section' => 'Content',
-                    'label' => 'Spoiler'
+                    'label' => __('Spoiler','sm')
                 ),
                 'list' => array(
                     'section' => 'Content',
-                    'label' => 'List'
+                    'label' => __('List','sm')
                 ),
                 'highlight' => array(
                     'section' => 'Content',
-                    'label' => 'Highlight'
+                    'label' => __('Highlight','sm')
                 ),
                 'restricted_content' => array(
                     'section' => 'Content',
-                    'label' => 'Restricted Content'
+                    'label' => __('Restricted Content','sm')
                 ),
                 'youtube' => array(
                     'section' => 'Media',
-                    'label' => 'Youtube'
+                    'label' => __('Youtube','sm')
                 ),
                 'vimeo' => array(
                     'section' => 'Media',
-                    'label' => 'Vimeo'
+                    'label' => __('Vimeo','sm')
                 ),
                 'image' => array(
                     'section' => 'Media',
-                    'label' => 'Image'
+                    'label' => __('Image','sm')
                 ),
                 'scheduler' => array(
                     'section' => 'Content',
-                    'label' => 'Scheduler'
+                    'label' => __('Scheduler','sm')
                 ),
                 'post_loop' => array(
                     'section' => 'Content',
-                    'label' => 'Post/Content List'
+                    'label' => __('Post/Content List','sm')
                 ),
                 'page_loop' => array(
                     'section' => 'Content',
-                    'label' => 'Page List'
+                    'label' => __('Page List','sm')
                 ),
                 'post_meta' => array(
                     'section' => 'Content',
-                    'label' => 'Post Meta Data'
+                    'label' => __('Post Meta Data','sm')
                 ),
                 'option' => array(
                     'section' => 'Content',
-                    'label' => 'Option'
+                    'label' => __('Option','sm')
                 ),
                 'category_list' => array(
                     'section' => 'Content',
-                    'label' => 'Category List'
+                    'label' => __('Category List','sm')
                 ),
                 'menu' => array(
                     'section' => 'Content',
-                    'label' => 'Menu'
+                    'label' => __('Menu','sm')
                 )
 
                 //'social_media_button' => 'Social Media Button'
@@ -121,16 +120,13 @@ class Smps_Simple_Light {
         add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts_styles' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts_styles' ) );
         $this->includes();
+        do_action( 'simple_light_init' );
     }
 
     public function includes() {
+        include_once 'shortcode-definitions.php';
         add_action( 'init',function () {
-            include_once 'definitions.php';
             include_once 'admin-panel.php';
-        });
-
-        add_action( 'admin_head', function () {
-            //include 'settings-template.php';
         });
     }
 
@@ -148,34 +144,60 @@ class Smps_Simple_Light {
             $shortcode_settings_data = apply_filters( 'sm_shortcode_settings_data',
                 array(
                     'post_loop' => array(
-                        'orderby' => array(
-                            'date' => 'Date',
-                            'ID' => 'ID',
-                            'title' => 'Title'
+                            's' => array(),
+                        'data' => array(
+                            'orderby_opts' => array(
+                                'date' => 'Date',
+                                'ID' => 'ID',
+                                'title' => 'Title'
+                            ),
+                            'post_status_opts' => get_post_statuses()
                         ),
-                        'post_statuses' => get_post_statuses()
                     ),
                     'page_loop' => array(
-                        'orderby' => array(
-                            'date' => 'Date',
-                            'ID' => 'ID',
-                            'title' => 'Title'
-                        ),
-                        'post_statuses' => get_post_statuses()
+                        's' => array(),
+                        'data' => array(
+                            'orderby_opts' => array(
+                                'date' => 'Date',
+                                'ID' => 'ID',
+                                'title' => 'Title'
+                            ),
+                            'post_status_opts' => get_post_statuses()
+                        )
                     )
                 )
             );
             $hide_shortcode_panel = get_post_meta( $post->ID,'sm_hide_shortcode_panel', true);
+            $sm_common_props = apply_filters( 'sm_common_props', array(
+                    'sizes' => array(
+                            'xs' => __('Mini','sm'),
+                        'sm' => __('Small','sm'),
+                        'md' => __('Medium','sm'),
+                        'lg' => __('Large','sm')
+                    ),
+                'style_types' => array(
+                    'primary' => 'Primary',
+                    'secondary'=> 'Secondary',
+                    'success'=> 'Success',
+                    'danger'=> 'Danger',
+                    'warning'=> 'Warning',
+                    'info'=> 'Info',
+                    'light'=> 'Light',
+                    'dark'=> 'Dark'
+                )
+            ));
+
             ?>
             <script>
+                var sm_common_props = JSON.parse(atob('<?php echo base64_encode( json_encode( $sm_common_props ) ); ?>'));
                 var sm_settings_data = JSON.parse('<?php echo json_encode($shortcode_settings_data); ?>');
                 var sm_object = {};
                 var hide_shortcode_panel = '<?php echo $hide_shortcode_panel; ?>';
             </script>
             <?php
-            include 'settings-template.php';
+            include 'settings-templates.php';
             wp_enqueue_script( 'simple-light-settings-template' , plugins_url('assets/js/settings-templates.js',__FILE__), array( 'jquery' ), false, true );
-            do_action( 'simple_light_admin_enqueue_scripts' );
+            do_action( 'smps_admin_enqueue_scripts' );
         }
     }
 }
