@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.9.4
 
-Stable tag: 5.0.2.8
+Stable tag: 5.0.3
 
 License: GPLv2 or later
 
@@ -83,6 +83,12 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 ## 5.0.2.4 ##
 
 1. [fix] Error in showing shortcode items list in admin panel fixed.
+
+## 5.0.3 ##
+
+1. [new] Vue 2.5.* compatibility added.
+2. [new] Boostrap 4 compatibility added.
+
 
 ## 5.0.2.3 ##
 
