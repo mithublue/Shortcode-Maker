@@ -3,17 +3,18 @@
         <div class="bs-container">
             <?php do_action( 'sm_top_settings_tabs'); ?>
             <div class="form-group">
+                <label><?php _e( 'Tab Type', 'sm' ); ?></label>
                 <select v-model="s.type" class="form-control">
-                    <option v-for="(name,label) in types" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in types" :value="name">{{ label }}</option>
                 </select>
             </div>
             <div class="mb10">
                 <a class="btn btn-default" href="javascript:" @click="add_tab()"><?php _e( 'Add Tab', 'sm' ); ?></a>
             </div>
             <!-- Nav tabs -->
-            <ul class="nav nav-{{ s.type }}">
-                <li v-for="(tab_key, tab_object) in s.tab_data">
-                    <a href="#{{ tab_key }}" data-toggle="tab">
+            <ul class="nav" :class="['nav-' + s.type]">
+                <li v-for="(tab_object,tab_key) in s.tab_data">
+                    <a :href="'#' + tab_key" data-toggle="tab">
                         <template v-if="tab_target != tab_key">
                             {{ tab_object.title }}
                             <a href="javascript:" class="btn btn-xs" @click="tab_target = tab_key"><i class="fa fa-edit"></i></a>
@@ -27,7 +28,7 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content mt20 mb20">
-                <div v-for="(tab_key, tab_object) in s.tab_data" class="tab-pane fade" :id="tab_key">
+                <div v-for="(tab_object,tab_key) in s.tab_data" class="tab-pane fade" :id="tab_key">
                     <template v-if="content_target != tab_key">
                         {{ tab_object.content }}
                         <a href="javascript:" class="btn pull-right btn-default" @click="content_target = tab_key"><i class="fa fa-edit"></i></a>
@@ -49,11 +50,11 @@
                 <a class="btn btn-default" href="javascript:" @click="add_item()"><?php _e( 'Add Item', 'sm' ); ?></a>
             </div>
             <div class="panel-group" id="accordion">
-                <div class="panel panel-default"  v-for="(key, each_acc) in s.acc_data">
+                <div class="panel panel-default"  v-for="(each_acc,key) in s.acc_data">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <template v-if="target_acc != key">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#{{ key }}">{{ each_acc.title }}</a>
+                                <a data-toggle="collapse" data-parent="#accordion" :href="'#' + key">{{ each_acc.title }}</a>
                                 <a href="javascript:" class="btn btn-xs btn-default br0 " @click="target_acc = key"><i class="fa fa-edit"></i></a>
                                 <a href="javascript:" class="btn btn-xs btn-default br0 " @click="remove_accordion(key)"><i class="fa fa-remove"></i></a>
                             </template>
@@ -68,7 +69,6 @@
                                 <a href="javascript:" class="btn btn-default br3 mt10 pull-right" @click="target_content = key"><i class="fa fa-edit"></i></a>
                             </template>
                             <textarea v-model="each_acc.content" cols="30" rows="10" class="form-control" v-if="target_content == key"></textarea>
-
                             <a href="javascript:" class="btn btn-default br3 mt10" v-if="target_content == key" @click="target_content = ''"><?php _e( 'Save', 'sm' ); ?></a>
                         </div>
                     </div>
@@ -95,12 +95,11 @@
                                 <a href="javascript:" class="btn btn-xs btn-default br3 pull-right" @click="remove_col(col_number)"><i class="fa fa-remove"></i></a>
                             </td>
                         </tr>
-                        <tr v-for="( t_key, t_val ) in s.table_data">
-                            <td v-for="( c_key, c_val) in t_val ">
+                        <tr v-for="( t_val,t_key ) in s.table_data">
+                            <td v-for="( c_val,c_key ) in t_val ">
                                 <input type="text" class="form-control" v-model="c_val">
-                                <!--<a href="javascript:" class="btn btn-danger br0" @click="remove_td(t_key, c_key)"><i class="glyphicon glyphicon-minus"></i></a>-->
                             </td>
-                            <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" data-val="{{ t_key }}"><i class="fa fa-remove"></i></a></td>
+                            <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" :data-val="t_key"><i class="fa fa-remove"></i></a></td>
                         </tr>
                     </table>
                 </div>
@@ -127,7 +126,7 @@
             <div class="form-group">
                 <label><?php _e('Type','sm'); ?></label>
                 <select v-model="s.type" class="form-control">
-                    <option v-for="(name,label) in types" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in types" :value="name">{{ label }}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -149,7 +148,7 @@
             <div class="form-group">
                 <label><?php _e('Text Align','sm'); ?></label>
                 <select v-model="s.text_align" class="form-control">
-                    <option v-for="(name,label) in text_aligns" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in text_aligns" :value="name">{{ label }}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -159,7 +158,7 @@
             <div class="form-group">
                 <label><?php _e('Type','sm'); ?></label>
                 <select v-model="s.type" class="form-control">
-                    <option v-for="(name,label) in types" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in types" :value="name">{{ label }}</option>
                 </select>
             </div>
             <?php do_action( 'sm_bottom_settings_heading'); ?>
@@ -174,7 +173,7 @@
             <div class="form-group">
                 <label><?php _e('Text Align','sm'); ?></label>
                 <select v-model="s.alignment" class="form-control">
-                    <option v-for="(name,label) in alignments" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in alignments" :value="name">{{ label }}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -201,20 +200,20 @@
             <div class="form-group">
                 <label><?php _e( 'Type', 'sm' ); ?></label>
                 <select v-model="s.type" class="form-control">
-                    <option v-for="(name,label) in types" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in types" :value="name">{{ label }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label><?php _e( 'Shape', 'sm' ); ?></label>
                 <select v-model="s.shape" class="form-control">
-                    <option v-for="(name,label) in shapes" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in shapes" :value="name">{{ label }}</option>
                 </select>
             </div>
             <!--size-->
             <div class="form-group">
                 <label><?php _e( 'Size', 'sm' ); ?></label>
                 <select v-model="s.size" class="form-control">
-                    <option v-for="(name,label) in sizes" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in sizes" :value="name">{{ label }}</option>
                 </select>
             </div>
             <!--text-->
@@ -235,7 +234,7 @@
             <div class="form-group">
                 <label><?php _e( 'Redirect to', 'sm' ); ?></label>
                 <select v-model="s.redirection_type" class="form-control">
-                    <option v-for="(name,label) in redirection_types" :value="name">{{ label }}</option>
+                    <option v-for="(label,name) in redirection_types" :value="name">{{ label }}</option>
                 </select>
             </div>
             <!--if redirection = page-->
@@ -291,7 +290,7 @@
             </div>
             <a href="javascript:" class="btn btn-default" @click="add_item()"><?php _e( 'Add Item', 'smps'); ?></a>
             <table class="mb5">
-                <tr v-for="(k, item) in s.items">
+                <tr v-for="(item,k) in s.items">
                     <td>
                         <input type="text" v-model="item.label">
                         <a @click="item_up(k)" href="javascript:" class="btn btn-default btn-xs"><i class="fa fa-arrow-up"></i></a>
@@ -418,13 +417,13 @@
             <div class="mb5">
                 <label><?php _e( 'Controls', 'smps' ); ?></label>
                 <select v-model="s.controls" class="form-control">
-                    <option :value="k" v-for="(k, label) in controls_opt">{{ label }}</option>
+                    <option :value="k" v-for="(label,k) in controls_opt">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e( 'Autohide', 'smps' ); ?></label>
                 <select v-model="s.autohide" class="form-control">
-                    <option :value="k" v-for="(k, label) in autohide_opt">{{ label }}</option>
+                    <option :value="k" v-for="(label,k) in autohide_opt">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
@@ -478,15 +477,15 @@
             <?php do_action( 'sm_top_settings_vimeo'); ?>
             <div class="mb5">
                 <label><?php _e( 'URL', 'smps' ); ?></label>
-                <input type="s.url" v-model="s.url" class="form-control">
+                <input type="url" v-model="s.url" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Width', 'smps' ); ?></label>
-                <input type="submit.number" v-model="s.width" class="form-control">
+                <input type="number" v-model="s.width" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Height', 'smps' ); ?></label>
-                <input type="s.number" v-model="s.height" class="form-control">
+                <input type="number" v-model="s.height" class="form-control">
             </div>
             <div class="mb5">
                 <label><?php _e( 'Loop', 'smps' ); ?></label>
@@ -561,7 +560,7 @@
         <div class="bs-container mb10">
             <?php do_action( 'sm_top_settings_scheduler'); ?>
             <a href="javascript:" class="btn btn-default" @click="add_timeslot()"><?php _e( 'Add another time slot', 'smps'); ?></a>
-            <div v-for="(k,slot) in s.timespans" class="row mb5">
+            <div v-for="(slot,k) in s.timespans" class="row mb5">
                 <div class="col-sm-5">
                     <label><?php _e( 'From', 'smps' ); ?></label>
                     <input type="text" class="datepicker form-control" v-model="slot.from">
@@ -635,19 +634,19 @@
             <div class="mb5">
                 <label><?php _e('Order by', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.orderby" class="form-control">
-                    <option :value="name" v-for="(name,label) in orderby_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in x_data.orderby_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e('Post status', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.post_status" class="form-control">
-                    <option :value="name" v-for="(name,label) in post_status_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in x_data.post_status_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e('Order', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.order" class="form-control">
-                    <option :value="name" v-for="(name,label) in order_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in order_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
@@ -681,19 +680,19 @@
             <div class="mb5">
                 <label><?php _e('Order by', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.orderby" class="form-control">
-                    <option :value="name" v-for="(name,label) in orderby_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in x_data.orderby_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e('Order', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.order" class="form-control">
-                    <option :value="name" v-for="(name,label) in order_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in order_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
                 <label><?php _e('Post status', 'smps');?></label>
                 <select name="orderby" id="" v-model="s.post_status" class="form-control">
-                    <option :value="name" v-for="(name,label) in post_status_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in x_data.post_status_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
@@ -808,7 +807,7 @@
             <div class="mb5">
                 <label><?php _e( 'Order', 'smps' ); ?></label>
                 <select v-model="s.order" class="form-control">
-                    <option :value="name" v-for="(name,label) in order_opts">{{ label }}</option>
+                    <option :value="name" v-for="(label,name) in order_opts">{{ label }}</option>
                 </select>
             </div>
             <div class="mb5">
@@ -881,7 +880,7 @@
         <?php
         echo '<div class="sm_shortcode_atts">';
         ?>
-        <div class="form-group" v-for="( key, attr ) in shortcode_atts">
+        <div class="form-group" v-for="( attr, key ) in shortcode_atts">
             <label>{{ key }}</label>
             <input type="text" class="form-control" v-model="attr">
         </div>
