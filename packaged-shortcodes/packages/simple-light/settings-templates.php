@@ -97,7 +97,7 @@
                         </tr>
                         <tr v-for="( t_val,t_key ) in s.table_data">
                             <td v-for="( c_val,c_key ) in t_val ">
-                                <input type="text" class="form-control" v-model="c_val">
+                                <input type="text" class="form-control" v-model="t_val[c_key]">
                             </td>
                             <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" :data-val="t_key"><i class="fa fa-remove"></i></a></td>
                         </tr>

@@ -106,7 +106,7 @@ class SM_Shortcode_Definitions {
         <div class="bs-container">
             <table class="table table-striped">
                 <tbody>
-                <?php foreach ( $data['table_data']/*['tbody']*/ as $key => $tr ) : ?>
+                <?php foreach ( $data['table_data'] as $key => $tr ) : ?>
                     <tr>
                         <?php foreach ( $tr as $k => $td ) : ?>
                             <td><?php echo $td; ?></td>
