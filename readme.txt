@@ -90,6 +90,10 @@ e.g.
 
 == Changelog ==
 
+== 5.0.3.1 ==
+
+1. [fix] Issue with creating table fixed.
+
 == 5.0.3 ==
 
 1. [new] Vue 2.5.* compatibility added.
