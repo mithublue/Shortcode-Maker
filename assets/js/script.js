@@ -8,7 +8,6 @@
                     dismiss: true
                 },
                 function (data) {
-                    console.log(data);
                 }
             )
         });
