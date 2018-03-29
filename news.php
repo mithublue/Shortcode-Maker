@@ -23,35 +23,66 @@ class CC_News {
         add_action( 'admin_notices' , array( $this, 'admin_news_notice' ) );
     }
 
+    public function news_html($response,$loop = 0) {
+        ?>
+        <div class="cc_news_notice_container">
+            <div class="thumbnail">
+
+                <?php if( isset( $response['posts'][$loop]['thumbnail'] ) && $response['posts'][$loop]['thumbnail'] ) {
+                    ?>
+                    <img src="<?php echo $response['posts'][$loop]['thumbnail']; ?>" alt="" width="200">
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="news_content">
+                <h3><?php _e( '<a href="'.$response['posts'][$loop]['url'].'" target="_blank" style="text-decoration:none;color:#444444;">'.$response['posts'][$loop]['title'].'</a>', 'cc' ); ?></h3>
+                <div>
+                    <?php echo $response['posts'][$loop]['excerpt']; ?>
+                </div>
+                <a href="<?php echo $response['posts'][$loop]['url']; ?>" target="_blank"><?php _e( 'Read More', 'cc' ); ?></a>
+            </div>
+        </div>
+        <?php
+    }
+
+
+    /**
+     * News notice
+     */
     public function admin_news_notice() {
+        global $pagenow;
+        if( !in_array($pagenow, array('post.php','edit.php')) ) return;
+
         $notices = sm_get_notice('sm_admin_notices' );
 
-        $response = wp_remote_get( 'http://blog.cybercraftit.com/api/get_category_posts?slug=news&count=1' );
+        $response = wp_remote_get( 'http://blog.cybercraftit.com/api/get_category_posts?slug=product-feed&count=1' );
         $response = $response['body'];
         $response = json_decode($response,true);
-        $new_lastest_date = 0;
+        $new_lastest_date = 1;
 
         if ( !empty( $response['posts'] ) ) {
             $new_lastest_date = strtotime($response['posts'][0]['date']);
         }
 
-        if( $new_lastest_date ) {
-            if( !isset( $notices['news_notice']['is_dismissed'] ) || !$notices['news_notice']['is_dismissed'] ) { ?>
+        if( $new_lastest_date && $response['count'] ) {
+            if( !isset( $notices['news_notice']['is_dismissed'] ) || !$notices['news_notice']['is_dismissed'] ) {
+                ?>
                 <div class="notice notice-success is-dismissible cc_news_notice">
                     <input type="hidden" value="<?php echo $new_lastest_date; ?>" name="cc_last_news_date">
-                    <p><?php _e( '<a href="'.$response['posts'][0]['url'].'" target="_blank" style="text-decoration:none;color:#444444;">'.$response['posts'][0]['title'].'</a>', 'cc' ); ?><?php echo '<a href="'.$response['posts'][0]['url'].'" target="_blank" style="text-decoration:none;color:#444444;float:right;">'.__('Read More','cc').'</a>' ?></p>
+                    <?php $this->news_html($response,0); ?>
                 </div>
                 <?php
             } elseif( isset( $notices['news_notice']['is_dismissed'] )
                 && isset( $notices['news_notice']['last_news_date'] )
                 && $notices['news_notice']['last_news_date'] < $new_lastest_date
-            ) { ?>
+            ) {
+                ?>
                 <div class="notice notice-success is-dismissible cc_news_notice">
                     <input type="hidden" value="<?php echo $new_lastest_date; ?>" name="cc_last_news_date">
-                    <p><?php _e( '<a href="'.$response['posts'][0]['url'].'" target="_blank" style="text-decoration:none;color:#444444;">'.$response['posts'][0]['title'].'</a>', 'cc' ); ?><?php echo '<a href="'.$response['posts'][0]['url'].'" target="_blank" style="text-decoration:none;color:#444444;float:right;">'.__('Read More','cc').'</a>' ?></p>
+                    <?php $this->news_html($response,0); ?>
                 </div>
                 <?php
-
             }
         }
     }
@@ -76,51 +107,45 @@ class CC_News {
                     </h1>
                     <?php foreach ( $contents as $k => $content ) { ?>
                     <div class="each_container">
-                        <h3><a href="<?php echo $content['url']; ?>"><?php echo $content['title']; ?></a></h3>
-                        <div class="content">
-                            <?php echo nl2br($content['content']); ?>
-                        </div>
+                        <?php $this->news_html($response,$k); ?>
                     </div>
+                        <a class="read_more_news" href="http://blog.cybercraftit.com/category/news/" target="_blank"><?php _e('Read More', 'cc'); ?></a>
                 <?php } ?>
                 </div>
                 <?php
             }
         }
-
-
     }
 
     public function admin_print_script_style() {
         ?>
         <style>
-            .cc_news_container h1{
+            .cc_news_container .read_more_news{
+                display: block;
+                padding: 10px;
                 text-align: center;
-                margin:30px 0;
-            }
-            .cc_news_container .each_container{
-                background: #fff;
-                padding: 5px 30px;
-                margin-bottom: 20px;
-            }
-            .each_container a{
-                color: #444;
                 text-decoration: none;
+                color: #000;
+                background: #ffffff;
+                border: 1px solid #dddddd;
             }
-            .each_container p{
-                line-height: 30px;
-                font-size: 16px;
+            .each_container{
+                background: #ffffff;
+                margin-bottom: 10px;
             }
-            .each_container h3{
-                font-size: 24px;
+            .cc_news_notice_container{
+                overflow: hidden;
+                padding:10px;
             }
-            .cc_news_container h1{
-                font-size:30px;
+            .cc_news_notice_container .thumbnail{
+                float: left;
             }
-
+            .cc_news_notice_container .news_content{
+                overflow: hidden;
+                margin-left: 215px;
+            }
         </style>
         <script>
-
-
             window.onload = function () {
                 (function ($) {
                     $(document).on('click','.cc_news_notice .notice-dismiss',function () {
