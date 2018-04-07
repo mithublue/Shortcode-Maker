@@ -309,6 +309,8 @@ class shortcode_maker{
             wp_enqueue_script('sm-timepicker-addon', SHORTCODE_MAKER_ASSET_PATH.'/js/timepicker-addon.js', array('jquery-ui-datepicker'));
         }
 
+        do_action( 'sm_admin_enqueue_scripts', $hook );
+
     }
 
     public function plugin_admin_notice() {
