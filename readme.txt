@@ -2,8 +2,8 @@
 Contributors: mithublue,cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 Requires at least: 3.0.1
-Tested up to: 4.9.4
-Stable tag: 5.0.3.2
+Tested up to: 4.9.5
+Stable tag: 5.0.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
