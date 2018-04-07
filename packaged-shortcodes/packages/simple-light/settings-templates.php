@@ -17,21 +17,21 @@
                     <a :href="'#' + tab_key" data-toggle="tab">
                         <template v-if="tab_target != tab_key">
                             {{ tab_object.title }}
-                            <a href="javascript:" class="btn btn-xs" @click="tab_target = tab_key"><i class="fa fa-edit"></i></a>
-                            <a href="javascript:" class="btn btn-xs br0" @click="remove_tab(tab_key)"><i class="fa fa-remove"></i></a>
+                            <a href="javascript:" class="btn btn-xs" @click="tab_target = tab_key"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="javascript:" class="btn btn-xs br0" @click="remove_tab(tab_key)"><i class="glyphicon glyphicon-remove"></i></a>
                         </template>
                         <input type="text" v-model="tab_object.title" v-if="tab_target == tab_key">
                         <a href="javascript:" class="btn br0 btn-xs" v-if="tab_target == tab_key" @click="tab_target = ''"><strong><?php _e( 'Save', 'sm' ); ?></strong></a>
                     </a>
                 </li>
-                <li><a href="javascript:" @click="add_tab()"><i class="fa fa-plus"></i></a></li>
+                <li><a href="javascript:" @click="add_tab()"><i class="glyphicon glyphicon-plus"></i></a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content mt20 mb20">
                 <div v-for="(tab_object,tab_key) in s.tab_data" class="tab-pane fade" :id="tab_key">
                     <template v-if="content_target != tab_key">
                         {{ tab_object.content }}
-                        <a href="javascript:" class="btn pull-right btn-default" @click="content_target = tab_key"><i class="fa fa-edit"></i></a>
+                        <a href="javascript:" class="btn pull-right btn-default" @click="content_target = tab_key"><i class="glyphicon glyphicon-edit"></i></a>
                     </template>
                     <textarea class="form-control" v-model="tab_object.content" cols="30" rows="10" v-if="content_target == tab_key"></textarea>
                     <a href="javascript:" class="btn btn-default br3 mt20" v-if="content_target == tab_key" @click="content_target = ''"><?php _e( 'Save', 'sm' ); ?></a>
@@ -55,8 +55,8 @@
                         <h4 class="panel-title">
                             <template v-if="target_acc != key">
                                 <a data-toggle="collapse" data-parent="#accordion" :href="'#' + key">{{ each_acc.title }}</a>
-                                <a href="javascript:" class="btn btn-xs btn-default br0 " @click="target_acc = key"><i class="fa fa-edit"></i></a>
-                                <a href="javascript:" class="btn btn-xs btn-default br0 " @click="remove_accordion(key)"><i class="fa fa-remove"></i></a>
+                                <a href="javascript:" class="btn btn-xs btn-default br0 " @click="target_acc = key"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a href="javascript:" class="btn btn-xs btn-default br0 " @click="remove_accordion(key)"><i class="glyphicon glyphicon-remove"></i></a>
                             </template>
                             <input type="text" v-model="each_acc.title" v-if="target_acc == key" class="form-control">
                             <a href="javascript:" class="btn btn-default br3 mt10" v-if="target_acc == key" @click="target_acc = ''"><?php _e( 'Save', 'sm' ); ?></a>
@@ -66,7 +66,7 @@
                         <div class="panel-body" @dblclick="target_content = key">
                             <template v-if="target_content != key">
                                 {{ each_acc.content }}
-                                <a href="javascript:" class="btn btn-default br3 mt10 pull-right" @click="target_content = key"><i class="fa fa-edit"></i></a>
+                                <a href="javascript:" class="btn btn-default br3 mt10 pull-right" @click="target_content = key"><i class="glyphicon glyphicon-edit"></i></a>
                             </template>
                             <textarea v-model="each_acc.content" cols="30" rows="10" class="form-control" v-if="target_content == key"></textarea>
                             <a href="javascript:" class="btn btn-default br3 mt10" v-if="target_content == key" @click="target_content = ''"><?php _e( 'Save', 'sm' ); ?></a>
@@ -92,14 +92,14 @@
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <td v-for="col_number in s.col_tracker">
-                                <a href="javascript:" class="btn btn-xs btn-default br3 pull-right" @click="remove_col(col_number)"><i class="fa fa-remove"></i></a>
+                                <a href="javascript:" class="btn btn-xs btn-default br3 pull-right" @click="remove_col(col_number)"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
                         </tr>
                         <tr v-for="( t_val,t_key ) in s.table_data">
                             <td v-for="( c_val,c_key ) in t_val ">
                                 <input type="text" class="form-control" v-model="t_val[c_key]">
                             </td>
-                            <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" :data-val="t_key"><i class="fa fa-remove"></i></a></td>
+                            <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" :data-val="t_key"><i class="glyphicon glyphicon-remove"></i></a></td>
                         </tr>
                     </table>
                 </div>
@@ -293,9 +293,9 @@
                 <tr v-for="(item,k) in s.items">
                     <td>
                         <input type="text" v-model="item.label">
-                        <a @click="item_up(k)" href="javascript:" class="btn btn-default btn-xs"><i class="fa fa-arrow-up"></i></a>
-                        <a @click="item_down(k)" href="javascript:" class="btn btn-default btn-xs"><i class="fa fa-arrow-down"></i></a>
-                        <a @click="item_remove(k)" href="javascript:" class="btn btn-default btn-xs"><i class="fa fa-remove"></i></a>
+                        <a @click="item_up(k)" href="javascript:" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                        <a @click="item_down(k)" href="javascript:" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                        <a @click="item_remove(k)" href="javascript:" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
                     </td>
                 </tr>
             </table>
@@ -570,7 +570,7 @@
                     <input type="text" class="datepicker form-control" v-model="slot.to">
                 </div>
                 <div class="col-sm-2">
-                    <a href="javascript:" class="btn btn-default pull-right btn-xs br0" @click="remove_timeslot(k)"><i class="fa fa-remove"></i></a>
+                    <a href="javascript:" class="btn btn-default pull-right btn-xs br0" @click="remove_timeslot(k)"><i class="glyphicon glyphicon-remove"></i></a>
                 </div>
             </div>
             <div class="mb5">

@@ -92,7 +92,7 @@ class SM_Packaged_Shortcodes_Admin {
                         <div class="panel panel-default">
                             <div class="panel-heading oh">
                                 <h5 class="pull-left"><?php _e( 'Packaged shortcodes', 'sm'); ?></h5>
-                                <a href="javascript:" @click="hide_packaged_shortcode_panel = 1" class="btn pull-right btn-default btn-xs br0"><i class="fa fa-remove"></i></a>
+                                <a href="javascript:" @click="hide_packaged_shortcode_panel = 1" class="btn pull-right btn-default btn-xs br0"><i class="glyphicon glyphicon-remove"></i></a>
                             </div>
                             <div class="panel-body">
                                 <div class="mb20" style="width: 100%;background: #eee;padding: 10px;">
