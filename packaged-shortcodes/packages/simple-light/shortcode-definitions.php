@@ -2,9 +2,21 @@
 class SM_Shortcode_Definitions {
 
     public static function init() {
-        $items = Smps_Simple_Light::settings()['items'];
-        foreach ( $items as $item => $label ) {
-            add_shortcode( 'smps_sl_'.$item, array( __CLASS__, 'render_'.$item ) );
+        add_shortcode( 'smps_shortcode', array( __CLASS__, 'shortcode_handler' ) );
+    }
+
+    public static function shortcode_handler( $atts, $content, $tag ) {
+        $atts = shortcode_atts( array(
+                'element' => '',
+            'data' => '{}'
+        ), $atts, $tag );
+
+
+        if( !$atts['element'] ) return;
+
+        if( method_exists( __CLASS__, 'render_'.$atts['element'] ) ) {
+            $method = 'render_'.$atts['element'];
+            self::$method( $atts, $content, $tag );
         }
     }
 
