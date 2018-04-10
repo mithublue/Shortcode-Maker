@@ -4,10 +4,10 @@
  * Description: A plugin to to let users make shortcodes of their own and use them in wp editor
  * Plugin URI: http://cybercraftit.com/product/shortcode-maker/
  * Author URI: http://cybercraftit.com/
- * Author: Mithu A Quayium
+ * Author: CyberCraft
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0.3.3
+ * Version: 5.0.3.4
  * License: GPL2
  */
 /**
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SHORTCODE_MAKER_VERSION', '5.0.3.3' );
+define( 'SHORTCODE_MAKER_VERSION', '5.0.3.4' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 
