@@ -1,4 +1,4 @@
-(function ($) {
+;(function ($) {
     $(document).ready(function () {
         /**
          * tabs
@@ -30,7 +30,7 @@
                     Vue.set(this.s.tab_data,'tab_' + new Date().getTime(),JSON.parse(JSON.stringify(this.tab_template)));
                 },
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_tabs' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 },
                 remove_tab : function ( tab_key ) {
                     Vue.delete( this.s.tab_data, tab_key );
@@ -69,7 +69,7 @@
                     Vue.set(this.s.acc_data,'acc_' + new Date().getTime(),JSON.parse(JSON.stringify(this.acc_template)));
                 },
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_accordion' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 },
                 remove_accordion : function (key) {
                     Vue.delete(this.s.acc_data,key);
@@ -137,7 +137,7 @@
                     }
                 },
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_table' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -161,7 +161,7 @@
             },
             methods : {
             },
-            ready : function () {
+            mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
             }
         } );
@@ -182,13 +182,12 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_alert' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
                 if ( smps_app.edit_target_item == this.component_name ) {
-                    console.log(smps_app.edit_target_item_data);
                     this.s = smps_app.edit_target_item_data;
                 }
             }
@@ -225,7 +224,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_heading' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -258,7 +257,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_quote' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -311,7 +310,7 @@
             methods : {
 
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_button' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -371,7 +370,7 @@
                     this.s.items.splice(k,1);
                 },
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_list' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -400,7 +399,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_highlight' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -432,7 +431,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_restricted_content' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -483,7 +482,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_youtube' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -514,7 +513,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_vimeo' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -545,7 +544,7 @@
             },
             methods : {
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_image' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -604,7 +603,7 @@
                     });
                 },
                 insert_shortcode : function () {
-                    sm_object.insert_shortcode( this.s, 'smps_sl_scheduler' );
+                    sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
@@ -641,10 +640,10 @@
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+                sm_object.insert_shortcode( this.s, this.component_name );
             }
         },
-        created : function () {
+        mounted : function () {
             sm_object.merge_settings(this,this.component_name);
             if ( smps_app.edit_target_item == this.component_name ) {
                 this.s = smps_app.edit_target_item_data;
@@ -675,7 +674,7 @@
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+                sm_object.insert_shortcode( this.s, this.component_name );
             }
         },
         mounted : function () {
@@ -704,7 +703,7 @@
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+                sm_object.insert_shortcode( this.s, this.component_name );
             }
         },
         mounted : function () {
@@ -732,7 +731,7 @@
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+                sm_object.insert_shortcode( this.s, this.component_name );
             }
         },
         mounted : function () {
@@ -769,7 +768,7 @@
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+                sm_object.insert_shortcode( this.s, this.component_name );
             }
         },
         mounted : function () {
@@ -796,7 +795,7 @@
         },
         methods : {
             insert_shortcode : function () {
-                sm_object.insert_shortcode( this.s, 'smps_sl_' + this.component_name );
+                sm_object.insert_shortcode( this.s, this.component_name );
             }
         },
         mounted : function () {
@@ -854,10 +853,10 @@
     });
 
 
-    sm_object.insert_shortcode = function ( settings_data, shortcode_name ) {
+    sm_object.insert_shortcode = function ( settings_data, element_name ) {
         //var data = encodeURIComponent(JSON.stringify(settings_data));
         var data = btoa(JSON.stringify(settings_data));
-        var shortcode = '[' + shortcode_name + ' data="' + data + '" ]';
+        var shortcode = '[smps_shortcode element="'+ element_name +'" data="' + data + '" ]';
         tinyMCE.activeEditor.selection.setContent( shortcode );
         smps_app.dismiss_settings_panel();
     }
@@ -869,6 +868,20 @@
             _this.x_data = Object.assign({},sm_settings_data[component_name].data);
         }
         console.log(_this.$data);
+    }
+
+    sm_object.make_uploader = function (model) {
+        $(document).on('click','.upload_image_button',function() {
+            formfield = $('.upload_image').attr('name');
+            tb_show( '', 'media-upload.php?type=image&amp;TB_iframe=true' );
+            return false;
+        });
+
+        window.send_to_editor = function(html) {
+            imgurl = $(html).attr('src');
+            model = imgurl;
+            tb_remove();
+        }
     }
 
 }(jQuery));
