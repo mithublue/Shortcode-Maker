@@ -105,8 +105,8 @@
                     var col_key = 'td_' + new Date().getTime();
                     Vue.set(this.s.col_template, col_key, col_val );
 
-                    for( var k in this.s.table_data ) {
-                        Vue.set( this.s.table_data[k],col_key,col_val);
+                    for( var r in this.s.table_data ) {
+                        Vue.set( this.s.table_data[r],col_key,col_val);
                     }
 
                     //col nums
@@ -116,7 +116,6 @@
                     Vue.set( this.s.table_data, 'tr_' + new Date().getTime(), this.s.col_template /*JSON.parse( JSON.stringify(  ) )*/ );
                 },
                 remove_col : function (col_number) {
-                    console.log(col_number);
                     //remove col of table data
                     for( var k in this.s.table_data ) {
                         Vue.delete( this.s.table_data[k], Object.keys(this.s.table_data[k])[col_number] );
@@ -277,8 +276,6 @@
                         type : 'success',
                         enable_text : true,
                         text : 'Button',
-                        enable_icon : false,
-                        icon : '',
                         shape : 'rounded',
                         size : '',
                         redirection_type : 'same_page',
@@ -387,6 +384,8 @@
             data : function () {
                 return {
                     component_name : 'highlight',
+                    colorpicker_off: false,
+                    bgcolorpicker_off: false,
                     s : {
                         background : '',
                         text_color : '',
@@ -394,17 +393,24 @@
                         id : '',
                         content : ''
                     },
-                    x_data: {}
+                    x_data: {},
                 }
             },
             methods : {
+                //specific
+                updateBgValue: function (color) {
+                    this.s.background = color.hex;
+                },
+                updateTextValue: function (color) {
+                    this.s.text_color = color.hex;
+                },
+                //
                 insert_shortcode : function () {
                     sm_object.insert_shortcode( this.s, this.component_name );
                 }
             },
             mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
-                $('.colorpicker').wpColorPicker();
 
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
@@ -418,6 +424,7 @@
             data : function () {
                 return {
                     component_name : 'restricted_content',
+                    bgcolorpicker_off: false,
                     s : {
                         //message : 'This content is for registered users only. Please %login%.',
 
@@ -430,6 +437,11 @@
                 }
             },
             methods : {
+                //specific
+                updateBgValue: function (color) {
+                    this.s.bg_color = color.hex;
+                },
+                //
                 insert_shortcode : function () {
                     sm_object.insert_shortcode( this.s, this.component_name );
                 }
@@ -608,7 +620,6 @@
             },
             mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
-                this.reset_datepicker();
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
                 }

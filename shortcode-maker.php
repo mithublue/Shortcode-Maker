@@ -43,6 +43,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SHORTCODE_MAKER_VERSION', '5.0.3.4' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
+define( 'SHORTCODE_MAKER_BASE_FILE', __FILE__ );
+
 
 class shortcode_maker{
 
@@ -304,7 +306,16 @@ class shortcode_maker{
             wp_enqueue_style( 'sm-post-css', SHORTCODE_MAKER_ASSET_PATH.'/css/sm-post.css' );
             //timepicker addon css
             wp_enqueue_style( 'sm-timepicker-css', SHORTCODE_MAKER_ASSET_PATH.'/css/timepicker-addon.css' );
-            wp_enqueue_script( 'sm-post-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sm-post.js', array( 'jquery','sm-vue', 'wp-color-picker','jquery-ui-datepicker' ), false, true );
+
+            wp_enqueue_script( 'sm-bs-js', SHORTCODE_MAKER_ASSET_PATH.'/js/bootstrap.min.js', array( 'jquery','wp-color-picker','jquery-ui-datepicker' ), false, true );
+
+            wp_enqueue_script( 'sm-bs-js', SHORTCODE_MAKER_ASSET_PATH.'/js/bootstrap.min.js', array( 'jquery','wp-color-picker','jquery-ui-datepicker' ), false, true );
+            //color picker component
+            wp_enqueue_script( 'sm-color-picker-js', plugins_url('components/js/vue-color.min.js',__FILE__), array( 'sm-vue' ), false, true );
+
+            wp_enqueue_script( 'sm-admin-js', SHORTCODE_MAKER_ASSET_PATH.'/js/smps-admin-script.js', array( 'jquery','wp-color-picker','jquery-ui-datepicker' ), false, true );
+
+            //wp_enqueue_script( 'sm-post-js', SHORTCODE_MAKER_ASSET_PATH.'/js/sm-post.js', array( 'jquery','sm-vue', 'wp-color-picker','jquery-ui-datepicker' ), false, true );
             //timepicker addon
             wp_enqueue_script('sm-timepicker-addon', SHORTCODE_MAKER_ASSET_PATH.'/js/timepicker-addon.js', array('jquery-ui-datepicker'));
         }

@@ -1,5 +1,7 @@
 .idea/
 pro/
+pro-/
+dist/
 node_modules/
 package.json
 resources/

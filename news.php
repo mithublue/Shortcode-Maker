@@ -57,6 +57,7 @@ class CC_News {
         $notices = sm_get_notice('sm_admin_notices' );
 
         $response = wp_remote_get( 'http://blog.cybercraftit.com/api/get_category_posts?slug=product-feed&count=1' );
+        if( is_wp_error($response) ) return;
         $response = $response['body'];
         $response = json_decode($response,true);
         $new_lastest_date = 1;

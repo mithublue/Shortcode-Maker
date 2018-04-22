@@ -97,7 +97,7 @@
                         </tr>
                         <tr v-for="( t_val,t_key ) in s.table_data">
                             <td v-for="( c_val,c_key ) in t_val ">
-                                <input type="text" class="form-control" v-model="t_val[c_key]">
+                                <input type="text" class="form-control" v-model="s.table_data[t_key][c_key]">
                             </td>
                             <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" :data-val="t_key"><i class="glyphicon glyphicon-remove"></i></a></td>
                         </tr>
@@ -223,13 +223,6 @@
             <div class="form-group" v-if="s.enable_text">
                 <input type="text" v-model="s.text" class="form-control">
             </div>
-            <!--icon-->
-            <div class="form-group">
-                <label><input type="checkbox" v-model="s.enable_icon"> <?php _e( 'Enable Icon', 'sm' ); ?></label>
-            </div>
-            <div class="form-group" v-if="s.enable_icon">
-                <input type="text" v-model="s.icon" class="form-control">
-            </div>
             <!--redirection-->
             <div class="form-group">
                 <label><?php _e( 'Redirect to', 'sm' ); ?></label>
@@ -310,11 +303,17 @@
             <?php do_action( 'sm_top_settings_highlight'); ?>
             <div class="mb5">
                 <label><?php _e('Background','smps'); ?></label>
-                <input type="text" v-model="s.background" class="colorpicker">
+                <input type="text" v-model="s.background">
+                <a href="javascript:" @click="bgcolorpicker_off = !bgcolorpicker_off" v-if="bgcolorpicker_off" class="btn btn-default"><?php _e('Save','sm'); ?></a>
+                <a href="javascript:" @click="bgcolorpicker_off = !bgcolorpicker_off" v-if="!bgcolorpicker_off" class="btn btn-default"><?php _e('Change Color','sm'); ?></a>
+                <color-picker-sketch :value="s.background" @input="updateBgValue" v-if="bgcolorpicker_off"></color-picker-sketch>
             </div>
             <div class="mb5">
                 <label><?php _e('Text Color','smps'); ?></label>
-                <input type="text" v-model="s.text_color" class="colorpicker">
+                <input type="text" v-model="s.text_color">
+                <a href="javascript:" @click="colorpicker_off = !colorpicker_off" v-if="colorpicker_off" class="btn btn-default"><?php _e('Save','sm'); ?></a>
+                <a href="javascript:" @click="colorpicker_off = !colorpicker_off" v-if="!colorpicker_off" class="btn btn-default"><?php _e('Change Color','sm'); ?></a>
+                <color-picker-sketch :value="s.text_color" @input="updateTextValue" v-if="colorpicker_off"></color-picker-sketch>
             </div>
             <div class="mb5">
                 <label><?php _e('Class','smps'); ?></label>
@@ -339,7 +338,11 @@
             <?php do_action( 'sm_top_settings_restricted_content'); ?>
             <div class="mb5">
                 <label><?php _e( 'Background Color', 'smps'); ?></label>
-                <input type="text" class="colorpicker" v-model="s.bg_color">
+                <input type="text" v-model="s.bg_color">
+                <a href="javascript:" @click="bgcolorpicker_off = !bgcolorpicker_off" v-if="bgcolorpicker_off" class="btn btn-default"><?php _e('Save','sm'); ?></a>
+                <a href="javascript:" @click="bgcolorpicker_off = !bgcolorpicker_off" v-if="!bgcolorpicker_off" class="btn btn-default"><?php _e('Change Color','sm'); ?></a>
+                <color-picker-sketch :value="s.bg_color" @input="updateBgValue" v-if="bgcolorpicker_off"></color-picker-sketch>
+
             </div>
             <div class="mb5">
                 <label><?php _e( 'Login Text', 'smps'); ?></label>
@@ -563,7 +566,7 @@
             <div v-for="(slot,k) in s.timespans" class="row mb5">
                 <div class="col-sm-5">
                     <label><?php _e( 'From', 'smps' ); ?></label>
-                    <input type="text" class="datepicker form-control" v-model="slot.from">
+                    <input type="date" class="datepicker form-control" v-model="slot.from">
                 </div>
                 <div class="col-sm-5">
                     <label><?php _e( 'To', 'smps' ); ?></label>
@@ -781,6 +784,7 @@
             <div class="mb5">
                 <label><?php _e( 'Exclude', 'smps' ); ?></label>
                 <select v-model="s.exclude" class="form-control" id="" multiple>
+                    <option value=""><?php _e( 'Dont\' Exclude Anything', 'sm' ); ?></option>
                     <?php
                     foreach ( $categories as $k => $category ) {
                         ?>
@@ -852,13 +856,9 @@
                 <!--<input type="text" v-model="s.name" class="form-control">-->
                 <select v-model="s.name" class="form-control">
                     <option value=""><?php _e( 'Select a menu', 'smps' ); ?></option>
-                    <?php
-                    foreach ( $nav_menus as $k => $menu ) {
-                        ?>
+                    <?php foreach ( $nav_menus as $k => $menu ) { ?>
                         <option value="<?php echo $menu->slug; ?>"><?php echo $menu->name; ?></option>
-                    <?php
-                    }
-                    ?>
+                    <?php } ?>
                 </select>
             </div>
             <div class="mb5">
