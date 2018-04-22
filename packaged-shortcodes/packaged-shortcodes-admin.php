@@ -56,24 +56,37 @@ class SM_Packaged_Shortcodes_Admin {
                                 echo $settigs['name'];
                                 ob_start();
                                 ?>
-                                <div id="<?php echo $name; ?>">
+                                <div id="<?php echo $name; ?>" class="sm_shortcode_buttons">
                                     <?php
                                     $s_items = isset( $settigs['items'] ) ? $settigs['items'] : array();
 
                                     foreach ( $s_items as $item_name => $item_array ) {
+                                        $sections[$item_array['section']] = $item_array['section']; ?>
+                                        <?php
+                                        if( isset( $item_array['pro'] ) ) {
+                                            ?>
+                                            <a href="javascript:"
+                                               class="btn btn-default mb5 pro-btn"
+                                               :class="{ active : edit_target_item == '<?php echo $item_name; ?>' }"
+                                               data-section="<?php echo $item_array['section']; ?>"
+                                               data-item_name="<?php echo $item_name; ?>"
+                                               v-if="!visible_button_section || visible_button_section == '<?php echo $item_array['section']; ?>'"
+                                            ><?php echo $item_array['label']; ?></a>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <a href="javascript:" @click="get_settings_html( '<?php echo $classname.'_Admin'; ?>', '<?php echo $item_name; ?>','<?php echo $item_array['label']; ?>');"
+                                               class="btn btn-default mb5"
+                                               :class="{ active : edit_target_item == '<?php echo $item_name; ?>' }"
+                                               data-section="<?php echo $item_array['section']; ?>"
+                                               data-item_name="<?php echo $item_name; ?>"
+                                               v-if="!visible_button_section || visible_button_section == '<?php echo $item_array['section']; ?>'"
+                                            ><?php echo $item_array['label']; ?></a>
+                                            <?php
+                                        }
+                                        ?>
 
-                                    $sections[$item_array['section']] = $item_array['section'];
-                                    ?><!--br0-->
-                                        <a href="javascript:" @click="get_settings_html( '<?php echo $classname.'_Admin'; ?>', '<?php echo $item_name; ?>','<?php echo $item_array['label']; ?>');"
-                                           class="btn btn-default mb5"
-                                           :class="{ active : edit_target_item == '<?php echo $item_name; ?>' }"
-                                           data-section="<?php echo $item_array['section']; ?>"
-                                           data-item_name="<?php echo $item_name; ?>"
-                                           v-if="!visible_button_section || visible_button_section == '<?php echo $item_array['section']; ?>'"
-                                        ><?php echo $item_array['label']; ?></a>
-                                    <?php
-                                    }
-                                    ?>
+                                    <?php } ?>
                                 </div>
                                 <?php
                                 $tab_contents .= ob_get_contents();

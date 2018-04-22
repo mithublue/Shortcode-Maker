@@ -231,13 +231,6 @@ class SM_Shortcode_Definitions {
             }
             ?>
             <a href="<?php echo $redirect_to; ?>" <?php echo $data['open_newtab'] == 'true' ? 'target="_blank"' : '' ;?> class="btn btn-<?php echo $data['type']; ?> btn-<?php echo $data['size']; ?> <?php echo $data['shape'] == 'normal' ? 'br0' : ''; ?>">
-                <?php
-                if( $data['icon'] == 'true' ) :
-                    ?>
-                    <i class="glyphicon glyphicon-<?php echo $data['icon']; ?>"></i>
-                    <?php
-                    endif;
-                ?>
                 <?php echo $data['enable_text'] == 'true' ? $data['text'] : ''; ?>
             </a>
         </div>
@@ -456,6 +449,7 @@ class SM_Shortcode_Definitions {
             'data' => '{}'
         ), $atts, $tag);
 
+
         $data = json_decode( base64_decode( $atts['data'] ),true );
         if( !is_array( $data ) ) {
             $data = json_decode(stripslashes(urldecode($atts['data'])),true);
@@ -501,6 +495,8 @@ class SM_Shortcode_Definitions {
             $args['nopaging'] = $data['nopaging'];
         }
 
+
+
         $the_query = new WP_Query($args);
 
 
@@ -511,19 +507,23 @@ class SM_Shortcode_Definitions {
                 <div class="sm_featured_img">
                     <?php the_post_thumbnail();?>
                 </div>
-                <div class="sm_title"><h2><?php the_title(); ?></h2></div>
+                <div class="sm_title">
+                    <h2><?php the_title(); ?></h2>
+                </div>
                 <div class="sm_excerpt">
-                    <?php the_excerpt();?>
+                    <?php do_shortcode(the_excerpt());?>
                 </div>
                 <?php
             endwhile;
             ?>
             </div><!--sm_post_listing-->
             <?php
-            $postContent = ob_get_clean();
-            return $postContent;
+
 
         }
+        $postContent = ob_get_clean();
+        echo $postContent;
+        //return $postContent;
     }
 
 
@@ -580,22 +580,23 @@ class SM_Shortcode_Definitions {
 
 
         // run the loop based on the query
+        ob_start();
         if ($the_query->have_posts()) { ?>
             <div id="<?php echo $data['Id']; ?>" class="sm_post_listing <?php echo $data['class']; ?>">
                 <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
                     <div class="sm_title"><h2><?php the_title(); ?></h2></div>
                     <div class="sm_excerpt">
-                        <?php the_excerpt();?>
+                        <?php do_shortcode(the_excerpt());?>
                     </div>
                     <?php
                 endwhile;
                 ?>
             </div><!--sm_post_listing-->
             <?php
-            $postContent = ob_get_clean();
-            return $postContent;
 
         }
+        $postContent = ob_get_clean();
+        echo $postContent;
     }
 
 
@@ -686,7 +687,10 @@ class SM_Shortcode_Definitions {
             $args['child_of'] = $data['parent_id'];
         }
 
-        if( $data['exclude'] ) {
+        if( count($data['exclude']) == 1 && !$data['exclude'][0] ) {
+            $data['exclude'] = array();
+        }
+        if( !empty($data['exclude']) ) {
             $args['exclude'] = $data['exclude'];
         }
 
