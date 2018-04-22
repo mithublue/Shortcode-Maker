@@ -10965,5 +10965,16 @@ footer .nav {
   background: #0073aa;
   color: #fff;
 }
+.sm_shortcode_buttons .btn {
+  margin-bottom: 5px;
+}
+.pro-btn {
+  border: 1px solid #d9534f !important;
+  color: #d9534f !important;
+}
+.pro-btn:hover {
+  background: #d9534f !important;
+  color: #FFFFFF !important;
+}
 
 /*# sourceMappingURL=sm-post.css.map */
