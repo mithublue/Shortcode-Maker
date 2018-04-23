@@ -92,7 +92,7 @@
                 return {
                     component_name : 'table',
                     s : {
-                        table_data : {},
+                        table_data : [],
                         col_template : {},
                         col_tracker : []
                     },
@@ -101,27 +101,29 @@
             },
             methods : {
                 add_col : function () {
-                    var col_val = '';/*'td_' + new Date().getTime()*/
-                    var col_key = 'td_' + new Date().getTime();
-                    Vue.set(this.s.col_template, col_key, col_val );
-
-                    for( var r in this.s.table_data ) {
-                        Vue.set( this.s.table_data[r],col_key,col_val);
+                    for( var i = 1; i <= this.s.table_data.length; i++ ) {
+                        this.s.table_data[i-1].push('');
                     }
-
                     //col nums
                     this.s.col_tracker.push(this.s.col_tracker.length);
                 },
                 add_row : function () {
-                    Vue.set( this.s.table_data, 'tr_' + new Date().getTime(), this.s.col_template /*JSON.parse( JSON.stringify(  ) )*/ );
+                    if( this.s.table_data.length ) {
+                        var col_number = this.s.table_data[0].length;
+                        var new_row = [];
+                        for (var i = 1; i <= col_number; i++ ) {
+                            new_row.push('');
+                        }
+                        this.s.table_data.push(new_row);
+                    } else {
+                        this.s.table_data.push([]);
+                    }
                 },
                 remove_col : function (col_number) {
                     //remove col of table data
                     for( var k in this.s.table_data ) {
                         Vue.delete( this.s.table_data[k], Object.keys(this.s.table_data[k])[col_number] );
                     }
-                    //remove col of col template
-                    Vue.delete( this.s.col_template, Object.keys(this.s.col_template)[col_number]);
                     //remove from col tracker
                     this.s.col_tracker.splice( -1, 1 );
                 },
@@ -131,7 +133,6 @@
                 remove_row : function ( t_key ) {
                     Vue.delete( this.s.table_data, t_key );
                     if( !Object.keys(this.s.table_data).length ) {
-                        this.s.col_template = {};
                         this.s.col_tracker = [];
                     }
                 },
@@ -141,9 +142,6 @@
             },
             mounted : function () {
                 sm_object.merge_settings(this,this.component_name);
-
-                /*this.add_col();
-                this.add_row();*/
 
                 if ( smps_app.edit_target_item == this.component_name ) {
                     this.s = smps_app.edit_target_item_data;
