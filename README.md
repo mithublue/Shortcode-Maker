@@ -8,7 +8,7 @@ Requires at least: 3.0.1
 
 Tested up to: 4.9.5
 
-Stable tag: 5.0.3.4
+Stable tag: 5.0.4
 
 License: GPLv2 or later
 
@@ -79,6 +79,11 @@ The plugin to help you make shortcode by yourself and get them listed in the wp 
 ## Changelog ##
 
 ## Changelog ##
+
+## 5.0.4 ##
+
+1. [fix] Issue in creating table fixed.
+2. [new] Unified shortcode
 
 ## 5.0.2.4 ##
 

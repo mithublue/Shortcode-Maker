@@ -3,7 +3,7 @@ Contributors: cybercraftit
 Tags: shortcode, shortcode maker, shortcode generator, custom shortcode, shortcode-maker,shortcode tinymce, easy shortcode, shortcode builder, unlimited shortcode , self made shortcode, quick shortcode, generate shortcode, nice shortcode, fast shortcode,shortcode listing, multiple shortcode, builtin shortcode, packaged shortcode, widget, accordion, tabs, table, heading, button, alert, note
 Requires at least: 3.0.1
 Tested up to: 4.9.5
-Stable tag: 5.0.3.4
+Stable tag: 5.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,11 @@ e.g.
 
 
 == Changelog ==
+
+== 5.0.4 ==
+
+1. [fix] Issue in creating table fixed.
+2. [new] Unified shortcode
 
 == 5.0.3.2 ==
 
@@ -233,6 +238,9 @@ e.g.
 1. Plugin Initial version
 
 == Upgrade Notice ==
+
+= 5.0.4 =
+A major update has been added to the plugin with extended feature and functionalities !
 
 = 5.0.3 =
 A major update has been added to the plugin with extended feature and functionalities !
