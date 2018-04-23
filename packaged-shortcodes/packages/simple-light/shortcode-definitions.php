@@ -110,7 +110,6 @@ class SM_Shortcode_Definitions {
 
         $data = json_decode( base64_decode( $atts['data'] ),true );
 
-
         if( !is_array( $data ) ) {
             $data = json_decode(stripslashes(urldecode($atts['data'])),true);
         }

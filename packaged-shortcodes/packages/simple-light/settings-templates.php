@@ -95,11 +95,11 @@
                                 <a href="javascript:" class="btn btn-xs btn-default br3 pull-right" @click="remove_col(col_number)"><i class="glyphicon glyphicon-remove"></i></a>
                             </td>
                         </tr>
-                        <tr v-for="( t_val,t_key ) in s.table_data">
-                            <td v-for="( c_val,c_key ) in t_val ">
-                                <input type="text" class="form-control" v-model="s.table_data[t_key][c_key]">
+                        <tr v-for="( r_val,r_key ) in s.table_data">
+                            <td v-for="( c_val,c_key ) in r_val ">
+                                <input type="text" class="form-control" v-model="r_val[c_key]">
                             </td>
-                            <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(t_key)" :data-val="t_key"><i class="glyphicon glyphicon-remove"></i></a></td>
+                            <td><a href="javascript:" class="btn btn-default pull-right btn-xs" @click="remove_row(r_key)" :data-val="r_key"><i class="glyphicon glyphicon-remove"></i></a></td>
                         </tr>
                     </table>
                 </div>
