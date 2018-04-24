@@ -11,26 +11,35 @@ The plugin to help you make shortcode by yourself or chose builtin shortcodes to
 
 == Description ==
 
+The plugin to help you make shortcode by yourself or chose builtin shortcodes to use them easily.
+Why spend much time on doing thing while there is something to let you make things without headache and complexity in minutes ?
+
+
 = Our Official Support Forum =
 
 To get faster support , You can contact through our official forum site.
 Official support forum : http://supports.cybercraftit.com/supports/support/shortcode-maker/
 
-= NEW FEATURE : Added bootstrap v4.0.0 compatibility=
+= Features =
 
-= FEATURE : PACKAGED SHORTCODES INCLUDED ! =
+* You can use built in shortcodes to create widgets like tabs, alert, accordion, table etc
+* You can add shortcode of your own
+* Add attributes as many as you want with the ability to define default value
+* you can write PHP code in definition. To use code, use [php_code][/php_code] in your shortcode definition and place code inside it.
+* Bootstrap v4.0.0 compatible
+* Contains builtin shortcode as package.
 
-With packaged shortcodes, you can add different widgets/UI elementns to your site now
-The elements are
+=== With packaged shortcodes, you can add different widgets/UI elementns to your site now
+The elements are ===
 
-* Tabs
+* Tabs (Limited)
 * Accordion
 * Table
 * Panel
-* Alert
+* Alert (Limited)
 * Heading
 * Quote
-* Button
+* Button (Limited)
 * Spoiler
 * List
 * Highlight
@@ -47,16 +56,22 @@ The elements are
 * Category List
 * Menu
 
+= Pro version includes =
 
-The plugin to help you make shortcode by yourself and get them listed in the wp tinymce editor to use them easily.
+* Quick support by our official forum
+http://supports.cybercraftit.com/supports/support/shortcode-maker-pro/
+* Limited things get the unlimited ;)
+* Button Group
+* Card
+* Card Group
+* Jumbotron
+* List Group
+* Carousel
+* And more...
+* Multiple site license
 
-= Features =
-
-* You can use built in shortcodes to create widgets like tabs, alert, accordion, table etc
-* You can add shortcode of your own
-* Add attributes as many as you want with the ability to define default value
-* you can write PHP code in definition. To use code, use [php_code][/php_code] in your shortcode definition and place code inside it.
-
+== You can grab your pro version from here ==
+https://cybercraftit.com/shortcode-maker-pro/
 
 [youtube https://www.youtube.com/watch?v=H_dSHHiou9Q&feature=youtu.be]
 
