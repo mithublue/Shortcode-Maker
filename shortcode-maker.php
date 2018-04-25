@@ -292,7 +292,7 @@ class shortcode_maker{
         }
 
         if( isset( $post->ID ) && get_post_type( $post->ID ) == 'sm_shortcode' ) {
-            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue' ) );
+            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue' ), false, true );
         }
 
         if( in_array( $hook, array(

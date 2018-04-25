@@ -13,7 +13,7 @@
         });
 
         var sm_shortcode = new Vue({
-            el: '#wpwrap',
+            el: '.attr_field',
             data : {
                 shortcode_atts : shortcode_atts
             },
