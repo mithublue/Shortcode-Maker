@@ -7,7 +7,7 @@
  * Author: CyberCraft
  * Text Domain: shortcode-maker
  * Domain Path: /languages
- * Version: 5.0.4
+ * Version: 5.0.4.1
  * License: GPL2
  */
 /**
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SHORTCODE_MAKER_VERSION', '5.0.4' );
+define( 'SHORTCODE_MAKER_VERSION', '5.0.4.1' );
 define( 'SHORTCODE_MAKER_ROOT', dirname(__FILE__) );
 define( 'SHORTCODE_MAKER_ASSET_PATH', plugins_url('assets',__FILE__) );
 define( 'SHORTCODE_MAKER_BASE_FILE', __FILE__ );
@@ -292,7 +292,7 @@ class shortcode_maker{
         }
 
         if( isset( $post->ID ) && get_post_type( $post->ID ) == 'sm_shortcode' ) {
-            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue' ) );
+            wp_enqueue_script( 'sm-script-js', SHORTCODE_MAKER_ASSET_PATH.'/js/script.js', array( 'sm-vue' ), false, true );
         }
 
         if( in_array( $hook, array(

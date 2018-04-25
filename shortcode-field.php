@@ -31,21 +31,21 @@ class SM_Shortcode_Field {
         <script>
             var shortcode_atts = <?php echo json_encode($shortcode_atts);?>;
         </script>
-        <div class="bs-container">
+        <div class="bs-container attr_field">
             <p class="alert alert-info"><?php _e( 'Note : Provide attibute name withous space inside . You can use these shortcode attributes in content. To do this, add the attributes in the content in wp editor like this
                 %attributes_name%', 'shortcode-maker' );?>
                 </p>
             <a href="javascript:" class="btn btn-primary sm-add-attr mb10" @click="add_attr_box()"><?php _e( 'Add Attribute', 'shortcode-maker' ); ?></a>
 
-            <div v-for="( key, attr ) in shortcode_atts" class="panel panel-default mt10">
+            <div v-for="( attr, key  ) in shortcode_atts" class="panel panel-default mt10">
                 <div class="panel-body">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-5">
-                                <input type="text" v-model="attr.name" name="shortcode_atts[{{ key }}][name]" class="form-control mb5 col-sm-5" >
+                                <input type="text" v-model="attr.name" :name="shortcode_atts[key].name" class="form-control mb5 col-sm-5" >
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" v-model="attr.value" name="shortcode_atts[{{ key }}][value]" class="form-control mb5 col-sm-5">
+                                <input type="text" v-model="attr.value" :name="shortcode_atts[key].value" class="form-control mb5 col-sm-5">
                             </div>
                             <div class="col-sm-2">
                                 <a href="javascript:" class="btn btn-danger btn-sm" @click="remove_attr(key)" ><?php _e( 'Remove' , 'shortcode-maker' ); ?></a>
