@@ -14,6 +14,10 @@ The plugin to help you make shortcode by yourself or chose builtin shortcodes to
 The plugin to help you make shortcode by yourself or chose builtin shortcodes to use them easily.
 Why spend much time on doing thing while there is something to let you make things without headache and complexity in minutes ?
 
+== Documentation ==
+
+Our complete documentation on Shortcode Maker and Shortcode Maker Pro is here
+http://docs.cybercraftit.com/docs/shortcode-maker-pro/
 
 = Our Official Support Forum =
 
