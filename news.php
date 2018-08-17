@@ -78,6 +78,7 @@ class CC_News {
                 && isset( $notices['news_notice']['last_news_date'] )
                 && $notices['news_notice']['last_news_date'] < $new_lastest_date
             ) {
+
                 ?>
                 <div class="notice notice-success is-dismissible cc_news_notice">
                     <input type="hidden" value="<?php echo $new_lastest_date; ?>" name="cc_last_news_date">

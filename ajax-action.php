@@ -32,7 +32,7 @@ class SM_Ajax_Action {
         }
 
         if ( update_option( 'sm_admin_notices', $notices ) ) {
-            echo wp_send_json_success();
+            wp_send_json_success();
         }
         exit;
     }
