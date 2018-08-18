@@ -16,7 +16,8 @@ Why spend much time on doing thing while there is something to let you make thin
 
 == Demo ==
 
-You can try the full featured demo of this plugin <a href="http://cybercraftit.com/demo/testwp/shortcode-maker-pro/demo/">here</a>
+You can try the full featured demo of this plugin <a href="http://cybercraftit.com/demo/testwp/shortcode-maker-pro/demo/">here</a>.
+There, in admin panel, you can find shortcode menu item in admin menu. From there, you can add shortcode , then use them in any post type along with the packaged ones.
 
 == Documentation ==
 
