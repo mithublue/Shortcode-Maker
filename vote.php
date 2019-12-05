@@ -1,4 +1,5 @@
 <?php
+//delete_option( 'sm_vote' );
 class SM_Vote {
 
     public function __construct() {

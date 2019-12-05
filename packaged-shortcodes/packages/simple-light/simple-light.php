@@ -133,7 +133,6 @@ class Smps_Simple_Light {
     function wp_enqueue_scripts_styles( $hook ) {
         global $post;
 
-
         if( isset($post->post_content) && has_shortcode( $post->post_content, 'smps_shortcode' )  ) {
             wp_enqueue_style( 'sm-front-bs' , SHORTCODE_MAKER_ASSET_PATH.'/css/bootstrap-4.0.0.min.css' );
             wp_enqueue_script( 'sm-front-bs-js' , SHORTCODE_MAKER_ASSET_PATH.'/js/bootstrap-4.0.0.min.js', array( 'jquery' ) );
